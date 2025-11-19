@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/components/i18n-provider";
 import { motion } from "framer-motion";
+import { HKLogo } from "@/components/ui/hk-logo";
 
 export function SiteHeader() {
     const { language, setLanguage } = useI18n();
@@ -13,8 +14,8 @@ export function SiteHeader() {
             animate={{ y: 0 }}
             className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4 md:px-12 pointer-events-none"
         >
-            <div className="text-xl font-bold tracking-tighter text-zinc-100 pointer-events-auto mix-blend-difference">
-                HK.
+            <div className="pointer-events-auto mix-blend-difference">
+                <HKLogo className="w-8 h-8 text-zinc-100" />
             </div>
 
             <div className="pointer-events-auto bg-zinc-900/80 backdrop-blur-md border border-zinc-800 rounded-full p-1 flex gap-1 shadow-lg">
@@ -23,8 +24,8 @@ export function SiteHeader() {
                     size="sm"
                     onClick={() => setLanguage('ko')}
                     className={`rounded-full px-4 h-8 text-xs font-medium transition-all ${language === 'ko'
-                            ? 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200'
-                            : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800'
+                        ? 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200'
+                        : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800'
                         }`}
                 >
                     KO
@@ -34,8 +35,8 @@ export function SiteHeader() {
                     size="sm"
                     onClick={() => setLanguage('en')}
                     className={`rounded-full px-4 h-8 text-xs font-medium transition-all ${language === 'en'
-                            ? 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200'
-                            : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800'
+                        ? 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200'
+                        : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800'
                         }`}
                 >
                     EN

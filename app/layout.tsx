@@ -21,6 +21,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Lee Heungkyu | AX Consultant & AI Engineer",
   description: "Forward Deployed Engineer specializing in operational reality. Building systems that work in the mud, not just on paper.",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+  },
 };
 
 export default function RootLayout({
