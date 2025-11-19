@@ -33,6 +33,10 @@ export const PORTFOLIO_DATA = {
           ko: "기획부터 배포까지, 혼자서 완주합니다.",
           en: "From planning to deployment, I handle it all.",
         },
+        detailedContent: {
+          ko: "Next.js, React, React Native, shadcn UI, PostgreSQL, Supabase 등을 활용해 기획 → 설계 → 개발 → 배포 → 운영까지 풀사이클을 혼자서 완주할 수 있는 개발자입니다.\n\n크라우드 펀딩 선물하기 앱 '티클', 외식업 점주용 CRM '단골쓰', 커머스 리뷰 분석 서비스 '코낼리', 장애인 길찾기 서비스 '우리 광주', ADHD 아동용 놀이 서비스 '파모 플레이 테라피', AI 일기 서비스 '위솜' 등은 모두 3~4개월 이내에 실제 서비스로 구현·런칭한 사례들입니다.\n\nB2C, B2B, 공공, 헬스케어까지 다양한 도메인에서 '실제 사용되는 서비스'를 만들어 왔습니다.",
+          en: "Using Next.js, React, React Native, shadcn UI, PostgreSQL, Supabase, and more, I can complete the entire cycle from planning to deployment and operations independently.\n\nProjects like crowdfunding gifting app 'Tikkle', restaurant CRM 'Daangols', commerce review analysis 'Conaly', accessible navigation 'Our Gwangju', ADHD therapy 'Parmo Play Therapy', and AI diary 'Wesome' were all implemented and launched within 3-4 months.\n\nI've built 'actually used services' across diverse domains: B2C, B2B, public sector, and healthcare.",
+        },
         tags: ["Next.js", "React Native", "Supabase"],
         colSpan: 2,
       },
@@ -40,6 +44,10 @@ export const PORTFOLIO_DATA = {
         type: "stat",
         title: { ko: "AI Top 100", en: "AI Top 100" },
         content: { ko: "Kakao 선정", en: "Selected by Kakao" },
+        detailedContent: {
+          ko: "카카오가 선정한 AI Top 100에 이름을 올린, 한국에서 AI 활용 역량을 공식적으로 인정받은 100명 중 한 명입니다.\n\n현재 성균관대학교 인공지능융합학과 학부생으로 재학 중이며, AI 이론과 실무를 결합한 프로젝트들을 진행하고 있습니다.\n\n단순히 AI를 '사용'하는 것을 넘어, 비즈니스 문제를 AI로 '해결'하는 데 집중합니다.",
+          en: "Selected as one of the AI Top 100 by Kakao, officially recognized as one of the top 100 AI talents in Korea.\n\nCurrently an undergraduate student at Sungkyunkwan University's Department of AI Convergence, working on projects that combine AI theory with practical implementation.\n\nFocusing not just on 'using' AI, but on 'solving' business problems with AI.",
+        },
         value: "Top 100",
         colSpan: 1,
       },
@@ -49,6 +57,10 @@ export const PORTFOLIO_DATA = {
         content: {
           ko: "단순 연동을 넘어, 업무를 대체하는 에이전트를 설계합니다.",
           en: "Designing agents that replace actual workflows.",
+        },
+        detailedContent: {
+          ko: "단순히 LLM API를 연동하는 수준이 아니라, LangChain, LangGraph, n8n, OpenAI / Claude / Gemini 등의 모델을 조합해 실제로 업무 프로세스를 대체·보조하는 AI 에이전트를 설계합니다.\n\n운송 주선사를 위한 배차 오케스트레이팅 시스템 'Maestro TMS'와, 그 안에서 사람 대신 화물 배차 의사결정을 도와주는 AI 코파일럿 'OPUS AI'가 대표적인 예입니다.\n\nOPUS AI는 국내 주요 정보망 3사를 동시에 연동해 한 번의 요청으로 3개 네트워크에 배차를 생성·관리할 수 있고, AI Agent가 화주 메시지를 분석해 배차 생성/수정/취소 초안을 자동으로 생성합니다.",
+          en: "Beyond simple LLM API integration, I design AI agents that replace and assist actual business processes by combining LangChain, LangGraph, n8n, and models like OpenAI, Claude, and Gemini.\n\nPrime examples are 'Maestro TMS', a dispatch orchestration system for freight forwarders, and 'OPUS AI', an AI copilot that assists with freight dispatch decision-making.\n\nOPUS AI integrates 3 major domestic freight networks simultaneously, enabling dispatch creation and management across all 3 networks with a single request. The AI agent analyzes shipper messages to automatically generate drafts for dispatch creation, modification, and cancellation.",
         },
         tags: ["LangChain", "n8n", "LLM Ops"],
         colSpan: 1,
@@ -60,6 +72,10 @@ export const PORTFOLIO_DATA = {
           ko: "돈이 새는 지점을 찾아 기술로 막습니다.",
           en: "Identifying and fixing revenue leaks with tech.",
         },
+        detailedContent: {
+          ko: "스스로를 '코드를 아는 컨설턴트'라고 생각합니다.\n\n단순히 화면을 만드는 것이 아니라, 고객의 현업 프로세스를 파고들어 '돈이 새는 지점'과 '사람이 가장 많이 소모되는 구간'을 먼저 정의합니다.\n\n그다음, 그 구간을 자동화·반자동화할 수 있는 구조를 제안하고, 직접 제품으로 구현합니다.\n\n현장의 복잡한 문제를 비즈니스 관점에서 재정의하고, 풀스택 개발과 AI를 섞어 실제로 돌아가는 제품으로 만드는 것이 저의 강점입니다.",
+          en: "I consider myself a 'consultant who codes'.\n\nRather than simply building interfaces, I dive deep into client workflows to first identify 'revenue leak points' and 'high human-resource consumption zones'.\n\nThen, I propose structures for automation or semi-automation of those areas and implement them as actual products.\n\nMy strength lies in redefining complex field problems from a business perspective and turning them into working products using full-stack development and AI.",
+        },
         tags: ["Optimization", "Automation", "Strategy"],
         colSpan: 2,
       },
@@ -67,6 +83,10 @@ export const PORTFOLIO_DATA = {
         type: "stat",
         title: { ko: "수상 이력", en: "Awards" },
         content: { ko: "장관상 및 국제대회", en: "Minister's Award & Global" },
+        detailedContent: {
+          ko: "• K-Startup Silicon Valley Dream Challenge 최종 선정 (2023)\n• Innovation Leaders Summit Tokyo 최종 선정 (2023)\n• U-300 창업 유망팀 300 - 교육부 장관 인증\n  - 2022 초기트랙 최종 선정\n  - 2024 도약트랙 최종 선정\n\n이 이력들은 '아이디어만 말하는 사람'이 아니라, 실제 시장에서 검증 가능한 수준까지 끌고 가는 사람이라는 것을 보여줍니다.",
+          en: "• K-Startup Silicon Valley Dream Challenge Finalist (2023)\n• Innovation Leaders Summit Tokyo Finalist (2023)\n• U-300 Promising Startup Team 300 - Ministry of Education Certification\n  - 2022 Early Stage Track Finalist\n  - 2024 Growth Stage Track Finalist\n\nThese achievements demonstrate that I'm not just someone with ideas, but someone who takes them to market-validation level.",
+        },
         value: "4+",
         colSpan: 1,
       },
@@ -76,6 +96,10 @@ export const PORTFOLIO_DATA = {
         content: {
           ko: "결과를 만드는 사람들과 깊게 교류합니다.",
           en: "Deep connections with result-oriented people.",
+        },
+        detailedContent: {
+          ko: "예전에는 폭넓게 사람을 만나던 마당발형에 가까웠다면, 최근의 저는 확실히 소집자형에 가깝습니다.\n\n지금 가장 많이 교류하는 사람들은 40대 중반 물류·비즈니스 동업자 3명, 소프트웨어·AI 에이전트를 업으로 삼고 있는 20대 동료 3명 정도로, 서로의 일을 이해하고 깊이 피드백을 주고받는 코어 네트워크입니다.\n\n격주 단위로 만나 아이디어를 검증하고, 실제로 돌아가는 MVP를 계속 만들어내는 타입의 사람입니다.\n\n넓은 인맥이 아니라, '함께 일하면 진짜 결과가 나오는 사람들'과 깊게 엮이는 것을 중요하게 생각합니다.",
+          en: "While I used to be more of a 'connector' meeting people broadly, I'm now definitely more of a 'convener'.\n\nMy closest network consists of about 3 logistics/business partners in their mid-40s and 3 software/AI agent professionals in their 20s—a core network that deeply understands each other's work and exchanges meaningful feedback.\n\nI meet with them bi-weekly to validate ideas and continuously build working MVPs.\n\nI value deep connections with 'people who produce real results when working together' over broad networks.",
         },
         tags: ["Co-founders", "Experts", "Builders"],
         colSpan: 2,

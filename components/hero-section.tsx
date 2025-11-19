@@ -3,12 +3,25 @@
 import { PORTFOLIO_DATA } from "@/app/data/portfolio";
 import { useI18n } from "@/components/i18n-provider";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function HeroSection() {
     const { t, language } = useI18n();
 
     return (
         <section className="h-screen flex flex-col justify-between px-6 md:px-16 lg:px-24 py-24 relative bg-zinc-950 overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0 pointer-events-none opacity-30 grayscale">
+                <Image
+                    src="/hero-portrait.png"
+                    alt="Portrait"
+                    unoptimized
+                    fill
+                    className="object-cover object-center md:object-right"
+                    priority
+                />
+            </div>
+
             {/* Subtle Instagram gradient glow */}
             <div className="absolute top-1/3 right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-pink-500/10 via-yellow-500/10 to-purple-600/10 rounded-full blur-[150px] pointer-events-none" />
 
