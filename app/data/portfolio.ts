@@ -533,8 +533,8 @@ export const PORTFOLIO_DATA = {
       category: "AI Agent",
     },
     {
-      id: "tickle",
-      title: { ko: "티클", en: "Tickle" },
+      id: "tikkle",
+      title: { ko: "tikkle", en: "tikkle" },
       description: {
         ko: "크라우드 펀딩 방식 선물하기 앱",
         en: "Crowdfunding-based gifting app",
@@ -555,8 +555,8 @@ export const PORTFOLIO_DATA = {
       category: "Mobile App",
     },
     {
-      id: "dangolss",
-      title: { ko: "단골쓰", en: "Dangolss" },
+      id: "daangols",
+      title: { ko: "daangols", en: "daangols" },
       description: {
         ko: "외식업 점주용 CRM 솔루션",
         en: "CRM solution for restaurant owners",
@@ -577,8 +577,8 @@ export const PORTFOLIO_DATA = {
       category: "B2B Solution",
     },
     {
-      id: "conally",
-      title: { ko: "코낼리", en: "Conally" },
+      id: "conaly",
+      title: { ko: "Conaly", en: "Conaly" },
       description: {
         ko: "커머스 리뷰 분석 AI 솔루션",
         en: "E-commerce review analysis AI",
@@ -599,8 +599,8 @@ export const PORTFOLIO_DATA = {
       category: "Data Analytics",
     },
     {
-      id: "wisom",
-      title: { ko: "위솜", en: "Wisom" },
+      id: "wesome",
+      title: { ko: "wesome", en: "wesome" },
       description: {
         ko: "AI 캐릭터 감정 케어 일기",
         en: "AI character emotional care diary",
