@@ -12,7 +12,7 @@ export function ProjectSection() {
     const [activeProjectIndex, setActiveProjectIndex] = useState(0);
 
     return (
-        <section className="py-32 px-6 md:px-12 bg-zinc-950 relative">
+        <section className="py-20 md:py-32 px-6 md:px-12 bg-zinc-950 relative">
             {/* Background Container - Isolated for overflow control */}
             <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
                 <motion.div
@@ -33,16 +33,16 @@ export function ProjectSection() {
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="mb-24">
                     <h2 className="text-sm font-mono bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent mb-4 tracking-widest uppercase animate-gradient-rotate">
-                        {t({ ko: "주요 프로젝트", en: "Selected Works" })}
+                        {t({ ko: "Selected Works", en: "Selected Works" })}
                     </h2>
                     <h3 className="text-3xl md:text-6xl font-bold text-zinc-200 font-display">
-                        {t({ ko: "임팩트 있는 결과물.", en: "Impact Delivered." })}
+                        {t({ ko: "Portfolio", en: "Portfolio" })}
                     </h3>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
                     {/* Sticky Visual Side */}
-                    <div className="lg:w-1/2 order-2 lg:order-1 sticky top-32 self-start">
+                    <div className="lg:w-1/2 order-2 lg:order-1 relative md:sticky md:top-32 self-start">
                         <div className="aspect-video bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden flex items-center justify-center">
                             {/* Dynamic Visual based on activeProjectIndex */}
                             <div className="text-center p-8">

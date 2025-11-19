@@ -10,7 +10,7 @@ export function InsightSection() {
     const { t } = useI18n();
 
     return (
-        <section className="py-32 px-6 md:px-12 bg-zinc-950 relative overflow-hidden">
+        <section className="py-20 md:py-32 px-6 md:px-12 bg-zinc-950 relative overflow-hidden">
             {/* Animated background glow */}
             <motion.div
                 className="hidden md:block absolute top-20 left-1/3 w-[250px] h-[250px] bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-[80px] pointer-events-none"
@@ -28,15 +28,15 @@ export function InsightSection() {
 
             <div className="max-w-5xl mx-auto relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-6">
-                    <div>
+                    <div className="text-right md:text-left w-full md:w-auto">
                         <h2 className="text-sm font-mono bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent mb-4 tracking-widest uppercase animate-gradient-rotate">
-                            {t({ ko: "인텔리전스 브리프", en: "Intelligence Briefs" })}
+                            {t({ ko: "Intelligence Briefs", en: "Intelligence Briefs" })}
                         </h2>
                         <h3 className="text-3xl md:text-6xl font-bold text-zinc-200 font-display">
-                            {t({ ko: "전략적 사고", en: "Strategic Thoughts" })}
+                            {t({ ko: "Strategic Thoughts", en: "Strategic Thoughts" })}
                         </h3>
                     </div>
-                    <div className="text-zinc-500 text-sm font-mono">
+                    <div className="text-zinc-500 text-sm font-mono hidden md:block">
                         {t({ ko: "// 기밀 해제", en: "// DECLASSIFIED" })}
                     </div>
                 </div>

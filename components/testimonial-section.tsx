@@ -9,17 +9,17 @@ export function TestimonialSection() {
     const { t } = useI18n();
 
     return (
-        <section className="py-32 px-6 md:px-12 bg-zinc-950 relative overflow-hidden">
+        <section className="py-20 md:py-32 px-6 md:px-12 bg-zinc-950 relative overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
             <div className="max-w-7xl mx-auto">
                 <div className="mb-20 text-center">
                     <h2 className="text-sm font-mono text-indigo-500 mb-4 tracking-widest uppercase">
-                        {t({ ko: "현장 보고", en: "Field Reports" })}
+                        {t({ ko: "Field Reports", en: "Field Reports" })}
                     </h2>
                     <h3 className="text-3xl md:text-4xl font-bold text-zinc-100">
-                        {t({ ko: "함께한 파트너들", en: "Trusted by Builders" })}
+                        {t({ ko: "Trusted by Partners", en: "Trusted by Partners" })}
                     </h3>
                 </div>
 

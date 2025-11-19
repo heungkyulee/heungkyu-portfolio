@@ -96,7 +96,7 @@ export function TechStack() {
                         ease: "linear",
                         repeat: Infinity,
                     }}
-                    className="flex gap-16 px-8"
+                    className="flex gap-8 md:gap-16 px-8"
                 >
                     {marqueeItems.map((tech, index) => {
                         const Icon = techIcons[tech];
@@ -108,9 +108,9 @@ export function TechStack() {
                                 className="flex flex-col items-center gap-3 group hover:scale-110 transition-transform"
                             >
                                 <Icon
-                                    className="w-16 h-16 text-zinc-700 group-hover:text-orange-500 transition-colors"
+                                    className="w-12 h-12 md:w-16 md:h-16 text-zinc-700 group-hover:text-orange-500 transition-colors"
                                 />
-                                <span className="text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors whitespace-nowrap font-mono">
+                                <span className="text-[10px] md:text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors whitespace-nowrap font-mono">
                                     {tech}
                                 </span>
                             </div>

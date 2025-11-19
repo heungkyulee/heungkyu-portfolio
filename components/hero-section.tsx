@@ -9,9 +9,9 @@ export function HeroSection() {
     const { t, language } = useI18n();
 
     return (
-        <section className="h-screen flex flex-col justify-between px-6 md:px-16 lg:px-24 py-24 relative bg-zinc-950 overflow-hidden">
+        <section className="h-screen flex flex-col justify-between px-6 md:px-16 lg:px-24 py-16 md:py-24 relative bg-zinc-950 overflow-hidden">
             {/* Background Image */}
-            <div className="absolute bottom-0 right-0 w-[80%] h-[80%] pointer-events-none opacity-30 grayscale">
+            <div className="absolute bottom-0 right-0 w-full h-full pointer-events-none opacity-30 grayscale">
                 <Image
                     src="/hero-portrait.png"
                     alt="Portrait"
@@ -53,7 +53,7 @@ export function HeroSection() {
                 }}
             />
 
-            <div className="max-w-6xl mx-auto w-full flex flex-col justify-between h-full">
+            <div className="max-w-6xl mx-auto w-full flex flex-col justify-between h-full text-right md:text-left">
                 {/* Top: Minimal label */}
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -74,7 +74,7 @@ export function HeroSection() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.3 + index * 0.2, duration: 1 }}
                         >
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display text-zinc-200 leading-tight">
+                            <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display text-zinc-200 leading-tight">
                                 {role}
                             </h1>
                         </motion.div>
@@ -86,9 +86,9 @@ export function HeroSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.9, duration: 1 }}
-                    className="max-w-md"
+                    className="max-w-md ml-auto md:ml-0"
                 >
-                    <p className="text-lg md:text-xl text-zinc-600 leading-relaxed">
+                    <p className="text-lg md:text-xl text-zinc-600 leading-relaxed whitespace-pre-line">
                         {t(PORTFOLIO_DATA.profile.bio)}
                     </p>
                 </motion.div>

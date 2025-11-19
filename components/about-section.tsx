@@ -47,7 +47,7 @@ export function AboutSection() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-        <section className="py-32 px-6 md:px-12 bg-zinc-950 relative overflow-visible">
+        <section className="py-20 md:py-32 px-6 md:px-12 bg-zinc-950 relative overflow-visible">
             {/* Background gradient */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-zinc-950 to-zinc-950" />
             
@@ -111,7 +111,7 @@ export function AboutSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            className="text-4xl md:text-7xl font-bold text-white font-display tracking-tight leading-none"
+                            className="text-3xl md:text-7xl font-bold text-white font-display tracking-tight leading-none text-right md:text-left"
                         >
                             Neural<br />Architecture
                         </motion.h3>
@@ -121,11 +121,11 @@ export function AboutSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-zinc-400 max-w-md text-base leading-relaxed font-mono text-right md:text-left"
+                        className="text-zinc-400 max-w-md text-base leading-relaxed font-mono text-right md:text-left whitespace-pre-line"
                     >
                         {language === 'ko' 
-                            ? "비즈니스 로직과 AI 기술을 결합하여 살아있는 시스템을 설계합니다." 
-                            : "Architecting living systems by synthesizing business logic with AI technology."}
+                            ? "비즈니스 로직과 AI 기술을 결합하여\n살아있는 시스템을 설계합니다." 
+                            : "Architecting living systems\nby synthesizing business logic with AI technology."}
                     </motion.p>
                 </div>
 
@@ -219,7 +219,7 @@ export function AboutSection() {
                                                     transition={{ duration: 0.2 }}
                                                     className="flex flex-col justify-between h-full"
                                                 >
-                                                    <p className="text-lg text-zinc-400 line-clamp-3 leading-relaxed font-medium">
+                                                    <p className="text-lg text-zinc-400 line-clamp-3 leading-relaxed font-medium whitespace-pre-line">
                                                         {t(item.content)}
                                                     </p>
 

@@ -7,11 +7,11 @@ export const PORTFOLIO_DATA = {
       en: "LEE HEUNGKYU",
     },
     roles: {
-      ko: ["AX 컨설턴트", "풀스택 개발자", "AI 에이전트 엔지니어"],
+      ko: ["AX Consultant", "Full Stack Developer", "AI Agent Engineer"],
       en: ["AX Consultant", "Full Stack Developer", "AI Agent Engineer"],
     },
     bio: {
-      ko: "비즈니스 문제를 정의하고, 기술로 끝까지 해결합니다.",
+      ko: "비즈니스 문제를 정의하고,\n기술로 끝까지 해결합니다.",
       en: "Redefining business problems and solving them with technology.",
     },
     contact: {
@@ -30,8 +30,8 @@ export const PORTFOLIO_DATA = {
         type: "text",
         title: { ko: "풀스택 개발", en: "Full Stack" },
         content: {
-          ko: "기획부터 배포까지, 혼자서 완주합니다.",
-          en: "From planning to deployment, I handle it all.",
+          ko: "기획부터 배포까지,\n혼자서 완주합니다.",
+          en: "From planning to deployment,\nI handle it all.",
         },
         detailedContent: {
           ko: "• **Full Cycle**: 기획 → 디자인 → 개발 → 배포 → 운영 1인 수행\n• **Speed**: 평균 3~4개월 내 서비스 런칭 (티클, 단골쓰 등)\n• **Tech**: Next.js, RN, Supabase 기반 B2C/B2B 서비스 다수 구현",
@@ -43,7 +43,7 @@ export const PORTFOLIO_DATA = {
       {
         type: "stat",
         title: { ko: "AI Top 100", en: "AI Top 100" },
-        content: { ko: "Kakao 선정", en: "Selected by Kakao" },
+        content: { ko: "Kakao 선정 AI 활용 역량 Top 100", en: "Selected by Kakao AI Top 100" },
         detailedContent: {
           ko: "**카카오 선정 한국 AI 활용 역량 Top 100**\n\n단순 AI 사용을 넘어, **비즈니스 문제를 AI로 해결**하는 실질적 응용 역량 보유.",
           en: "**Kakao's Top 100 AI Talents in Korea**\n\nProven capability to **solve business problems with AI**, beyond simple usage.",
@@ -55,8 +55,8 @@ export const PORTFOLIO_DATA = {
         type: "text",
         title: { ko: "AI 에이전트", en: "AI Agent" },
         content: {
-          ko: "단순 연동을 넘어, 업무를 대체하는 에이전트를 설계합니다.",
-          en: "Designing agents that replace actual workflows.",
+          ko: "단순 연동을 넘어,\n업무를 대체하는\n에이전트를 설계합니다.",
+          en: "Designing agents\nthat replace actual workflows\nby synthesizing business logic with AI technology.",
         },
         detailedContent: {
           ko: "• **Workflow**: API 연동을 넘어 업무 프로세스 전체 자동화\n• **Case**: 화주 메시지 분석 → 3개망 배차 → 초안 생성 (OPUS AI)\n• **Stack**: LangChain, LangGraph, n8n 기반 자율 에이전트",
@@ -69,8 +69,8 @@ export const PORTFOLIO_DATA = {
         type: "text",
         title: { ko: "AX 컨설팅", en: "AX Consulting" },
         content: {
-          ko: "돈이 새는 지점을 찾아 기술로 막습니다.",
-          en: "Identifying and fixing revenue leaks with tech.",
+          ko: "돈이 새는 지점을 찾아\n기술로 막습니다.",
+          en: "Identifying and fixing revenue leaks\nwith tech.",
         },
         detailedContent: {
           ko: "**\"코드를 아는 컨설턴트\"**\n\n1. **진단**: 현업의 '돈과 시간이 새는 구간' 발견\n2. **설계**: 자동화 가능한 최적 구조 제안\n3. **구현**: 직접 풀스택 개발로 솔루션 완성",
@@ -94,8 +94,8 @@ export const PORTFOLIO_DATA = {
         type: "text",
         title: { ko: "네트워킹", en: "Networking" },
         content: {
-          ko: "결과를 만드는 사람들과 깊게 교류합니다.",
-          en: "Deep connections with result-oriented people.",
+          ko: "결과를 만드는 사람들과\n깊게 교류합니다.",
+          en: "Deep connections with\nresult-orientedpeople.",
         },
         detailedContent: {
           ko: "• **Type**: 넓은 인맥보다 깊은 관계 지향 **'소집자형'**\n• **Core**: 40대 비즈니스 파트너 & 20대 AI 엔지니어 그룹\n• **Action**: 격주 단위 아이디어 검증 및 MVP 실행",
@@ -119,8 +119,8 @@ export const PORTFOLIO_DATA = {
       step: "02",
       title: { ko: "Integrate", en: "Integrate" },
       description: {
-        ko: "파편화된 데이터와 프로세스를\n하나의 진실된 뷰(Single Source of Truth)로 통합합니다.",
-        en: "Unifying fragmented data and processes\ninto a Single Source of Truth.",
+        ko: "파편화된 데이터와 프로세스를\n하나의 온톨로지로 통합합니다.",
+        en: "Unifying fragmented data and processes\ninto a Ontology.",
       },
     },
     {
@@ -546,14 +546,14 @@ export const PORTFOLIO_DATA = {
         en: "Repetitive communication ('Where are you?', 'Price?') consumed 60% of work time. Delayed responses led to lost opportunities.",
       },
       solution: {
-        ko: "LangChain과 GPT-4를 활용한 AI 에이전트 설계. 카카오톡 메시지를 분석해 Maestro TMS 데이터베이스와 화물 정보망 API를 자동 조회. 단순 문의 즉시 응답 및 배차 초안 생성.",
-        en: "Designed AI agent using LangChain and GPT-4. Analyzes KakaoTalk messages to query Maestro TMS DB and freight APIs. Auto-responds to inquiries and drafts dispatches.",
+        ko: "LangChain과 Claude Agent SDK를 활용한 AI 에이전트 설계. 카카오톡 메시지를 분석해 Maestro TMS 데이터베이스와 화물 정보망 API를 자동 조회. 단순 문의 즉시 응답 및 배차 초안 생성.",
+        en: "Designed AI agent using LangChain and Claude Agent SDK. Analyzes KakaoTalk messages to query Maestro TMS DB and freight APIs. Auto-responds to inquiries and drafts dispatches.",
       },
       impact: {
         ko: "단순 문의 응대율 80% 자동화로 일일 3시간 절감. 야간/주말 긴급 배차 응대율 100% 달성. 월 6,000건 이상의 대화 자동화.",
         en: "80% automation of simple inquiries saved 3 hours daily. 100% response for emergency dispatches. Automates 6,000+ monthly conversations.",
       },
-      techStack: ["LangChain", "GPT-4", "AI Agent", "NLP"],
+      techStack: ["LangChain", "Claude Agent SDK", "AI Agent", "NLP"],
       category: "AI Agent",
     },
     {

@@ -25,19 +25,19 @@ export function SiteFooter() {
                             {language === 'ko' ? (
                                 <>
                                     함께 만드는 <br />
-                                    <span className="text-zinc-600">변화.</span>
+                                    <span className="text-zinc-600 text-[80px]">변화.</span>
                                 </>
                             ) : (
                                 <>
                                     Let's work <br />
-                                    <span className="text-zinc-600">together.</span>
+                                    <span className="text-zinc-600 text-[80px]">together.</span>
                                 </>
                             )}
                         </h2>
-                        <p className="text-xl text-zinc-400 max-w-md">
+                        <p className="text-xl text-zinc-400 max-w-md whitespace-pre-line">
                             {t({
-                                ko: "새로운 프로젝트, 기술적인 고민, 혹은 가벼운 커피챗도 환영합니다.",
-                                en: "Open for new projects, technical discussions, or just a casual coffee chat."
+                                ko: "새로운 프로젝트, 기술적인 고민,\n혹은 가벼운 커피챗도 환영합니다.",
+                                en: "Open for new projects, technical discussions,\nor just a casual coffee chat."
                             })}
                         </p>
 
