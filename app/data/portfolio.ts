@@ -87,32 +87,32 @@ export const PORTFOLIO_DATA = {
       step: "01",
       title: { ko: "Embed", en: "Embed" },
       description: {
-        ko: "현장에 침투하여 진짜 문제를 발견합니다. 책상이 아닌 현장에서 답을 찾습니다.",
-        en: "We deploy to the field to discover the real problems. Answers are found in the mud, not at the desk.",
+        ko: "현장에 침투하여 진짜 문제를 발견합니다.\n책상이 아닌 현장에서 답을 찾습니다.",
+        en: "We deploy to the field to discover the real problems.\nAnswers are found in the mud, not at the desk.",
       },
     },
     {
       step: "02",
       title: { ko: "Integrate", en: "Integrate" },
       description: {
-        ko: "파편화된 데이터와 프로세스를 하나의 진실된 뷰(Single Source of Truth)로 통합합니다.",
-        en: "Unifying fragmented data and processes into a Single Source of Truth.",
+        ko: "파편화된 데이터와 프로세스를\n하나의 진실된 뷰(Single Source of Truth)로 통합합니다.",
+        en: "Unifying fragmented data and processes\ninto a Single Source of Truth.",
       },
     },
     {
       step: "03",
       title: { ko: "Augment", en: "Augment" },
       description: {
-        ko: "AI와 자동화로 인간의 판단력을 증강시킵니다. 대체가 아닌 공생을 지향합니다.",
-        en: "Augmenting human judgment with AI. We aim for symbiosis, not replacement.",
+        ko: "AI와 자동화로 인간의 판단력을 증강시킵니다.\n대체가 아닌 공생을 지향합니다.",
+        en: "Augmenting human judgment with AI.\nWe aim for symbiosis, not replacement.",
       },
     },
     {
       step: "04",
       title: { ko: "Operate", en: "Operate" },
       description: {
-        ko: "실제 운영 환경에서 지속 가능한 임팩트를 만듭니다. 끝까지 책임집니다.",
-        en: "Creating sustainable impact in live operations. We own the outcome.",
+        ko: "실제 운영 환경에서 지속 가능한 임팩트를 만듭니다.\n끝까지 책임집니다.",
+        en: "Creating sustainable impact in live operations.\nWe own the outcome.",
       },
     },
   ],
@@ -124,7 +124,7 @@ export const PORTFOLIO_DATA = {
         ko: "데이터는 이미 넘쳐납니다. 문제는 '연결'의 부재입니다. 사일로에 갇힌 데이터를 해방시킬 때 혁신이 시작됩니다.",
         en: "Data is abundant. The problem is the lack of connection. Innovation begins when we liberate data from silos.",
       },
-      date: "2024.03",
+      date: "2025.11.19",
       content: {
         ko: `
           <p>많은 기업들이 "데이터가 부족해서" 혁신을 못한다고 말합니다. 그래서 비싼 돈을 들여 데이터 레이크를 구축하고, 최신 대시보드 툴을 도입하죠. 하지만 현장에 가보면 어떤가요?</p>
@@ -245,7 +245,7 @@ export const PORTFOLIO_DATA = {
         ko: "단순한 챗봇이 아닙니다. 스스로 계획하고, 도구를 사용하고, 결과를 보고하는 '디지털 동료'를 설계해야 합니다.",
         en: "Not just chatbots. We must design 'digital colleagues' that plan, use tools, and report results.",
       },
-      date: "2024.02",
+      date: "2025.11.19",
       content: {
         ko: `
           <p>우리는 지금까지 소프트웨어를 '도구(Tool)'로만 사용해왔습니다. 엑셀은 계산을 위한 도구이고, 슬랙은 대화를 위한 도구죠. 도구의 특징은 명확합니다. <strong>인간이 명령하지 않으면 아무것도 하지 않는다</strong>는 것입니다.</p>
@@ -402,7 +402,7 @@ export const PORTFOLIO_DATA = {
         ko: "가장 좋은 소프트웨어는 사용자가 주도권을 쥐는 소프트웨어입니다. 블랙박스가 되어서는 안 됩니다.",
         en: "The best software empowers the user to hold the reins. It must never be a black box.",
       },
-      date: "2024.01",
+      date: "2025.11.19",
       content: {
         ko: `
           <p>편리함에는 대가가 따릅니다. 많은 기업들이 운영의 효율을 위해 거대 SaaS 플랫폼에 자신의 비즈니스 프로세스를 맞춥니다. "업계 표준이니까", "다들 쓰니까"라는 이유로 말이죠.</p>
@@ -435,7 +435,7 @@ export const PORTFOLIO_DATA = {
       },
     },
     {
-      name: { ko: "이영희", en: "Younghee Lee" },
+      name: { ko: "송락현", en: "Rakhyun Song" },
       role: { ko: "시니어 PM", en: "Senior PM" },
       quote: {
         ko: "우리가 놓치고 있던 '현장의 디테일'을 가장 먼저 발견하고 해결책을 가져왔습니다.",

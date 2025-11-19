@@ -14,7 +14,7 @@ export function InsightSection() {
             <div className="max-w-5xl mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-6">
                     <div>
-                        <h2 className="text-sm font-mono text-cyan-400 mb-4 tracking-widest uppercase">Intelligence Briefs</h2>
+                        <h2 className="text-sm font-mono text-pink-500 mb-4 tracking-widest uppercase">Intelligence Briefs</h2>
                         <h3 className="text-3xl md:text-6xl font-bold text-zinc-200 font-display">
                             Strategic Thoughts
                         </h3>

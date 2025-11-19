@@ -21,8 +21,8 @@ export function AboutSection() {
                         viewport={{ once: true }}
                         className="flex items-center gap-3 mb-4"
                     >
-                        <div className="h-px w-8 bg-gradient-to-r from-cyan-500 to-transparent" />
-                        <h2 className="text-sm font-mono text-cyan-400 tracking-widest uppercase">Core Capabilities</h2>
+                        <div className="h-px w-8 bg-gradient-to-r from-pink-500 to-transparent" />
+                        <h2 className="text-sm font-mono text-pink-500 tracking-widest uppercase">Core Capabilities</h2>
                     </motion.div>
                     <motion.h3
                         initial={{ opacity: 0, y: 20 }}
@@ -52,20 +52,20 @@ export function AboutSection() {
                             )}
                         >
                             {/* Holographic effect */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-cyan-500/0 to-cyan-500/10 
+                            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 via-yellow-500/5 to-purple-600/10 
                               opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                             {/* Corner accents */}
-                            <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-pink-500/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-purple-600/50 opacity-0 group-hover:opacity-100 transition-opacity" />
 
                             <div className="h-full flex flex-col justify-between relative z-10">
                                 <div className="flex justify-between items-start">
-                                    <h4 className="text-lg font-mono font-bold text-zinc-200 uppercase tracking-tight group-hover:text-cyan-400 transition-colors">
+                                    <h4 className="text-lg font-mono font-bold text-zinc-200 uppercase tracking-tight group-hover:text-pink-500 transition-colors">
                                         {t(item.title)}
                                     </h4>
                                     {item.type === 'stat' && (
-                                        <span className="text-4xl font-bold text-gradient-cyan">{item.value}</span>
+                                        <span className="text-4xl font-bold text-gradient-instagram">{item.value}</span>
                                     )}
                                 </div>
 
@@ -77,8 +77,8 @@ export function AboutSection() {
                                     {item.tags && (
                                         <div className="flex flex-wrap gap-2">
                                             {item.tags.map(tag => (
-                                                <span key={tag} className="text-[10px] font-mono text-cyan-400/80 border border-cyan-500/30 px-2 py-0.5 
-                                                       group-hover:border-cyan-400 group-hover:text-cyan-400 transition-colors">
+                                                <span key={tag} className="text-[10px] font-mono text-pink-400/80 border border-pink-500/30 px-2 py-0.5 
+                                                       group-hover:border-pink-400 group-hover:text-pink-400 transition-colors">
                                                     {tag}
                                                 </span>
                                             ))}

@@ -15,7 +15,7 @@ export function ProjectSection() {
         <section className="py-32 px-6 md:px-12 bg-zinc-950">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-24">
-                    <h2 className="text-sm font-mono text-cyan-400 mb-4 tracking-widest uppercase">Selected Works</h2>
+                    <h2 className="text-sm font-mono text-pink-500 mb-4 tracking-widest uppercase">Selected Works</h2>
                     <h3 className="text-3xl md:text-6xl font-bold text-zinc-200 font-display">
                         Impact Delivered.
                     </h3>

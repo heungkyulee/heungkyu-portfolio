@@ -11,10 +11,12 @@ import { ExperienceSection } from "@/components/experience-section";
 import { ProcessSection } from "@/components/process-section";
 import { InsightSection } from "@/components/insight-section";
 import { TestimonialSection } from "@/components/testimonial-section";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 
 export default function Home() {
   return (
     <I18nProvider>
+      <CustomCursor />
       <main className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-indigo-500/30">
         <SiteHeader />
         <HeroSection />
