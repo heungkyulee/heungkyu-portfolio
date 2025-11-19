@@ -445,12 +445,21 @@ export const PORTFOLIO_DATA = {
   ],
   experience: [
     {
-      period: "2023 - Present",
+      period: "2025 - Present",
       role: { ko: "CTO", en: "CTO" },
       company: { ko: "주식회사 한국물류데이터", en: "Korean Logistics Data Corp." },
       description: {
         ko: "국내 물류 현장의 비효율을 줄이는 AX 솔루션 총괄. Maestro TMS 및 OPUS AI 개발 주도.",
         en: "Leading AX solutions to reduce inefficiencies in domestic logistics. Spearheaded Maestro TMS and OPUS AI development.",
+      },
+    },
+    {
+      period: "2025",
+      role: { ko: "AI Top 100", en: "AI Top 100" },
+      company: { ko: "Kakao", en: "Kakao" },
+      description: {
+        ko: "한국에서 AI 활용 역량을 공식적으로 인정받은 100인 선정.",
+        en: "Selected as one of the top 100 AI talents in Korea by Kakao.",
       },
     },
     {
@@ -460,15 +469,6 @@ export const PORTFOLIO_DATA = {
       description: {
         ko: "실무에 바로 적용 가능한 AX 솔루션 설계 및 구현. 다양한 B2B/B2C 서비스 런칭.",
         en: "Designing and implementing practical AX solutions. Launched various B2B/B2C services.",
-      },
-    },
-    {
-      period: "2023",
-      role: { ko: "AI Top 100", en: "AI Top 100" },
-      company: { ko: "Kakao", en: "Kakao" },
-      description: {
-        ko: "한국에서 AI 활용 역량을 공식적으로 인정받은 100인 선정.",
-        en: "Selected as one of the top 100 AI talents in Korea by Kakao.",
       },
     },
     {
