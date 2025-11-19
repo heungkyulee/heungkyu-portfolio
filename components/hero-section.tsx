@@ -11,19 +11,47 @@ export function HeroSection() {
     return (
         <section className="h-screen flex flex-col justify-between px-6 md:px-16 lg:px-24 py-24 relative bg-zinc-950 overflow-hidden">
             {/* Background Image */}
-            <div className="absolute inset-0 pointer-events-none opacity-30 grayscale">
+            <div className="absolute bottom-0 right-0 w-[80%] h-[80%] pointer-events-none opacity-30 grayscale">
                 <Image
                     src="/hero-portrait.png"
                     alt="Portrait"
                     unoptimized
                     fill
-                    className="object-cover object-center md:object-right"
+                    className="object-cover object-right-bottom"
                     priority
                 />
             </div>
 
-            {/* Subtle Instagram gradient glow */}
-            <div className="absolute top-1/3 right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-pink-500/10 via-yellow-500/10 to-purple-600/10 rounded-full blur-[150px] pointer-events-none" />
+            {/* AI-powered gradient glow - Animated */}
+            <motion.div 
+                className="absolute top-1/3 right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-orange-500/10 via-pink-500/10 to-purple-600/10 rounded-full blur-[150px] pointer-events-none"
+                animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 90, 0],
+                    x: [0, 50, 0],
+                    y: [0, -30, 0],
+                }}
+                transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            />
+            <motion.div 
+                className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-amber-400/5 via-orange-500/5 to-pink-500/5 rounded-full blur-[120px] pointer-events-none"
+                animate={{
+                    scale: [1, 1.1, 1],
+                    rotate: [0, -60, 0],
+                    x: [0, -30, 0],
+                    y: [0, 40, 0],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                }}
+            />
 
             <div className="max-w-6xl mx-auto w-full flex flex-col justify-between h-full">
                 {/* Top: Minimal label */}
@@ -46,7 +74,7 @@ export function HeroSection() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.3 + index * 0.2, duration: 1 }}
                         >
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-display text-zinc-200 leading-tight">
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display text-zinc-200 leading-tight">
                                 {role}
                             </h1>
                         </motion.div>

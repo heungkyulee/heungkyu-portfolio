@@ -15,9 +15,11 @@ export function TestimonialSection() {
 
             <div className="max-w-7xl mx-auto">
                 <div className="mb-20 text-center">
-                    <h2 className="text-sm font-mono text-indigo-500 mb-4 tracking-widest uppercase">Field Reports</h2>
+                    <h2 className="text-sm font-mono text-indigo-500 mb-4 tracking-widest uppercase">
+                        {t({ ko: "현장 보고", en: "Field Reports" })}
+                    </h2>
                     <h3 className="text-3xl md:text-4xl font-bold text-zinc-100">
-                        Trusted by Builders
+                        {t({ ko: "함께한 파트너들", en: "Trusted by Builders" })}
                     </h3>
                 </div>
 

@@ -67,11 +67,11 @@ export function ArticleAiAgents() {
                             </div>
                         </div>
                         <div className="flex items-start gap-4 flex-row-reverse">
-                            <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center shrink-0">
-                                <Bot className="w-5 h-5 text-indigo-400" />
+                            <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0">
+                                <Bot className="w-5 h-5 text-orange-400" />
                             </div>
                             <div className="space-y-2 max-w-[80%]">
-                                <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-2xl rounded-tr-none px-5 py-3 text-indigo-200">
+                                <div className="bg-orange-500/10 border border-orange-500/20 rounded-2xl rounded-tr-none px-5 py-3 text-orange-200">
                                     {isKo ? "네, 알겠습니다. 다음과 같은 계획으로 진행하겠습니다:" : "Understood. I will proceed with the following plan:"}
                                 </div>
                                 
@@ -127,15 +127,15 @@ export function ArticleAiAgents() {
                     </p>
                     <div className="grid grid-cols-3 gap-4 text-center">
                         <div>
-                            <div className="text-2xl font-bold text-indigo-400">80%</div>
+                            <div className="text-2xl font-bold text-orange-400">80%</div>
                             <div className="text-xs text-zinc-500">{isKo ? "단순 문의 자동화" : "Automation Rate"}</div>
                         </div>
                         <div>
-                            <div className="text-2xl font-bold text-indigo-400">2m</div>
+                            <div className="text-2xl font-bold text-orange-400">2m</div>
                             <div className="text-xs text-zinc-500">{isKo ? "평균 응답 속도" : "Response Time"}</div>
                         </div>
                         <div>
-                            <div className="text-2xl font-bold text-indigo-400">24/7</div>
+                            <div className="text-2xl font-bold text-orange-400">24/7</div>
                             <div className="text-xs text-zinc-500">{isKo ? "가동 시간" : "Availability"}</div>
                         </div>
                     </div>
@@ -153,21 +153,21 @@ export function ArticleAiAgents() {
                         : "Future competitiveness won't be decided by 'what SaaS you use', but by 'how many competent digital colleagues you possess'."}
                 </p>
                 
-                <div className="bg-indigo-500/5 border border-indigo-500/20 p-6 rounded-xl">
-                    <h4 className="text-indigo-400 font-bold mb-4">
+                <div className="bg-orange-500/5 border border-orange-500/20 p-6 rounded-xl">
+                    <h4 className="text-orange-400 font-bold mb-4">
                         {isKo ? "에이전트 도입을 위한 질문" : "Questions for Adopting Agents"}
                     </h4>
                     <ul className="space-y-3">
                         <li className="flex items-start gap-3 text-zinc-300 text-sm">
-                            <ArrowDown className="w-4 h-4 text-indigo-500 mt-1 shrink-0" />
+                            <ArrowDown className="w-4 h-4 text-orange-500 mt-1 shrink-0" />
                             {isKo ? "당신의 팀에서 반복적으로 하는 일이 무엇인가요?" : "What repetitive tasks does your team do?"}
                         </li>
                         <li className="flex items-start gap-3 text-zinc-300 text-sm">
-                            <ArrowDown className="w-4 h-4 text-indigo-500 mt-1 shrink-0" />
+                            <ArrowDown className="w-4 h-4 text-orange-500 mt-1 shrink-0" />
                             {isKo ? "그 일을 '위임'할 수 있다면 어떻게 설명하시겠어요?" : "If you could 'delegate' that work, how would you describe it?"}
                         </li>
                         <li className="flex items-start gap-3 text-zinc-300 text-sm">
-                            <ArrowDown className="w-4 h-4 text-indigo-500 mt-1 shrink-0" />
+                            <ArrowDown className="w-4 h-4 text-orange-500 mt-1 shrink-0" />
                             {isKo ? "에이전트가 그 일을 하려면 어떤 '권한'과 '도구'가 필요할까요?" : "What permissions and tools would an agent need?"}
                         </li>
                     </ul>
@@ -191,14 +191,14 @@ function ComparisonCard({ type, title, desc, icon: Icon, active }: { type: strin
         <div className={cn(
             "p-6 rounded-2xl border transition-all duration-300",
             active 
-                ? "bg-indigo-500/10 border-indigo-500/50 shadow-[0_0_30px_-10px_rgba(99,102,241,0.3)]" 
+                ? "bg-orange-500/10 border-orange-500/50 shadow-[0_0_30px_-10px_rgba(255,107,53,0.3)]" 
                 : "bg-zinc-900/30 border-zinc-800 opacity-60"
         )}>
             <div className="flex items-center justify-between mb-4">
-                <span className={cn("text-xs font-mono uppercase tracking-wider", active ? "text-indigo-400" : "text-zinc-500")}>
+                <span className={cn("text-xs font-mono uppercase tracking-wider", active ? "text-orange-400" : "text-zinc-500")}>
                     {type}
                 </span>
-                <Icon className={cn("w-5 h-5", active ? "text-indigo-400" : "text-zinc-500")} />
+                <Icon className={cn("w-5 h-5", active ? "text-orange-400" : "text-zinc-500")} />
             </div>
             <h3 className={cn("text-xl font-bold mb-2", active ? "text-white" : "text-zinc-400")}>{title}</h3>
             <p className="text-sm text-zinc-500">{desc}</p>
@@ -224,12 +224,12 @@ function AgentStep({ step, text, status }: { step: string; text: string; status:
 function CaseStep({ number, title, desc, icon: Icon }: { number: string; title: string; desc: string; icon: any }) {
     return (
         <div className="relative group">
-            <div className="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-zinc-900 border-2 border-zinc-700 group-hover:border-indigo-500 transition-colors flex items-center justify-center z-10">
-                <div className="w-2 h-2 rounded-full bg-zinc-700 group-hover:bg-indigo-500 transition-colors" />
+            <div className="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-zinc-900 border-2 border-zinc-700 group-hover:border-orange-500 transition-colors flex items-center justify-center z-10">
+                <div className="w-2 h-2 rounded-full bg-zinc-700 group-hover:bg-orange-500 transition-colors" />
             </div>
             <div className="space-y-2">
                 <div className="flex items-center gap-3">
-                    <Icon className="w-5 h-5 text-indigo-400" />
+                    <Icon className="w-5 h-5 text-orange-400" />
                     <h4 className="text-xl font-bold text-zinc-200">{title}</h4>
                 </div>
                 <p className="text-zinc-400 text-sm leading-relaxed max-w-lg">

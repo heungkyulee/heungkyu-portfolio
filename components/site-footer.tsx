@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Copy, Check, ArrowUpRight } from "lucide-react";
 
 export function SiteFooter() {
-    const { t } = useI18n();
+    const { t, language } = useI18n();
     const [copied, setCopied] = useState(false);
 
     const handleCopyEmail = () => {
@@ -22,8 +22,17 @@ export function SiteFooter() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
                     <div className="space-y-6">
                         <h2 className="text-4xl md:text-6xl font-bold text-zinc-100 tracking-tight">
-                            Let's work <br />
-                            <span className="text-zinc-600">together.</span>
+                            {language === 'ko' ? (
+                                <>
+                                    함께 만드는 <br />
+                                    <span className="text-zinc-600">변화.</span>
+                                </>
+                            ) : (
+                                <>
+                                    Let's work <br />
+                                    <span className="text-zinc-600">together.</span>
+                                </>
+                            )}
                         </h2>
                         <p className="text-xl text-zinc-400 max-w-md">
                             {t({

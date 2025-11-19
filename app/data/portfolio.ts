@@ -3,8 +3,8 @@ export type Language = 'ko' | 'en';
 export const PORTFOLIO_DATA = {
   profile: {
     name: {
-      ko: "이흥규",
-      en: "Lee Heungkyu",
+      ko: "LEE HEUNGKYU",
+      en: "LEE HEUNGKYU",
     },
     roles: {
       ko: ["AX 컨설턴트", "풀스택 개발자", "AI 에이전트 엔지니어"],
@@ -34,8 +34,8 @@ export const PORTFOLIO_DATA = {
           en: "From planning to deployment, I handle it all.",
         },
         detailedContent: {
-          ko: "Next.js, React, React Native, shadcn UI, PostgreSQL, Supabase 등을 활용해 기획 → 설계 → 개발 → 배포 → 운영까지 풀사이클을 혼자서 완주할 수 있는 개발자입니다.\n\n크라우드 펀딩 선물하기 앱 '티클', 외식업 점주용 CRM '단골쓰', 커머스 리뷰 분석 서비스 '코낼리', 장애인 길찾기 서비스 '우리 광주', ADHD 아동용 놀이 서비스 '파모 플레이 테라피', AI 일기 서비스 '위솜' 등은 모두 3~4개월 이내에 실제 서비스로 구현·런칭한 사례들입니다.\n\nB2C, B2B, 공공, 헬스케어까지 다양한 도메인에서 '실제 사용되는 서비스'를 만들어 왔습니다.",
-          en: "Using Next.js, React, React Native, shadcn UI, PostgreSQL, Supabase, and more, I can complete the entire cycle from planning to deployment and operations independently.\n\nProjects like crowdfunding gifting app 'Tikkle', restaurant CRM 'Daangols', commerce review analysis 'Conaly', accessible navigation 'Our Gwangju', ADHD therapy 'Parmo Play Therapy', and AI diary 'Wesome' were all implemented and launched within 3-4 months.\n\nI've built 'actually used services' across diverse domains: B2C, B2B, public sector, and healthcare.",
+          ko: "• **Full Cycle**: 기획 → 디자인 → 개발 → 배포 → 운영 1인 수행\n• **Speed**: 평균 3~4개월 내 서비스 런칭 (티클, 단골쓰 등)\n• **Tech**: Next.js, RN, Supabase 기반 B2C/B2B 서비스 다수 구현",
+          en: "• **Full Cycle**: Solo Planning → Design → Dev → Deploy → Ops\n• **Speed**: Launch within 3-4 months (Tikkle, Daangols)\n• **Tech**: Built B2C/B2B services with Next.js, RN, Supabase",
         },
         tags: ["Next.js", "React Native", "Supabase"],
         colSpan: 2,
@@ -45,8 +45,8 @@ export const PORTFOLIO_DATA = {
         title: { ko: "AI Top 100", en: "AI Top 100" },
         content: { ko: "Kakao 선정", en: "Selected by Kakao" },
         detailedContent: {
-          ko: "카카오가 선정한 AI Top 100에 이름을 올린, 한국에서 AI 활용 역량을 공식적으로 인정받은 100명 중 한 명입니다.\n\n현재 성균관대학교 인공지능융합학과 학부생으로 재학 중이며, AI 이론과 실무를 결합한 프로젝트들을 진행하고 있습니다.\n\n단순히 AI를 '사용'하는 것을 넘어, 비즈니스 문제를 AI로 '해결'하는 데 집중합니다.",
-          en: "Selected as one of the AI Top 100 by Kakao, officially recognized as one of the top 100 AI talents in Korea.\n\nCurrently an undergraduate student at Sungkyunkwan University's Department of AI Convergence, working on projects that combine AI theory with practical implementation.\n\nFocusing not just on 'using' AI, but on 'solving' business problems with AI.",
+          ko: "**카카오 선정 한국 AI 활용 역량 Top 100**\n\n단순 AI 사용을 넘어, **비즈니스 문제를 AI로 해결**하는 실질적 응용 역량 보유.",
+          en: "**Kakao's Top 100 AI Talents in Korea**\n\nProven capability to **solve business problems with AI**, beyond simple usage.",
         },
         value: "Top 100",
         colSpan: 1,
@@ -59,8 +59,8 @@ export const PORTFOLIO_DATA = {
           en: "Designing agents that replace actual workflows.",
         },
         detailedContent: {
-          ko: "단순히 LLM API를 연동하는 수준이 아니라, LangChain, LangGraph, n8n, OpenAI / Claude / Gemini 등의 모델을 조합해 실제로 업무 프로세스를 대체·보조하는 AI 에이전트를 설계합니다.\n\n운송 주선사를 위한 배차 오케스트레이팅 시스템 'Maestro TMS'와, 그 안에서 사람 대신 화물 배차 의사결정을 도와주는 AI 코파일럿 'OPUS AI'가 대표적인 예입니다.\n\nOPUS AI는 국내 주요 정보망 3사를 동시에 연동해 한 번의 요청으로 3개 네트워크에 배차를 생성·관리할 수 있고, AI Agent가 화주 메시지를 분석해 배차 생성/수정/취소 초안을 자동으로 생성합니다.",
-          en: "Beyond simple LLM API integration, I design AI agents that replace and assist actual business processes by combining LangChain, LangGraph, n8n, and models like OpenAI, Claude, and Gemini.\n\nPrime examples are 'Maestro TMS', a dispatch orchestration system for freight forwarders, and 'OPUS AI', an AI copilot that assists with freight dispatch decision-making.\n\nOPUS AI integrates 3 major domestic freight networks simultaneously, enabling dispatch creation and management across all 3 networks with a single request. The AI agent analyzes shipper messages to automatically generate drafts for dispatch creation, modification, and cancellation.",
+          ko: "• **Workflow**: API 연동을 넘어 업무 프로세스 전체 자동화\n• **Case**: 화주 메시지 분석 → 3개망 배차 → 초안 생성 (OPUS AI)\n• **Stack**: LangChain, LangGraph, n8n 기반 자율 에이전트",
+          en: "• **Workflow**: Full process automation beyond API calls\n• **Case**: Message Analysis → Dispatch across 3 networks (OPUS AI)\n• **Stack**: Autonomous agents via LangChain, LangGraph, n8n",
         },
         tags: ["LangChain", "n8n", "LLM Ops"],
         colSpan: 1,
@@ -73,8 +73,8 @@ export const PORTFOLIO_DATA = {
           en: "Identifying and fixing revenue leaks with tech.",
         },
         detailedContent: {
-          ko: "스스로를 '코드를 아는 컨설턴트'라고 생각합니다.\n\n단순히 화면을 만드는 것이 아니라, 고객의 현업 프로세스를 파고들어 '돈이 새는 지점'과 '사람이 가장 많이 소모되는 구간'을 먼저 정의합니다.\n\n그다음, 그 구간을 자동화·반자동화할 수 있는 구조를 제안하고, 직접 제품으로 구현합니다.\n\n현장의 복잡한 문제를 비즈니스 관점에서 재정의하고, 풀스택 개발과 AI를 섞어 실제로 돌아가는 제품으로 만드는 것이 저의 강점입니다.",
-          en: "I consider myself a 'consultant who codes'.\n\nRather than simply building interfaces, I dive deep into client workflows to first identify 'revenue leak points' and 'high human-resource consumption zones'.\n\nThen, I propose structures for automation or semi-automation of those areas and implement them as actual products.\n\nMy strength lies in redefining complex field problems from a business perspective and turning them into working products using full-stack development and AI.",
+          ko: "**\"코드를 아는 컨설턴트\"**\n\n1. **진단**: 현업의 '돈과 시간이 새는 구간' 발견\n2. **설계**: 자동화 가능한 최적 구조 제안\n3. **구현**: 직접 풀스택 개발로 솔루션 완성",
+          en: "**\"Consultant who Codes\"**\n\n1. **Diagnose**: Find revenue/time leaks\n2. **Design**: Propose automation structures\n3. **Implement**: Build solutions via full-stack dev",
         },
         tags: ["Optimization", "Automation", "Strategy"],
         colSpan: 2,
@@ -84,8 +84,8 @@ export const PORTFOLIO_DATA = {
         title: { ko: "수상 이력", en: "Awards" },
         content: { ko: "장관상 및 국제대회", en: "Minister's Award & Global" },
         detailedContent: {
-          ko: "• K-Startup Silicon Valley Dream Challenge 최종 선정 (2023)\n• Innovation Leaders Summit Tokyo 최종 선정 (2023)\n• U-300 창업 유망팀 300 - 교육부 장관 인증\n  - 2022 초기트랙 최종 선정\n  - 2024 도약트랙 최종 선정\n\n이 이력들은 '아이디어만 말하는 사람'이 아니라, 실제 시장에서 검증 가능한 수준까지 끌고 가는 사람이라는 것을 보여줍니다.",
-          en: "• K-Startup Silicon Valley Dream Challenge Finalist (2023)\n• Innovation Leaders Summit Tokyo Finalist (2023)\n• U-300 Promising Startup Team 300 - Ministry of Education Certification\n  - 2022 Early Stage Track Finalist\n  - 2024 Growth Stage Track Finalist\n\nThese achievements demonstrate that I'm not just someone with ideas, but someone who takes them to market-validation level.",
+          ko: "• **Global**: K-Startup Silicon Valley / ILS Tokyo 선정\n• **Gov**: 교육부 장관 인증 U-300 유망팀 (22', 24')\n\n아이디어를 넘어 **시장 검증**까지 완료함.",
+          en: "• **Global**: K-Startup Silicon Valley / ILS Tokyo Finalist\n• **Gov**: Minister Certified U-300 Team (22', 24')\n\nProof of **market validation**.",
         },
         value: "4+",
         colSpan: 1,
@@ -98,8 +98,8 @@ export const PORTFOLIO_DATA = {
           en: "Deep connections with result-oriented people.",
         },
         detailedContent: {
-          ko: "예전에는 폭넓게 사람을 만나던 마당발형에 가까웠다면, 최근의 저는 확실히 소집자형에 가깝습니다.\n\n지금 가장 많이 교류하는 사람들은 40대 중반 물류·비즈니스 동업자 3명, 소프트웨어·AI 에이전트를 업으로 삼고 있는 20대 동료 3명 정도로, 서로의 일을 이해하고 깊이 피드백을 주고받는 코어 네트워크입니다.\n\n격주 단위로 만나 아이디어를 검증하고, 실제로 돌아가는 MVP를 계속 만들어내는 타입의 사람입니다.\n\n넓은 인맥이 아니라, '함께 일하면 진짜 결과가 나오는 사람들'과 깊게 엮이는 것을 중요하게 생각합니다.",
-          en: "While I used to be more of a 'connector' meeting people broadly, I'm now definitely more of a 'convener'.\n\nMy closest network consists of about 3 logistics/business partners in their mid-40s and 3 software/AI agent professionals in their 20s—a core network that deeply understands each other's work and exchanges meaningful feedback.\n\nI meet with them bi-weekly to validate ideas and continuously build working MVPs.\n\nI value deep connections with 'people who produce real results when working together' over broad networks.",
+          ko: "• **Type**: 넓은 인맥보다 깊은 관계 지향 **'소집자형'**\n• **Core**: 40대 비즈니스 파트너 & 20대 AI 엔지니어 그룹\n• **Action**: 격주 단위 아이디어 검증 및 MVP 실행",
+          en: "• **Type**: **'Convener'** focusing on deep relationships\n• **Core**: Biz Partners (40s) & AI Engineers (20s)\n• **Action**: Bi-weekly idea validation & MVP execution",
         },
         tags: ["Co-founders", "Experts", "Builders"],
         colSpan: 2,
@@ -441,10 +441,10 @@ export const PORTFOLIO_DATA = {
           <p>Convenience comes at a cost. Many companies align their business processes with massive SaaS platforms for the sake of operational efficiency. "It's the industry standard," or "Everyone uses it," they say.</p>
           <p>But a company's core competitiveness comes from processes that are 'different' from others. How can you create differentiated value while using the same ERP and CRM as everyone else?</p>
           <h3>Business Trapped in a Black Box</h3>
-          <p>The bigger issue is data sovereignty. The moment you become dependent on a platform, your customer data and business logic are trapped inside a black box. You can't know why the algorithm produced a certain result, and if you want to tweak the process slightly, you're told, "That feature is not supported."</p>
+          <p>The bigger issue is data sovereignty. The moment you become dependent on a platform, your customer data and business logic are trapped inside a black box. You can't Chnow why the algorithm produced a certain result, and if you want to tweak the process slightly, you're told, "That feature is not supported."</p>
           <h3>Software for Operations, or Operations for Software?</h3>
           <p>Software should support operations; operations should not be tailored to software. This is why I, as a 'Forward Deployed Engineer', prioritize the field.</p>
-          <p>We must embed the unique context of the field and the company's proprietary know-how into the software. Even if it's rough around the edges, we must possess 'sovereign software' where our own logic and data flow. That is the completion of true digital transformation.</p>
+          <p>We must embed the unique context of the field and the company's proprietary Chnow-how into the software. Even if it's rough around the edges, we must possess 'sovereign software' where our own logic and data flow. That is the completion of true digital transformation.</p>
         `
       }
     },
@@ -520,16 +520,16 @@ export const PORTFOLIO_DATA = {
         en: "Dispatch orchestration SaaS for logistics brokers",
       },
       problem: {
-        ko: "국내 화물 정보망이 화물맨, 운송365, 트럭온 등 3곳으로 분산되어 있어, 배차 직원이 3개 탭을 오가며 수기로 정보를 복사-붙여넣기 해야 했습니다. 하루 평균 100건의 배차를 처리하는데, 한 건당 15분씩 총 25시간 분량의 반복 작업이 발생했습니다. 게다가 수기 입력 과정에서 오타, 중복 입력, 누락 등의 휴먼 에러가 빈번하게 발생했고, 이는 고객 불만과 정산 오류로 이어졌습니다.",
-        en: "Domestic freight networks were fragmented across three platforms (Hwamulman, Unsong365, Truckon). Dispatchers had to manually copy-paste information across 3 browser tabs. Processing an average of 100 dispatches per day at 15 minutes each meant 25 hours of repetitive work. Manual entry led to frequent human errors—typos, duplicate entries, omissions—resulting in customer complaints and settlement errors.",
+        ko: "국내 화물 정보망이 화물맨, 운송365, 트럭온 등 3곳으로 분산되어 있어, 배차 직원이 3개 탭을 오가며 수기로 정보를 복사-붙여넣기 해야 했습니다. 하루 평균 100건의 배차를 처리하는데, 한 건당 15분씩 총 25시간 분량의 반복 작업이 발생했습니다.",
+        en: "Domestic freight networks were fragmented across three platforms. Dispatchers had to manually copy-paste information across 3 browser tabs. Processing 100 dispatches/day meant 25 hours of repetitive work.",
       },
       solution: {
-        ko: "주요 정보망 3사의 API를 직접 연동하여, 하나의 대시보드에서 모든 차량 정보를 실시간으로 조회할 수 있는 통합 SaaS를 구축했습니다. Next.js 기반의 반응형 웹앱으로 개발하여 PC와 태블릿 모두에서 사용 가능하도록 했고, Supabase를 활용해 실시간 데이터 동기화와 협업 기능을 구현했습니다. 배차 생성부터 운송 추적, 정산까지 전 과정을 하나의 플랫폼에서 처리할 수 있도록 엔드투엔드 워크플로우를 설계했습니다.",
-        en: "Built a unified SaaS integrating APIs from all 3 major freight networks, enabling real-time vehicle info queries from a single dashboard. Developed as a Next.js responsive web app for use on both PC and tablets. Implemented real-time data sync and collaboration features using Supabase. Designed an end-to-end workflow from dispatch creation through shipment tracking to settlement—all on one platform.",
+        ko: "주요 정보망 3사의 API를 직접 연동하여, 하나의 대시보드에서 모든 차량 정보를 실시간으로 조회할 수 있는 통합 SaaS를 구축했습니다. Next.js 기반의 반응형 웹앱으로 개발하여 PC와 태블릿 모두에서 사용 가능하도록 했고, Supabase를 활용해 실시간 데이터 동기화를 구현했습니다.",
+        en: "Built a unified SaaS integrating APIs from all 3 major freight networks. Developed as a Next.js responsive web app for use on both PC and tablets. Implemented real-time data sync using Supabase.",
       },
       impact: {
-        ko: "배차 업무 시간 50% 단축 (건당 15분 → 7분), 수기 입력 오류 제로화, 정산 프로세스 자동화로 월 120시간의 정산 업무 절감. 실시간 배차 현황 모니터링으로 고객 응대 속도 3배 향상. 현재 국내 5개 운송 주선사에서 사용 중이며, 월간 처리 배차 건수 15,000건 달성.",
-        en: "Reduced dispatch time by 50% (15 min → 7 min per case). Eliminated manual entry errors. Automated settlement process, saving 120 hours monthly. Real-time dispatch monitoring improved customer response speed by 3x. Currently used by 5 domestic logistics brokers, processing 15,000 monthly dispatches.",
+        ko: "배차 업무 시간 50% 단축 (건당 15분 → 7분). 수기 입력 오류 제로화. 현재 국내 5개 운송 주선사에서 사용 중이며, 월간 처리 배차 건수 15,000건 달성.",
+        en: "Reduced dispatch time by 50% (15 min → 7 min). Eliminated manual entry errors. Currently used by 5 domestic logistics brokers, processing 15,000 monthly dispatches.",
       },
       techStack: ["Next.js", "Supabase", "API Integration", "Real-time Sync"],
       category: "B2B SaaS",
@@ -542,18 +542,18 @@ export const PORTFOLIO_DATA = {
         en: "AI Copilot for automated dispatching",
       },
       problem: {
-        ko: "Maestro TMS가 해결한 '시스템 통합' 문제 이후에도, 화주와 차주 간의 단순 반복적인 커뮤니케이션이 업무의 60%를 차지하고 있었습니다. '어디 계세요?', '가격 얼마인가요?', '픽업 가능한가요?' 같은 질문에 일일이 답변하는 데 하루 3-4시간이 소요됐고, 담당자가 자리를 비우면 고객 응대가 지연되어 기회 손실이 발생했습니다. 특히 야간이나 주말에는 긴급 배차 요청에 대응하기 어려웠습니다.",
-        en: "Even after Maestro TMS solved the 'system integration' problem, simple repetitive communication between shippers and carriers still consumed 60% of work time. Answering questions like 'Where are you?', 'What's the price?', 'Available for pickup?' took 3-4 hours daily. When dispatchers were away, delayed customer responses led to lost opportunities. Emergency dispatch requests during nights/weekends were especially difficult to handle.",
+        ko: "화주와 차주 간의 단순 반복적인 커뮤니케이션('어디 계세요?', '가격 얼마인가요?')이 업무의 60%를 차지. 담당자가 자리를 비우면 기회 손실 발생.",
+        en: "Repetitive communication ('Where are you?', 'Price?') consumed 60% of work time. Delayed responses led to lost opportunities.",
       },
       solution: {
-        ko: "LangChain과 GPT-4를 활용한 AI 에이전트를 설계했습니다. 카카오톡 메시지를 실시간으로 분석하여 의도를 파악하고, Maestro TMS의 데이터베이스와 화물 정보망 API를 자동으로 조회합니다. 단순 문의(위치, 가격, 가능 여부)는 즉시 자동 응답하고, 복잡한 배차 요청은 초안을 생성하여 담당자에게 전달합니다. 에이전트는 과거 대화 히스토리를 학습하여 각 고객에게 맞춤형 응답을 제공하며, 담당자의 피드백을 통해 지속적으로 개선됩니다.",
-        en: "Designed an AI agent using LangChain and GPT-4. Analyzes KakaoTalk messages in real-time to understand intent, then automatically queries Maestro TMS database and freight network APIs. Simple inquiries (location, price, availability) get instant auto-responses; complex dispatch requests generate drafts for dispatcher review. The agent learns from conversation history to provide personalized responses and continuously improves through dispatcher feedback.",
+        ko: "LangChain과 GPT-4를 활용한 AI 에이전트 설계. 카카오톡 메시지를 분석해 Maestro TMS 데이터베이스와 화물 정보망 API를 자동 조회. 단순 문의 즉시 응답 및 배차 초안 생성.",
+        en: "Designed AI agent using LangChain and GPT-4. Analyzes KakaoTalk messages to query Maestro TMS DB and freight APIs. Auto-responds to inquiries and drafts dispatches.",
       },
       impact: {
-        ko: "단순 문의 응대율 80% 자동화로 담당자의 일일 업무 시간 3시간 절감. 야간/주말 긴급 배차 응대율 100% 달성. 평균 응답 시간 30분 → 2분으로 단축. 고객 만족도 40% 상승. AI 에이전트의 자동 응답 정확도 95% 달성. 현재 일 평균 200건의 문의를 처리하며, 월 6,000건 이상의 대화를 자동화하고 있습니다.",
-        en: "80% automation of simple inquiries saved dispatchers 3 hours daily. 100% response rate for emergency dispatches during nights/weekends. Average response time dropped from 30 min to 2 min. Customer satisfaction increased 40%. AI agent achieved 95% accuracy in auto-responses. Currently processes 200 daily inquiries, automating 6,000+ monthly conversations.",
+        ko: "단순 문의 응대율 80% 자동화로 일일 3시간 절감. 야간/주말 긴급 배차 응대율 100% 달성. 월 6,000건 이상의 대화 자동화.",
+        en: "80% automation of simple inquiries saved 3 hours daily. 100% response for emergency dispatches. Automates 6,000+ monthly conversations.",
       },
-      techStack: ["LangChain", "GPT-4", "AI Agent", "NLP", "Auto-response"],
+      techStack: ["LangChain", "GPT-4", "AI Agent", "NLP"],
       category: "AI Agent",
     },
     {
@@ -568,12 +568,12 @@ export const PORTFOLIO_DATA = {
         en: "Price barriers made it difficult for individuals to give expensive gifts.",
       },
       solution: {
-        ko: "여러 친구가 돈을 모아 선물할 수 있는 크라우드 펀딩 기능과 에스크로 결제 시스템 구현.",
-        en: "Implemented crowdfunding features and escrow payments for group gifting.",
+        ko: "여러 친구가 돈을 모아 선물할 수 있는 크라우드 펀딩 기능과 에스크로 결제 시스템 구현. 카카오톡/연락처 연동으로 쉬운 친구 초대.",
+        en: "Implemented crowdfunding features and escrow payments. Easy friend invitation via KakaoTalk/Contacts integration.",
       },
       impact: {
-        ko: "4개월 만에 안드로이드/iOS 앱 런칭.",
-        en: "Launched Android/iOS apps within 4 months.",
+        ko: "4개월 만에 안드로이드/iOS 크로스플랫폼 앱 런칭.",
+        en: "Launched Android/iOS cross-platform apps within 4 months.",
       },
       techStack: ["React Native", "Payment", "Mobile"],
       category: "Mobile App",
@@ -590,15 +590,37 @@ export const PORTFOLIO_DATA = {
         en: "Small restaurants lacked systematic tools for regular customer management.",
       },
       solution: {
-        ko: "방문 기록 기반 스탬프 적립 앱과 점주용 CRM 대시보드(알림톡 발송 등) 제공.",
-        en: "Provided a stamp app for visits and a CRM dashboard for owners (AlimTalk integration).",
+        ko: "방문 기록 기반 스탬프 적립 앱(모바일)과 점주용 CRM 대시보드(데스크톱) 제공. 카카오 알림톡을 통한 마케팅 실행.",
+        en: "Provided stamp app (mobile) and CRM dashboard (desktop). Enabled marketing via Kakao AlimTalk.",
       },
       impact: {
-        ko: "재방문 유도 캠페인 실행 용이성 증대.",
-        en: "Simplified execution of revisit campaigns.",
+        ko: "재방문 유도 캠페인 실행 용이성 증대. 기획 및 개발 3개월 소요.",
+        en: "Simplified execution of revisit campaigns. Developed in 3 months.",
       },
       techStack: ["Web App", "Dashboard", "B2B"],
       category: "B2B Solution",
+    },
+    {
+      id: "Chno-ai",
+      title: { ko: "Chno AI", en: "Chno AI" },
+      description: {
+        ko: "개발자를 위한 AI 블로그 작성 솔루션",
+        en: "AI blog writing solution for developers",
+      },
+      problem: {
+        ko: "개발 과정에서 얻은 지식을 블로그로 정리하고 싶지만, 글쓰기에 많은 시간이 소요됨.",
+        en: "Developers want to document Chnowledge but blog writing consumes too much time.",
+      },
+      solution: {
+        ko: "ChatGPT 공유 링크를 분석해 개발 환경, 스택, 요구사항을 파악하고 기술 블로그를 자동 생성. 노션 페이지로 즉시 발행.",
+        en: "Analyzes ChatGPT shared links to identify tech stack and requirements, auto-generating tech blogs. Publishes directly to Notion.",
+      },
+      impact: {
+        ko: "개발 지식 공유 장벽 낮춤. 기획 및 개발 2개월 소요.",
+        en: "Lowered barrier to sharing dev Chnowledge. Developed in 2 months.",
+      },
+      techStack: ["OpenAI API", "React", "Supabase", "Notion API"],
+      category: "AI Tool",
     },
     {
       id: "conaly",
@@ -612,15 +634,59 @@ export const PORTFOLIO_DATA = {
         en: "Difficult to manually analyze thousands of reviews for insights.",
       },
       solution: {
-        ko: "리뷰 데이터를 크롤링하고 NLP로 감정/키워드를 분석하여 시각화된 리포트 제공.",
-        en: "Crawled review data and used NLP to analyze sentiment/keywords, providing visualized reports.",
+        ko: "다양한 쇼핑몰 리뷰를 크롤링하고 NLP로 감정/키워드를 분석. 긍/부정 평가 및 소구 포인트를 시각화하여 제공.",
+        en: "Crawls reviews and uses NLP for sentiment/keyword analysis. Visualizes positive/negative feedback and selling points.",
       },
       impact: {
-        ko: "마케팅 소구 포인트 발굴 시간 단축.",
-        en: "Reduced time to identify marketing selling points.",
+        ko: "마케팅 소구 포인트 발굴 시간 단축. 개발 기간 4개월.",
+        en: "Reduced time to identify marketing selling points. Developed in 4 months.",
       },
-      techStack: ["NLP", "Analytics", "React"],
+      techStack: ["NLP", "Crawling", "React", "Analytics"],
       category: "Data Analytics",
+    },
+    {
+      id: "our-gwangju",
+      title: { ko: "wooriGwangju", en: "wooriGwangju" },
+      description: {
+        ko: "장애인을 위한 무장애 길찾기 서비스",
+        en: "Barrier-free navigation for the disabled",
+      },
+      problem: {
+        ko: "휠체어 이용자 등 교통약자를 위한 이동 정보와 편의시설 위치 정보가 부족함.",
+        en: "Lack of navigation and facility information for wheelchair users and the mobility impaired.",
+      },
+      solution: {
+        ko: "휠체어 이동 경로 안내, 음성 인식/안내, 장애인 전용 화장실 및 편의시설 위치 제공. 공공데이터 및 TMAP API 활용.",
+        en: "Provides wheelchair routes, voice guidance, and accessible facility locations. Used Public Data & TMAP APIs.",
+      },
+      impact: {
+        ko: "교통약자의 이동권 증진에 기여. 개발 기간 3개월.",
+        en: "Contributed to mobility rights for the disabled. Developed in 3 months.",
+      },
+      techStack: ["React Native", "TMAP API", "Accessibility"],
+      category: "Public Service",
+    },
+    {
+      id: "Eterners-chat",
+      title: { ko: "Eterners Chat", en: "Eterners Chat" },
+      description: {
+        ko: "인터랙티브 이모티콘 채팅 앱 (MVP)",
+        en: "Interactive emoticon chat app (MVP)",
+      },
+      problem: {
+        ko: "정적인 이모티콘으로는 감정 표현에 한계가 있으며, 새로운 채팅 경험이 필요함.",
+        en: "Static emoticons limit emotional expression; needed a novel chat experience.",
+      },
+      solution: {
+        ko: "사용자 조작에 따라 모양과 상태가 변하는 인터랙티브 이모티콘 채팅 구현. 웹소켓을 이용한 실시간 통신 및 동시 조작 지원.",
+        en: "Implemented interactive emoticons that change state via user input. Real-time communication & concurrent control using WebSockets.",
+      },
+      impact: {
+        ko: "2주 만에 MVP 개발 완료 및 트래픽 처리 구조 검증.",
+        en: "Completed MVP in 2 weeks and verified traffic handling structure.",
+      },
+      techStack: ["React", "WebSocket", "Interactive UI"],
+      category: "MVP",
     },
     {
       id: "wesome",
@@ -634,15 +700,59 @@ export const PORTFOLIO_DATA = {
         en: "Existing diary apps lacked emotional connection, serving only as records.",
       },
       solution: {
-        ko: "일기 내용에 따라 AI 캐릭터가 위로와 공감의 답장을 써주는 힐링 서비스 구현.",
-        en: "Implemented a healing service where AI characters reply with empathy based on diary entries.",
+        ko: "일기 내용에 따라 귀여운 AI 캐릭터가 위로와 공감의 답장을 써주는 힐링 서비스. 프롬프트 엔지니어링으로 따뜻한 페르소나 구현.",
+        en: "Healing service where cute AI characters reply with empathy based on diary entries. Warm persona via prompt engineering.",
       },
       impact: {
-        ko: "사용자 리텐션 및 감정 케어 효과 확인.",
-        en: "Verified user retention and emotional care effects.",
+        ko: "사용자 감정 케어 효과 확인. 개발 기간 4개월.",
+        en: "Verified emotional care effects. Developed in 4 months.",
       },
       techStack: ["GenAI", "Mobile Web", "Healing"],
       category: "AI Service",
+    },
+    {
+      id: "Famo-therapy",
+      title: { ko: "Famo Play Therapy", en: "Famo Play Therapy" },
+      description: {
+        ko: "ADHD 아동을 위한 놀이 치료 서비스",
+        en: "Play therapy service for children with ADHD",
+      },
+      problem: {
+        ko: "ADHD 아동을 위한 디지털 치료 보조 수단이 필요함.",
+        en: "Need for digital therapeutic aids for children with ADHD.",
+      },
+      solution: {
+        ko: "증상 완화를 위한 10가지 치료 목적의 웹 기반 놀이 개발. 아동 놀이 데이터 분석 보고서 제공.",
+        en: "Developed 10 web-based therapeutic games. Provides analysis reports on children's play data.",
+      },
+      impact: {
+        ko: "디지털 치료제 가능성 탐색. 개발 기간 4개월.",
+        en: "Explored potential as digital therapeutics. Developed in 4 months.",
+      },
+      techStack: ["React", "Gamification", "Data Analysis"],
+      category: "Digital Health",
+    },
+    {
+      id: "interior-rec",
+      title: { ko: "Interior Rec System", en: "Interior Rec System" },
+      description: {
+        ko: "고객-인테리어 업체 매칭 추천 시스템",
+        en: "Customer-Interior Firm matching system",
+      },
+      problem: {
+        ko: "고객은 수많은 업체 중 자신에게 맞는 곳을 찾기 어렵고, 업체는 적합한 고객을 만나기 어려움.",
+        en: "Hard for customers to find the right firm, and for firms to find suitable customers.",
+      },
+      solution: {
+        ko: "고객 요구사항과 업체 정보를 매칭 알고리즘으로 분석하여 최적의 파트너 추천.",
+        en: "Analyzes customer requirements and firm data via matching algorithm to recommend optimal partners.",
+      },
+      impact: {
+        ko: "매칭 효율성 증대 및 계약 성사율 향상 기대.",
+        en: "Expected to increase matching efficiency and contract success rate.",
+      },
+      techStack: ["Recommendation Algo", "Matching", "Web"],
+      category: "Recommendation",
     },
   ],
 };

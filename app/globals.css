@@ -105,6 +105,10 @@
 }
 
 @layer base {
+  body {
+    overflow-x: hidden;
+  }
+
   * {
     @apply border-border;
   }
@@ -119,8 +123,12 @@
   @apply bg-clip-text text-transparent bg-gradient-to-b from-zinc-100 to-zinc-400;
 }
 
-@utility text-gradient-instagram {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-yellow-500 to-purple-600;
+@utility text-gradient-ai {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600;
+}
+
+@utility text-gradient-futuristic {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500;
 }
 
 @utility text-muted-rich {
@@ -175,10 +183,38 @@
   animation: glow-pulse 2s ease-in-out infinite;
 }
 
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@utility animate-gradient-rotate {
+  background-size: 200% auto;
+  animation: gradient-rotate 4s linear infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(10px, 10px); }
+  50% { transform: translate(-5px, 20px); }
+  75% { transform: translate(-15px, 5px); }
+}
+
+@utility animate-float-slow {
+  animation: float-slow 20s ease-in-out infinite;
+}
+
 /* Custom Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(236, 72, 153) rgb(24, 24, 27);
+  scrollbar-color: rgb(255, 107, 53) rgb(24, 24, 27);
 }
 
 *::-webkit-scrollbar {
@@ -191,12 +227,12 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, rgb(236, 72, 153), rgb(147, 51, 234));
+  background: linear-gradient(to bottom, rgb(255, 107, 53), rgb(236, 72, 153), rgb(168, 85, 247));
   border-radius: 4px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, rgb(244, 114, 182), rgb(168, 85, 247));
+  background: linear-gradient(to bottom, rgb(251, 191, 36), rgb(255, 140, 66), rgb(236, 72, 153));
 }
 
 /* Smooth Scroll */
@@ -213,6 +249,6 @@ html {
 
 /* Focus states */
 *:focus-visible {
-  outline: 2px solid rgb(236, 72, 153);
+  outline: 2px solid rgb(255, 107, 53);
   outline-offset: 2px;
 }

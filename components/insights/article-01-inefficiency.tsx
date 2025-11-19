@@ -16,13 +16,13 @@ export function ArticleInefficiency() {
                 <p className="text-xl md:text-2xl leading-relaxed text-zinc-300 font-light">
                     {isKo ? (
                         <>
-                            많은 기업들이 <span className="text-indigo-400 font-medium">"데이터가 부족해서"</span> 혁신을 못한다고 말합니다. 
+                            많은 기업들이 <span className="text-orange-400 font-medium">"데이터가 부족해서"</span> 혁신을 못한다고 말합니다. 
                             그래서 비싼 돈을 들여 데이터 레이크를 구축하고, 최신 대시보드 툴을 도입하죠. 
                             하지만 현장에 가보면 어떤가요?
                         </>
                     ) : (
                         <>
-                            Many companies claim they can't innovate because they <span className="text-indigo-400 font-medium">"lack data."</span> 
+                            Many companies claim they can't innovate because they <span className="text-orange-400 font-medium">"lack data."</span> 
                             So they spend fortunes building data lakes and adopting the latest dashboard tools. 
                             But what happens when you go to the actual field?
                         </>
@@ -35,8 +35,8 @@ export function ArticleInefficiency() {
                     </h3>
                     <div className="flex flex-col md:flex-row items-center gap-8 text-zinc-400">
                         <div className="flex-1 text-center space-y-4">
-                            <div className="w-16 h-16 mx-auto bg-indigo-500/10 rounded-full flex items-center justify-center">
-                                <Database className="w-8 h-8 text-indigo-400" />
+                            <div className="w-16 h-16 mx-auto bg-orange-500/10 rounded-full flex items-center justify-center">
+                                <Database className="w-8 h-8 text-orange-400" />
                             </div>
                             <p className="text-sm">
                                 {isKo ? "HQ: 데이터 레이크" : "HQ: Data Lake"}
@@ -112,15 +112,15 @@ export function ArticleInefficiency() {
 
             {/* Core Insight Section */}
             <section className="space-y-12">
-                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-900/20 to-purple-900/20 border border-indigo-500/20 p-8 md:p-16 text-center">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-50" />
+                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-900/20 to-pink-900/20 border border-orange-500/20 p-8 md:p-16 text-center">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-50" />
                     <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mb-6">
                         {isKo ? "문제는 '양'이 아니라 '흐름'입니다" : "The problem isn't 'Volume', it's 'Flow'"}
                     </h2>
                     <p className="text-xl text-zinc-300 leading-relaxed max-w-2xl mx-auto">
                         {isKo 
-                            ? <>진정한 비효율은 데이터가 없어서가 아니라, <br/><strong className="text-indigo-400">필요한 데이터가 필요한 사람에게 제때 도달하지 못해서</strong> 발생합니다.</>
-                            : <>True inefficiency stems not from a lack of data, but from <br/><strong className="text-indigo-400">the failure of necessary data to reach the right person at the right time</strong>.</>}
+                            ? <>진정한 비효율은 데이터가 없어서가 아니라, <br/><strong className="text-orange-400">필요한 데이터가 필요한 사람에게 제때 도달하지 못해서</strong> 발생합니다.</>
+                            : <>True inefficiency stems not from a lack of data, but from <br/><strong className="text-orange-400">the failure of necessary data to reach the right person at the right time</strong>.</>}
                     </p>
                 </div>
             </section>
@@ -160,22 +160,22 @@ export function ArticleInefficiency() {
                         {/* Flow Animation */}
                         <div className="hidden md:flex flex-1 items-center justify-center relative h-20">
                             <div className="absolute inset-0 flex items-center">
-                                <div className="w-full h-[2px] bg-gradient-to-r from-zinc-800 via-indigo-500/50 to-zinc-800" />
+                                <div className="w-full h-[2px] bg-gradient-to-r from-zinc-800 via-orange-500/50 to-zinc-800" />
                             </div>
                             <motion.div 
                                 animate={{ x: [-50, 50], opacity: [0, 1, 0] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                                 className="absolute"
                             >
-                                <div className="w-20 h-[2px] bg-indigo-400 blur-[2px]" />
+                                <div className="w-20 h-[2px] bg-orange-400 blur-[2px]" />
                             </motion.div>
-                            <div className="bg-zinc-950 border border-indigo-500/30 px-4 py-2 rounded-full text-xs text-indigo-300 font-mono z-10">
+                            <div className="bg-zinc-950 border border-orange-500/30 px-4 py-2 rounded-full text-xs text-orange-300 font-mono z-10">
                                 Unified Pipeline
                             </div>
                         </div>
 
                         {/* Destination */}
-                        <div className="bg-gradient-to-br from-indigo-900/20 to-blue-900/20 border border-indigo-500/30 p-6 rounded-xl text-center">
+                        <div className="bg-gradient-to-br from-orange-900/20 to-pink-900/20 border border-orange-500/30 p-6 rounded-xl text-center">
                             <div className="text-zinc-200 font-bold mb-2">One Dashboard</div>
                             <div className="text-xs text-zinc-400">Real-time Decision Making</div>
                         </div>
@@ -190,15 +190,15 @@ export function ArticleInefficiency() {
                     </p>
                     <ul className="list-none pl-0 space-y-2">
                         <li className="flex items-center gap-3 text-zinc-200">
-                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
                             {isKo ? "배차 업무 시간 50% 감소" : "Dispatch time reduced by 50%"}
                         </li>
                         <li className="flex items-center gap-3 text-zinc-200">
-                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
                             {isKo ? "수기 입력 오류 제로화" : "Zero manual entry errors"}
                         </li>
                         <li className="flex items-center gap-3 text-zinc-200">
-                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
                             {isKo ? "실시간 데이터 기반 AI 최적화 가능" : "Ready for AI optimization based on real-time data"}
                         </li>
                     </ul>
@@ -215,7 +215,7 @@ export function ArticleInefficiency() {
                     <CheckItem text={isKo ? "같은 정보를 여러 시스템에 중복 입력하고 있지는 않나요?" : "Are you entering the same info into multiple systems?"} />
                     <CheckItem text={isKo ? "의사결정을 위해 '데이터를 찾는 시간'이 너무 길지는 않나요?" : "Does 'finding data' for decisions take too long?"} />
                 </div>
-                <p className="mt-8 text-lg text-indigo-300 font-medium">
+                <p className="mt-8 text-lg text-orange-300 font-medium">
                     {isKo 
                         ? "더 많은 데이터를 모으기 전에, 이미 있는 데이터부터 제대로 연결하세요. 혁신은 거기서 시작됩니다."
                         : "Before collecting more data, properly connect what you already have. Innovation starts there."}

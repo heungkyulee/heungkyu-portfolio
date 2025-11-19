@@ -16,8 +16,12 @@ export function ExperienceSection() {
                     viewport={{ once: true }}
                     className="mb-16 text-center"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mb-4">Experience</h2>
-                    <p className="text-zinc-400">My journey in Tech & Business</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mb-4">
+                        {t({ ko: "경력", en: "Experience" })}
+                    </h2>
+                    <p className="text-zinc-400">
+                        {t({ ko: "기술과 비즈니스를 아우르는 여정", en: "My journey in Tech & Business" })}
+                    </p>
                 </motion.div>
 
                 <div className="relative space-y-12">

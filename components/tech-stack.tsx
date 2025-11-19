@@ -54,9 +54,36 @@ export function TechStack() {
     const marqueeItems = [...allTech, ...allTech, ...allTech];
 
     return (
-        <section className="py-24 bg-zinc-950 overflow-hidden border-y border-zinc-900">
-            <div className="mb-16 text-center">
-                <h2 className="text-sm font-mono text-pink-500 uppercase tracking-widest">
+        <section className="py-24 bg-zinc-950 overflow-hidden border-y border-zinc-900 relative">
+            {/* Animated background glow */}
+            <motion.div
+                className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-gradient-to-r from-orange-500/5 to-pink-500/5 rounded-full blur-[100px] pointer-events-none"
+                animate={{
+                    x: [0, 100, 0],
+                    scale: [1, 1.3, 1],
+                }}
+                transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            />
+            <motion.div
+                className="absolute top-1/2 right-1/4 w-[350px] h-[350px] bg-gradient-to-l from-purple-500/5 to-amber-500/5 rounded-full blur-[100px] pointer-events-none"
+                animate={{
+                    x: [0, -80, 0],
+                    scale: [1, 1.2, 1],
+                }}
+                transition={{
+                    duration: 18,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2
+                }}
+            />
+            
+            <div className="mb-16 text-center relative z-10">
+                <h2 className="text-sm font-mono bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 bg-clip-text text-transparent uppercase tracking-widest animate-gradient-rotate">
                     Technologies
                 </h2>
             </div>
@@ -81,7 +108,7 @@ export function TechStack() {
                                 className="flex flex-col items-center gap-3 group hover:scale-110 transition-transform"
                             >
                                 <Icon
-                                    className="w-16 h-16 text-zinc-700 group-hover:text-pink-500 transition-colors"
+                                    className="w-16 h-16 text-zinc-700 group-hover:text-orange-500 transition-colors"
                                 />
                                 <span className="text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors whitespace-nowrap font-mono">
                                     {tech}

@@ -86,9 +86,9 @@ export function ArticleSovereignty() {
                     </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-indigo-900/20 to-purple-900/20 border border-indigo-500/30 rounded-2xl p-8 md:p-12 text-center space-y-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-500/20 mb-4">
-                        <Unlock className="w-8 h-8 text-indigo-400" />
+                <div className="bg-gradient-to-br from-orange-900/20 to-pink-900/20 border border-orange-500/30 rounded-2xl p-8 md:p-12 text-center space-y-8">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-500/20 mb-4">
+                        <Unlock className="w-8 h-8 text-orange-400" />
                     </div>
                     
                     <h3 className="text-2xl font-bold text-white">
@@ -98,17 +98,17 @@ export function ArticleSovereignty() {
                     <p className="text-lg text-zinc-300 leading-relaxed max-w-2xl mx-auto">
                         {isKo 
                             ? "현장의 독특한 맥락, 그 기업만의 고유한 노하우를 소프트웨어에 녹여내야 합니다. 비록 투박하더라도, 우리만의 로직과 우리만의 데이터가 흐르는 '자주적인 소프트웨어'를 가져야 합니다."
-                            : "We must embed the unique context of the field and the company's proprietary know-how into the software. We must possess 'sovereign software' where our own logic and data flow."}
+                            : "We must embed the unique context of the field and the company's proprietary Chnow-how into the software. We must possess 'sovereign software' where our own logic and data flow."}
                     </p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-mono text-indigo-300 mt-8">
-                        <div className="bg-indigo-500/10 rounded-lg py-3 border border-indigo-500/20">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-mono text-orange-300 mt-8">
+                        <div className="bg-orange-500/10 rounded-lg py-3 border border-orange-500/20">
                             Transparent Logic
                         </div>
-                        <div className="bg-indigo-500/10 rounded-lg py-3 border border-indigo-500/20">
+                        <div className="bg-orange-500/10 rounded-lg py-3 border border-orange-500/20">
                             Data Ownership
                         </div>
-                        <div className="bg-indigo-500/10 rounded-lg py-3 border border-indigo-500/20">
+                        <div className="bg-orange-500/10 rounded-lg py-3 border border-orange-500/20">
                             Custom Workflow
                         </div>
                     </div>
