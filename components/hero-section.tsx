@@ -24,7 +24,7 @@ export function HeroSection() {
 
             {/* AI-powered gradient glow - Animated */}
             <motion.div 
-                className="absolute top-1/3 right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-orange-500/10 via-pink-500/10 to-purple-600/10 rounded-full blur-[150px] pointer-events-none"
+                className="hidden md:block absolute top-1/3 right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-orange-500/10 via-pink-500/10 to-purple-600/10 rounded-full blur-[150px] pointer-events-none"
                 animate={{
                     scale: [1, 1.2, 1],
                     rotate: [0, 90, 0],
@@ -38,7 +38,7 @@ export function HeroSection() {
                 }}
             />
             <motion.div 
-                className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-amber-400/5 via-orange-500/5 to-pink-500/5 rounded-full blur-[120px] pointer-events-none"
+                className="hidden md:block absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-amber-400/5 via-orange-500/5 to-pink-500/5 rounded-full blur-[120px] pointer-events-none"
                 animate={{
                     scale: [1, 1.1, 1],
                     rotate: [0, -60, 0],

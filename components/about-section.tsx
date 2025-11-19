@@ -53,7 +53,7 @@ export function AboutSection() {
             
             {/* Animated floating orbs */}
             <motion.div
-                className="absolute top-20 right-20 w-[300px] h-[300px] bg-gradient-to-br from-orange-500/5 to-pink-500/5 rounded-full blur-[80px]"
+                className="hidden md:block absolute top-20 right-20 w-[300px] h-[300px] bg-gradient-to-br from-orange-500/5 to-pink-500/5 rounded-full blur-[80px]"
                 animate={{
                     x: [0, 50, -30, 0],
                     y: [0, -40, 30, 0],
@@ -66,7 +66,7 @@ export function AboutSection() {
                 }}
             />
             <motion.div
-                className="absolute bottom-20 left-20 w-[250px] h-[250px] bg-gradient-to-tr from-purple-500/5 to-amber-500/5 rounded-full blur-[60px]"
+                className="hidden md:block absolute bottom-20 left-20 w-[250px] h-[250px] bg-gradient-to-tr from-purple-500/5 to-amber-500/5 rounded-full blur-[60px]"
                 animate={{
                     x: [0, -40, 40, 0],
                     y: [0, 40, -20, 0],

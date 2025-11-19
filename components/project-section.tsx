@@ -16,7 +16,7 @@ export function ProjectSection() {
             {/* Background Container - Isolated for overflow control */}
             <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
                 <motion.div
-                    className="absolute top-40 right-10 w-[300px] h-[300px] bg-gradient-to-br from-orange-500/5 to-pink-500/5 rounded-full blur-[80px] z-0"
+                    className="hidden md:block absolute top-40 right-10 w-[300px] h-[300px] bg-gradient-to-br from-orange-500/5 to-pink-500/5 rounded-full blur-[80px] z-0"
                     animate={{
                         y: [0, -50, 0],
                         x: [0, 30, 0],

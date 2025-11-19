@@ -13,7 +13,7 @@ export function InsightSection() {
         <section className="py-32 px-6 md:px-12 bg-zinc-950 relative overflow-hidden">
             {/* Animated background glow */}
             <motion.div
-                className="absolute top-20 left-1/3 w-[250px] h-[250px] bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-[80px] pointer-events-none"
+                className="hidden md:block absolute top-20 left-1/3 w-[250px] h-[250px] bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-[80px] pointer-events-none"
                 animate={{
                     x: [0, -40, 0],
                     y: [0, 40, 0],

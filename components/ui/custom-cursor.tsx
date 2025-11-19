@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CustomCursor() {
     const [isPointer, setIsPointer] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
     const cursorX = useMotionValue(-100);
     const cursorY = useMotionValue(-100);
 
@@ -13,6 +14,12 @@ export function CustomCursor() {
     const cursorYSpring = useSpring(cursorY, springConfig);
 
     useEffect(() => {
+        // Check if device has fine pointer (mouse)
+        const mediaQuery = window.matchMedia("(pointer: fine)");
+        setIsVisible(mediaQuery.matches);
+
+        if (!mediaQuery.matches) return;
+
         const moveCursor = (e: MouseEvent) => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
@@ -28,6 +35,8 @@ export function CustomCursor() {
         window.addEventListener("mousemove", moveCursor);
         return () => window.removeEventListener("mousemove", moveCursor);
     }, [cursorX, cursorY]);
+
+    if (!isVisible) return null;
 
     return (
         <>
