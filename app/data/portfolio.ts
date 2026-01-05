@@ -142,6 +142,19 @@ export const PORTFOLIO_DATA = {
   ],
   insights: [
     {
+      id: "ax-reality",
+      title: { ko: "AX는 AI 도입이 아니라 운영 체제 전환이다", en: "AX is an Operating System Transition, Not Just AI Adoption" },
+      summary: {
+        ko: "AI 모델보다 먼저, 데이터 흐름과 책임 구조를 설계해야 합니다. 실무 도입 실패의 원인은 대부분 운영 체계의 부재에 있습니다.",
+        en: "Design data flow and responsibility structures before models. Most implementation failures stem from a lack of operational systems.",
+      },
+      date: "2026.01.06",
+      content: {
+        ko: "AX는 단순한 AI 도입 프로젝트가 아닙니다. 기업의 운영 체제(OS)를 업그레이드하는 프로젝트입니다.",
+        en: "AX is not just an AI project. It is a project to upgrade the corporate Operating System.",
+      },
+    },
+    {
       id: "inefficiency-not-data",
       title: { ko: "현장의 비효율은 데이터의 부재가 아니다", en: "Inefficiency is not a lack of data" },
       summary: {

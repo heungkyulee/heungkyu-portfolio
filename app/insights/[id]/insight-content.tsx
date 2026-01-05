@@ -13,6 +13,7 @@ import { useRef } from "react";
 import { ArticleInefficiency } from "@/components/insights/article-01-inefficiency";
 import { ArticleAiAgents } from "@/components/insights/article-02-ai-agents";
 import { ArticleSovereignty } from "@/components/insights/article-03-sovereignty";
+import { ArticleAxReality } from "@/components/insights/article-04-ax-reality";
 
 export default function InsightContent({ id }: { id: string }) {
     const { t } = useI18n();
@@ -95,6 +96,7 @@ export default function InsightContent({ id }: { id: string }) {
                 >
                     {/* Render Custom Articles based on ID */}
                     <div className="mt-16 mb-24">
+                        {insight.id === "ax-reality" && <ArticleAxReality />}
                         {insight.id === "inefficiency-not-data" && <ArticleInefficiency />}
                         {insight.id === "ai-agents-colleagues" && <ArticleAiAgents />}
                         {insight.id === "software-sovereignty" && <ArticleSovereignty />}
