@@ -18,6 +18,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     return {
         title,
         description,
+        alternates: {
+            canonical: `/projects/${id}`,
+        },
         openGraph: {
             title,
             description,
@@ -36,24 +39,50 @@ export default async function ProjectPageWrapper({ params }: { params: Promise<{
         notFound();
     }
 
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "TechArticle",
-        "headline": project.title.en,
-        "description": project.description.en,
-        "author": {
-            "@type": "Person",
-            "name": "Lee Heungkyu"
+    const jsonLd = [
+        {
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": project.title.en,
+            "description": project.description.en,
+            "author": {
+                "@type": "Person",
+                "name": "Lee Heungkyu"
+            },
+            "publisher": {
+                "@type": "Person",
+                "name": "Lee Heungkyu"
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://heungkyulee.dev/projects/${id}`
+            }
         },
-        "publisher": {
-            "@type": "Person",
-            "name": "Lee Heungkyu"
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": `https://heungkyulee.dev/projects/${id}`
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://heungkyulee.dev"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Projects",
+                    "item": "https://heungkyulee.dev/projects"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": project.title.en,
+                    "item": `https://heungkyulee.dev/projects/${id}`
+                }
+            ]
         }
-    };
+    ];
 
     return (
         <I18nProvider>

@@ -20,6 +20,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://heungkyulee.dev'),
   title: "Lee Heungkyu | AX Consultant & AI Engineer",
   description: "Forward Deployed Engineer specializing in operational reality. Building systems that work in the mud, not just on paper.",
   keywords: ["Lee Heungkyu", "이흥규", "AX Consultant", "AI Engineer", "Full Stack Developer", "AI Agent", "Logistics AI", "Next.js", "Software Sovereignty"],
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   creator: "Lee Heungkyu",
   publisher: "Lee Heungkyu",
   alternates: {
-    canonical: "https://heungkyulee.dev",
+    canonical: "/",
   },
   openGraph: {
     type: "website",

@@ -18,6 +18,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     return {
         title,
         description,
+        alternates: {
+            canonical: `/insights/${id}`,
+        },
         openGraph: {
             title,
             description,
@@ -36,25 +39,51 @@ export default async function InsightPageWrapper({ params }: { params: Promise<{
         notFound();
     }
 
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": insight.title.en,
-        "description": insight.summary.en,
-        "datePublished": insight.date,
-        "author": {
-            "@type": "Person",
-            "name": "Lee Heungkyu"
+    const jsonLd = [
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": insight.title.en,
+            "description": insight.summary.en,
+            "datePublished": insight.date,
+            "author": {
+                "@type": "Person",
+                "name": "Lee Heungkyu"
+            },
+            "publisher": {
+                "@type": "Person",
+                "name": "Lee Heungkyu"
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://heungkyulee.dev/insights/${id}`
+            }
         },
-        "publisher": {
-            "@type": "Person",
-            "name": "Lee Heungkyu"
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": `https://heungkyulee.dev/insights/${id}`
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://heungkyulee.dev"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Insights",
+                    "item": "https://heungkyulee.dev/insights"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": insight.title.en,
+                    "item": `https://heungkyulee.dev/insights/${id}`
+                }
+            ]
         }
-    };
+    ];
 
     return (
         <I18nProvider>
