@@ -14,7 +14,7 @@ export function HeroSection() {
             <div className="absolute bottom-0 right-0 w-full h-full pointer-events-none opacity-30 grayscale">
                 <Image
                     src="/hero-portrait.png"
-                    alt="Portrait"
+                    alt="Lee Heungkyu - AX Consultant & AI Engineer"
                     unoptimized
                     fill
                     className="object-cover object-right-bottom"
@@ -60,9 +60,9 @@ export function HeroSection() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <span className="text-xs font-mono text-zinc-600 tracking-widest uppercase">
+                    <h1 className="text-xs font-mono text-zinc-600 tracking-widest uppercase">
                         {t(PORTFOLIO_DATA.profile.name)}
-                    </span>
+                    </h1>
                 </motion.div>
 
                 {/* Center: Main titles */}
@@ -74,9 +74,9 @@ export function HeroSection() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.3 + index * 0.2, duration: 1 }}
                         >
-                            <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display text-zinc-200 leading-tight">
+                            <div className="text-3xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display text-zinc-200 leading-tight">
                                 {role}
-                            </h1>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
