@@ -5,6 +5,13 @@ import { notFound } from "next/navigation";
 import { I18nProvider } from "@/components/i18n-provider";
 import { Metadata } from "next";
 import InsightContent from "./insight-content";
+import { SITE_OG_IMAGE, SITE_URL, parseLooseDate } from "@/lib/seo";
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+    return PORTFOLIO_DATA.insights.map((i) => ({ id: i.id }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await params;
@@ -12,8 +19,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     
     if (!insight) return {};
 
-    const title = `${insight.title.en} | Lee Heungkyu Insight`;
-    const description = insight.summary.en;
+    const title = insight.title.ko;
+    const description = insight.summary.ko;
+    const publishedTime = parseLooseDate(insight.date)?.toISOString();
 
     return {
         title,
@@ -22,11 +30,18 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
             canonical: `/insights/${id}`,
         },
         openGraph: {
-            title,
+            title: `${title} | 이흥규`,
             description,
             type: "article",
-            url: `https://heungkyulee.dev/insights/${id}`,
-            publishedTime: insight.date,
+            url: `${SITE_URL}/insights/${id}`,
+            publishedTime,
+            images: [{ url: SITE_OG_IMAGE }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `${title} | 이흥규`,
+            description,
+            images: [SITE_OG_IMAGE],
         },
     };
 }
@@ -43,9 +58,10 @@ export default async function InsightPageWrapper({ params }: { params: Promise<{
         {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "headline": insight.title.en,
-            "description": insight.summary.en,
-            "datePublished": insight.date,
+            "headline": insight.title.ko,
+            "description": insight.summary.ko,
+            "datePublished": parseLooseDate(insight.date)?.toISOString(),
+            "inLanguage": "ko-KR",
             "author": {
                 "@type": "Person",
                 "name": "Lee Heungkyu"
@@ -56,7 +72,7 @@ export default async function InsightPageWrapper({ params }: { params: Promise<{
             },
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": `https://heungkyulee.dev/insights/${id}`
+                "@id": `${SITE_URL}/insights/${id}`
             }
         },
         {
@@ -66,20 +82,20 @@ export default async function InsightPageWrapper({ params }: { params: Promise<{
                 {
                     "@type": "ListItem",
                     "position": 1,
-                    "name": "Home",
-                    "item": "https://heungkyulee.dev"
+                    "name": "홈",
+                    "item": SITE_URL
                 },
                 {
                     "@type": "ListItem",
                     "position": 2,
-                    "name": "Insights",
-                    "item": "https://heungkyulee.dev/insights"
+                    "name": "인사이트",
+                    "item": `${SITE_URL}/insights`
                 },
                 {
                     "@type": "ListItem",
                     "position": 3,
-                    "name": insight.title.en,
-                    "item": `https://heungkyulee.dev/insights/${id}`
+                    "name": insight.title.ko,
+                    "item": `${SITE_URL}/insights/${id}`
                 }
             ]
         }

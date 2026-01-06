@@ -23,8 +23,8 @@ export default function ProjectContent({ id }: { id: string }) {
             <div className="max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="mb-16 space-y-8">
-                    <Link href="/" className="inline-flex items-center text-zinc-500 hover:text-zinc-100 transition-colors">
-                        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
+                    <Link href="/projects" className="inline-flex items-center text-zinc-500 hover:text-zinc-100 transition-colors">
+                        <ArrowLeft className="mr-2 h-4 w-4" /> {t({ ko: "프로젝트 목록", en: "Back to Projects" })}
                     </Link>
 
                     <div className="space-y-4">
@@ -108,4 +108,5 @@ export default function ProjectContent({ id }: { id: string }) {
         </article>
     );
 }
+
 

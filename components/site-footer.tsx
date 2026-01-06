@@ -5,6 +5,7 @@ import { PORTFOLIO_DATA } from "@/app/data/portfolio";
 import { useI18n } from "@/components/i18n-provider";
 import { Button } from "@/components/ui/button";
 import { Copy, Check, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export function SiteFooter() {
     const { t, language } = useI18n();
@@ -54,6 +55,20 @@ export function SiteFooter() {
                     </div>
 
                     <div className="flex flex-col justify-end items-start md:items-end gap-6">
+                        <div className="flex flex-wrap gap-4 text-sm font-mono text-zinc-500">
+                            <Link href="/" className="hover:text-zinc-100 transition-colors">
+                                {language === "ko" ? "홈" : "Home"}
+                            </Link>
+                            <Link href="/services" className="hover:text-zinc-100 transition-colors">
+                                {language === "ko" ? "서비스" : "Services"}
+                            </Link>
+                            <Link href="/insights" className="hover:text-zinc-100 transition-colors">
+                                {language === "ko" ? "인사이트" : "Insights"}
+                            </Link>
+                            <Link href="/projects" className="hover:text-zinc-100 transition-colors">
+                                {language === "ko" ? "프로젝트" : "Projects"}
+                            </Link>
+                        </div>
                         {Object.entries(PORTFOLIO_DATA.profile.contact).map(([key, value]) => {
                             if (key === 'email') return null;
                             return (

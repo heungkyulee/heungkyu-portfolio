@@ -49,11 +49,11 @@ export default function InsightContent({ id }: { id: string }) {
                         className="mb-8"
                     >
                         <Link 
-                            href="/" 
+                            href="/insights" 
                             className="inline-flex items-center text-sm text-zinc-400 hover:text-indigo-400 transition-colors group"
                         >
                             <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                            Back to Intelligence
+                            {t({ ko: "인사이트 목록", en: "Back to Insights" })}
                         </Link>
                     </motion.div>
 

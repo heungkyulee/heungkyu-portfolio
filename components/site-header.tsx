@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useI18n } from "@/components/i18n-provider";
 import { motion } from "framer-motion";
 import { HKLogo } from "@/components/ui/hk-logo";
+import Link from "next/link";
 
 export function SiteHeader() {
     const { language, setLanguage } = useI18n();
@@ -14,8 +15,30 @@ export function SiteHeader() {
             animate={{ y: 0 }}
             className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4 md:px-12 pointer-events-none"
         >
-            <div className="pointer-events-auto mix-blend-difference">
-                <HKLogo className="w-8 h-8 text-zinc-100" />
+            <div className="pointer-events-auto mix-blend-difference flex items-center gap-6">
+                <Link href="/" aria-label="홈으로 이동" className="inline-flex items-center">
+                    <HKLogo className="w-8 h-8 text-zinc-100" />
+                </Link>
+                <nav className="hidden md:flex items-center gap-5 text-xs font-mono text-zinc-400">
+                    <Link
+                        href="/services"
+                        className="hover:text-zinc-100 transition-colors"
+                    >
+                        {language === "ko" ? "서비스" : "Services"}
+                    </Link>
+                    <Link
+                        href="/insights"
+                        className="hover:text-zinc-100 transition-colors"
+                    >
+                        {language === "ko" ? "인사이트" : "Insights"}
+                    </Link>
+                    <Link
+                        href="/projects"
+                        className="hover:text-zinc-100 transition-colors"
+                    >
+                        {language === "ko" ? "프로젝트" : "Projects"}
+                    </Link>
+                </nav>
             </div>
 
             <div className="pointer-events-auto bg-zinc-900/80 backdrop-blur-md border border-zinc-800 rounded-full p-1 flex gap-1 shadow-lg">

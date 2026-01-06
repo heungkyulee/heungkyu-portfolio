@@ -5,6 +5,13 @@ import { notFound } from "next/navigation";
 import { I18nProvider } from "@/components/i18n-provider";
 import { Metadata } from "next";
 import ProjectContent from "./project-content";
+import { SITE_OG_IMAGE, SITE_URL } from "@/lib/seo";
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+    return PORTFOLIO_DATA.projects.map((p) => ({ id: p.id }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await params;
@@ -12,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     
     if (!project) return {};
 
-    const title = `${project.title.en} | Lee Heungkyu Project`;
-    const description = project.description.en;
+    const title = project.title.ko;
+    const description = project.description.ko;
 
     return {
         title,
@@ -22,10 +29,17 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
             canonical: `/projects/${id}`,
         },
         openGraph: {
-            title,
+            title: `${title} | 이흥규`,
             description,
             type: "article",
-            url: `https://heungkyulee.dev/projects/${id}`,
+            url: `${SITE_URL}/projects/${id}`,
+            images: [{ url: SITE_OG_IMAGE }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `${title} | 이흥규`,
+            description,
+            images: [SITE_OG_IMAGE],
         },
     };
 }
@@ -43,8 +57,9 @@ export default async function ProjectPageWrapper({ params }: { params: Promise<{
         {
             "@context": "https://schema.org",
             "@type": "TechArticle",
-            "headline": project.title.en,
-            "description": project.description.en,
+            "headline": project.title.ko,
+            "description": project.description.ko,
+            "inLanguage": "ko-KR",
             "author": {
                 "@type": "Person",
                 "name": "Lee Heungkyu"
@@ -55,7 +70,7 @@ export default async function ProjectPageWrapper({ params }: { params: Promise<{
             },
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": `https://heungkyulee.dev/projects/${id}`
+                "@id": `${SITE_URL}/projects/${id}`
             }
         },
         {
@@ -65,20 +80,20 @@ export default async function ProjectPageWrapper({ params }: { params: Promise<{
                 {
                     "@type": "ListItem",
                     "position": 1,
-                    "name": "Home",
-                    "item": "https://heungkyulee.dev"
+                    "name": "홈",
+                    "item": SITE_URL
                 },
                 {
                     "@type": "ListItem",
                     "position": 2,
-                    "name": "Projects",
-                    "item": "https://heungkyulee.dev/projects"
+                    "name": "프로젝트",
+                    "item": `${SITE_URL}/projects`
                 },
                 {
                     "@type": "ListItem",
                     "position": 3,
-                    "name": project.title.en,
-                    "item": `https://heungkyulee.dev/projects/${id}`
+                    "name": project.title.ko,
+                    "item": `${SITE_URL}/projects/${id}`
                 }
             ]
         }
