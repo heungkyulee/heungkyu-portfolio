@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | 이흥규",
   },
   description:
-    "비즈니스 문제를 정의하고, 기술로 끝까지 해결합니다. AX(업무 전환)·AI 에이전트·풀스택(Next.js/React)·물류/업무 자동화를 다룹니다.",
+    "비즈니스 문제를 정의하고 기술로 해결합니다. AX·AI 에이전트·풀스택·물류/업무 자동화 전문.",
   keywords: [
     "이흥규",
     "Lee Heungkyu",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "이흥규 | AX 컨설턴트 · AI 엔지니어 · 풀스택 개발자",
     description:
-      "비즈니스 문제를 정의하고, 기술로 끝까지 해결합니다. AX(업무 전환)·AI 에이전트·풀스택(Next.js/React)·물류/업무 자동화를 다룹니다.",
+      "비즈니스 문제를 정의하고 기술로 해결합니다. AX·AI 에이전트·풀스택·물류/업무 자동화 전문.",
     siteName: "Lee Heungkyu Portfolio",
     images: [{ url: SITE_OG_IMAGE }],
   },
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "이흥규 | AX 컨설턴트 · AI 엔지니어 · 풀스택 개발자",
     description:
-      "비즈니스 문제를 정의하고, 기술로 끝까지 해결합니다. AX(업무 전환)·AI 에이전트·풀스택(Next.js/React)·물류/업무 자동화를 다룹니다.",
+      "비즈니스 문제를 정의하고 기술로 해결합니다. AX·AI 에이전트·풀스택·물류/업무 자동화 전문.",
     images: [SITE_OG_IMAGE],
   },
   robots: {
@@ -156,6 +156,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <meta
+          name="naver-site-verification"
+          content="navercc9cf805a5a2a3da91ca9a2585f6f997"
+        />
         <link
           rel="alternate"
           type="application/rss+xml"
