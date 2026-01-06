@@ -11,11 +11,9 @@ export const contentType = 'image/png'
 export default function Icon() {
     return new ImageResponse(
         (
-            // ImageResponse JSX element
             <div
                 style={{
-                    fontSize: 24,
-                    background: 'white',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     width: '100%',
                     height: '100%',
                     display: 'flex',
@@ -24,18 +22,25 @@ export default function Icon() {
                 }}
             >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Outer hexagon */}
                     <path
                         d="M12 2L20 7V17L12 22L4 17V7L12 2Z"
-                        stroke="#09090b"
-                        strokeWidth="1.5"
-                        strokeLinejoin="miter"
+                        fill="rgba(255, 255, 255, 0.2)"
+                        stroke="rgba(255, 255, 255, 0.9)"
+                        strokeWidth="1"
                     />
-                    <circle cx="12" cy="11.5" r="4.5" stroke="#09090b" strokeWidth="1.5" />
-                    <line x1="14.5" y1="14" x2="16.5" y2="16" stroke="#09090b" strokeWidth="1.5" strokeLinecap="round" />
+                    {/* Inner geometric shapes */}
+                    <circle cx="12" cy="12" r="6" fill="rgba(255, 255, 255, 0.15)" />
+                    <path
+                        d="M12 6L16 9L16 15L12 18L8 15L8 9L12 6Z"
+                        fill="rgba(255, 255, 255, 0.3)"
+                        stroke="rgba(255, 255, 255, 0.8)"
+                        strokeWidth="0.8"
+                    />
+                    <circle cx="12" cy="12" r="2.5" fill="rgba(255, 255, 255, 0.9)" />
                 </svg>
             </div>
         ),
-        // ImageResponse options
         {
             ...size,
         }
