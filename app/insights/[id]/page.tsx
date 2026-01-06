@@ -64,11 +64,13 @@ export default async function InsightPageWrapper({ params }: { params: Promise<{
             "inLanguage": "ko-KR",
             "author": {
                 "@type": "Person",
-                "name": "Lee Heungkyu"
+                "@id": `${SITE_URL}/#person`,
+                "name": "이흥규"
             },
             "publisher": {
                 "@type": "Person",
-                "name": "Lee Heungkyu"
+                "@id": `${SITE_URL}/#person`,
+                "name": "이흥규"
             },
             "mainEntityOfPage": {
                 "@type": "WebPage",

@@ -21,6 +21,12 @@ export function SiteHeader() {
                 </Link>
                 <nav className="hidden md:flex items-center gap-5 text-xs font-mono text-zinc-400">
                     <Link
+                        href="/about"
+                        className="hover:text-zinc-100 transition-colors"
+                    >
+                        {language === "ko" ? "소개" : "About"}
+                    </Link>
+                    <Link
                         href="/services"
                         className="hover:text-zinc-100 transition-colors"
                     >

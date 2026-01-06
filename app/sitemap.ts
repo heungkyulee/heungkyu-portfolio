@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const siteLastModified = latestInsight ?? new Date();
 
   // 기본 페이지
-  const routes = ["", "/projects", "/insights", "/services"].map((route) => ({
+  const routes = ["", "/about", "/projects", "/insights", "/services"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: siteLastModified,
     changeFrequency: 'monthly' as const,

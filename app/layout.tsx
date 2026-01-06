@@ -101,6 +101,7 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
       name: "이흥규",
       alternateName: "Lee Heungkyu",
       url: SITE_URL,
@@ -136,13 +137,12 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
       name: "이흥규 포트폴리오",
       url: SITE_URL,
       inLanguage: "ko-KR",
       publisher: {
-        "@type": "Person",
-        name: "이흥규",
-        url: SITE_URL,
+        "@id": `${SITE_URL}/#person`,
       },
     },
   ],

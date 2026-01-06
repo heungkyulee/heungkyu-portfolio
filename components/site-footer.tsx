@@ -59,6 +59,9 @@ export function SiteFooter() {
                             <Link href="/" className="hover:text-zinc-100 transition-colors">
                                 {language === "ko" ? "홈" : "Home"}
                             </Link>
+                            <Link href="/about" className="hover:text-zinc-100 transition-colors">
+                                {language === "ko" ? "소개" : "About"}
+                            </Link>
                             <Link href="/services" className="hover:text-zinc-100 transition-colors">
                                 {language === "ko" ? "서비스" : "Services"}
                             </Link>
