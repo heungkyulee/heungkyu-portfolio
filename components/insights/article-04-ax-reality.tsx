@@ -249,3 +249,4 @@ function PatternItem({ number, title, content }: { number: string; title: string
 }
 
 
+

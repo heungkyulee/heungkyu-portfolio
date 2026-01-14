@@ -23,7 +23,7 @@ export default function Home() {
         <AboutSection />
         <InsightSection />
         <ProjectSection />
-        <TestimonialSection />
+        {/* <TestimonialSection /> */}
         <ExperienceSection />
         <SiteFooter />
       </main>
