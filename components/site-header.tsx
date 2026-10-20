@@ -52,7 +52,10 @@ export function SiteHeader() {
 
   return (
     <header className="wrap relative z-30 flex h-[var(--nav-h)] items-center justify-between bg-bg">
-      <Link href="/" className="link t-body font-semibold text-ink" aria-label={t({ ko: "홈", en: "Home" })}>
+      <Link href="/" className="link t-body flex items-center gap-3 font-semibold text-ink" aria-label={t({ ko: "홈", en: "Home" })}>
+        <span aria-hidden="true" className="t-wide text-[0.8125rem] leading-none">
+          HK
+        </span>
         {t(PORTFOLIO_DATA.profile.name)}
       </Link>
 
