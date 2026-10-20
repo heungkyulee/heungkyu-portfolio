@@ -1,7 +1,7 @@
 export const SITE_URL = "https://heungkyulee.dev";
 
-// 기본 공유 이미지(OG/Twitter). 현재 프로젝트에 이미 존재하는 이미지를 사용합니다.
-export const SITE_OG_IMAGE = `${SITE_URL}/hero-portrait.png`;
+// 기본 공유 이미지(OG/Twitter)
+export const SITE_OG_IMAGE = `${SITE_URL}/hero-portrait.jpeg`;
 
 export function absoluteUrl(path: string) {
   if (!path) return SITE_URL;

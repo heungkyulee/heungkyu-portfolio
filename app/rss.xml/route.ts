@@ -43,7 +43,7 @@ export async function GET() {
         <title>${escapeXml("이흥규 인사이트")}</title>
         <link>${escapeXml(SITE_URL)}</link>
         <description>${escapeXml(
-          "AX(업무 전환)·AI 에이전트·소프트웨어 주권·운영의 현실에 대한 인사이트"
+          "실제로 일하는 AI, AX와 소프트웨어 주권에 대한 이흥규의 글"
         )}</description>
         <language>ko-KR</language>
         ${latest ? `<lastBuildDate>${escapeXml(latest.toUTCString())}</lastBuildDate>` : ""}

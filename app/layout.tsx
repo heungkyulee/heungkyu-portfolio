@@ -1,74 +1,70 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Noto_Sans_KR, TikTok_Sans } from "next/font/google";
 import "./globals.css";
-import { CustomCursor } from "@/components/ui/custom-cursor";
+import { I18nProvider } from "@/components/i18n-provider";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { Reveal } from "@/components/reveal";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const latin = TikTok_Sans({
+  variable: "--font-latin",
   subsets: ["latin"],
+  axes: ["wdth"],
+  adjustFontFallback: false,
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const korean = Noto_Sans_KR({
+  variable: "--font-kr",
+  preload: false,
+  display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+const TITLE = "이흥규 | AI 에이전트와 업무 자동화를 만드는 창업자";
+const DESCRIPTION =
+  "주식회사 라이폴리 공동창업자·대표 이흥규입니다. AI 에이전트와 업무 자동화를 기획하고 직접 만듭니다. 지금은 진짜 일을 맡길 수 있는 AI 동료, Foli를 만들고 있습니다.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "이흥규 | AX 컨설턴트 · AI 엔지니어 · 풀스택 개발자",
+    default: TITLE,
     template: "%s | 이흥규",
   },
-  description:
-    "비즈니스 문제를 정의하고 기술로 해결합니다. AX·AI 에이전트·풀스택·물류/업무 자동화 전문.",
+  description: DESCRIPTION,
   keywords: [
     "이흥규",
-    "Lee Heungkyu",
-    "AX 컨설턴트",
-    "AX Consulting",
-    "AI 엔지니어",
-    "AI Engineer",
-    "풀스택 개발자",
-    "Full Stack Developer",
+    "Heungkyu Lee",
+    "라이폴리",
+    "LiFoli",
+    "Foli",
+    "AX",
+    "AI 전환",
+    "AX 컨설팅",
     "AI 에이전트",
-    "AI Agent",
+    "업무 자동화",
+    "풀스택 개발자",
     "LangChain",
     "LangGraph",
-    "LLM",
     "Next.js",
-    "React",
-    "물류 AI",
-    "업무 자동화",
-    "Software Sovereignty",
   ],
-  authors: [{ name: "Lee Heungkyu", url: "https://heungkyulee.dev" }],
-  creator: "Lee Heungkyu",
-  publisher: "Lee Heungkyu",
-  alternates: {
-    canonical: "/",
-  },
+  authors: [{ name: "Heungkyu Lee", url: SITE_URL }],
+  creator: "Heungkyu Lee",
+  publisher: "Heungkyu Lee",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "ko_KR",
     url: SITE_URL,
-    title: "이흥규 | AX 컨설턴트 · AI 엔지니어 · 풀스택 개발자",
-    description:
-      "비즈니스 문제를 정의하고 기술로 해결합니다. AX·AI 에이전트·풀스택·물류/업무 자동화 전문.",
-    siteName: "Lee Heungkyu Portfolio",
+    title: TITLE,
+    description: DESCRIPTION,
+    siteName: "이흥규",
     images: [{ url: SITE_OG_IMAGE }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "이흥규 | AX 컨설턴트 · AI 엔지니어 · 풀스택 개발자",
-    description:
-      "비즈니스 문제를 정의하고 기술로 해결합니다. AX·AI 에이전트·풀스택·물류/업무 자동화 전문.",
+    title: TITLE,
+    description: DESCRIPTION,
     images: [SITE_OG_IMAGE],
   },
   robots: {
@@ -84,16 +80,18 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
-    apple: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-    ],
+    apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   verification: {
     google: "googlef82c22375fb53df9",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b0b0c",
 };
 
 const jsonLd = {
@@ -103,47 +101,36 @@ const jsonLd = {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
       name: "이흥규",
-      alternateName: "Lee Heungkyu",
+      alternateName: "Heungkyu Lee",
       url: SITE_URL,
       image: SITE_OG_IMAGE,
+      email: "mailto:hklee@lifoli.co.kr",
       sameAs: [
         "https://github.com/heungkyulee",
         "https://www.linkedin.com/in/heungkyu-lee-37b888264/",
       ],
-      jobTitle: "AX Consultant & AI Engineer",
-      worksFor: [
-        {
-          "@type": "Organization",
-          name: "Korean Logistics Data Corp.",
-        },
-        {
-          "@type": "Organization",
-          name: "LiFoli Corp.",
-        },
-      ],
+      jobTitle: "Co-founder & CEO",
+      worksFor: {
+        "@type": "Organization",
+        name: "주식회사 라이폴리",
+        alternateName: "LiFoli Corp.",
+        url: "https://lifoli.co.kr/",
+      },
       alumniOf: {
         "@type": "CollegeOrUniversity",
-        name: "Sungkyunkwan University",
+        name: "성균관대학교",
+        alternateName: "Sungkyunkwan University",
       },
-      description:
-        "비즈니스 문제를 정의하고, 기술로 끝까지 해결합니다. AX(업무 전환)·AI 에이전트·풀스택·물류/업무 자동화를 다룹니다.",
-      knowsAbout: [
-        "Artificial Intelligence",
-        "Full Stack Development",
-        "Logistics",
-        "Digital Transformation",
-        "AI Agents",
-      ],
+      description: DESCRIPTION,
+      knowsAbout: ["AI Agents", "Work Automation", "AI Transformation", "Full Stack Development"],
     },
     {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
-      name: "이흥규 포트폴리오",
+      name: "이흥규",
       url: SITE_URL,
       inLanguage: "ko-KR",
-      publisher: {
-        "@id": `${SITE_URL}/#person`,
-      },
+      publisher: { "@id": `${SITE_URL}/#person` },
     },
   ],
 };
@@ -154,28 +141,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={`${latin.variable} ${korean.variable}`} suppressHydrationWarning>
       <head>
-        <meta
-          name="naver-site-verification"
-          content="navercc9cf805a5a2a3da91ca9a2585f6f997"
-        />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title="Insights RSS"
-          href="/rss.xml"
-        />
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <meta name="naver-site-verification" content="navercc9cf805a5a2a3da91ca9a2585f6f997" />
+        <link rel="alternate" type="application/rss+xml" title="인사이트 RSS" href="/rss.xml" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
-      >
-        <CustomCursor />
-        {children}
+      <body>
+        <I18nProvider>
+          <SiteHeader />
+          <main className="relative z-10 bg-bg">{children}</main>
+          <SiteFooter />
+          <Reveal />
+        </I18nProvider>
       </body>
     </html>
   );

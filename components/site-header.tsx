@@ -1,76 +1,108 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useI18n } from "@/components/i18n-provider";
-import { motion } from "framer-motion";
-import { HKLogo } from "@/components/ui/hk-logo";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useI18n } from "@/components/i18n-provider";
+import { PORTFOLIO_DATA } from "@/app/data/portfolio";
+
+export const NAV = [
+  { href: "/about", label: { ko: "소개", en: "About" } },
+  { href: "/projects", label: { ko: "프로젝트", en: "Projects" } },
+  { href: "/insights", label: { ko: "인사이트", en: "Insights" } },
+];
+
+export function LanguageToggle() {
+  const { language, setLanguage } = useI18n();
+  return (
+    <div className="flex items-center gap-1" role="group" aria-label="Language">
+      {(["ko", "en"] as const).map((lang) => (
+        <button
+          key={lang}
+          type="button"
+          onClick={() => setLanguage(lang)}
+          aria-pressed={language === lang}
+          aria-label={lang === "ko" ? "한국어" : "English"}
+          className={`t-small min-h-10 min-w-10 px-2 uppercase transition-colors ${
+            language === lang ? "text-ink" : "text-muted hover:text-ink"
+          }`}
+        >
+          {lang}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function SiteHeader() {
-    const { language, setLanguage } = useI18n();
+  const { t } = useI18n();
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
-    return (
-        <motion.header
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4 md:px-12 pointer-events-none"
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  return (
+    <header className="wrap relative z-30 flex h-[var(--nav-h)] items-center justify-between bg-bg">
+      <Link href="/" className="link t-body font-semibold text-ink" aria-label={t({ ko: "홈", en: "Home" })}>
+        {t(PORTFOLIO_DATA.profile.name)}
+      </Link>
+
+      <nav className="hidden items-center gap-8 md:flex" aria-label={t({ ko: "주요 메뉴", en: "Main" })}>
+        {NAV.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            aria-current={pathname.startsWith(item.href) ? "page" : undefined}
+            className={`link t-small ${pathname.startsWith(item.href) ? "text-ink" : "text-ink-soft"}`}
+          >
+            {t(item.label)}
+          </Link>
+        ))}
+        <LanguageToggle />
+        <Link href="/#contact" className="link link--under t-small text-ink">
+          {t({ ko: "연락하기", en: "Contact" })}
+        </Link>
+      </nav>
+
+      <div className="flex items-center gap-2 md:hidden">
+        <Link href="/#contact" className="link link--under t-small px-2 text-ink">
+          {t({ ko: "연락하기", en: "Contact" })}
+        </Link>
+        <button
+          type="button"
+          className="t-small min-h-10 px-2 text-ink"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen((v) => !v)}
         >
-            <div className="pointer-events-auto mix-blend-difference flex items-center gap-6">
-                <Link href="/" aria-label="홈으로 이동" className="inline-flex items-center">
-                    <HKLogo className="w-8 h-8 text-zinc-100" />
-                </Link>
-                <nav className="hidden md:flex items-center gap-5 text-xs font-mono text-zinc-400">
-                    <Link
-                        href="/about"
-                        className="hover:text-zinc-100 transition-colors"
-                    >
-                        {language === "ko" ? "소개" : "About"}
-                    </Link>
-                    <Link
-                        href="/services"
-                        className="hover:text-zinc-100 transition-colors"
-                    >
-                        {language === "ko" ? "서비스" : "Services"}
-                    </Link>
-                    <Link
-                        href="/insights"
-                        className="hover:text-zinc-100 transition-colors"
-                    >
-                        {language === "ko" ? "인사이트" : "Insights"}
-                    </Link>
-                    <Link
-                        href="/projects"
-                        className="hover:text-zinc-100 transition-colors"
-                    >
-                        {language === "ko" ? "프로젝트" : "Projects"}
-                    </Link>
-                </nav>
-            </div>
+          {open ? t({ ko: "닫기", en: "Close" }) : t({ ko: "메뉴", en: "Menu" })}
+        </button>
+      </div>
 
-            <div className="pointer-events-auto bg-zinc-900/80 backdrop-blur-md border border-zinc-800 rounded-full p-1 flex gap-1 shadow-lg">
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setLanguage('ko')}
-                    className={`rounded-full px-4 h-8 text-xs font-medium transition-all ${language === 'ko'
-                        ? 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200'
-                        : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800'
-                        }`}
-                >
-                    KO
-                </Button>
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setLanguage('en')}
-                    className={`rounded-full px-4 h-8 text-xs font-medium transition-all ${language === 'en'
-                        ? 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200'
-                        : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800'
-                        }`}
-                >
-                    EN
-                </Button>
-            </div>
-        </motion.header>
-    );
+      {open && (
+        <div
+          id="mobile-menu"
+          className="wrap fixed inset-x-0 bottom-0 top-[var(--nav-h)] z-30 flex flex-col justify-between bg-bg pb-10 md:hidden"
+        >
+          <nav className="flex flex-col gap-2 pt-6" aria-label={t({ ko: "주요 메뉴", en: "Main" })}>
+            {NAV.map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="t-head py-1 text-ink">
+                {t(item.label)}
+              </Link>
+            ))}
+          </nav>
+          <LanguageToggle />
+        </div>
+      )}
+    </header>
+  );
 }

@@ -1,771 +1,986 @@
-export type Language = 'ko' | 'en';
+export type Language = "ko" | "en";
+export type L = { ko: string; en: string };
+
+export type ArticleBlock =
+  | { type: "p"; text: L }
+  | { type: "h2"; text: L }
+  | { type: "h3"; text: L }
+  | { type: "list"; items: L[] }
+  | { type: "quote"; text: L }
+  | { type: "pairs"; items: { title: L; text: L }[] }
+  | { type: "report"; title: L; text: L };
+
+export type Cover = { src: string; alt: L; caption: L };
+
+export type Project = {
+  id: string;
+  title: L;
+  year: string;
+  owner: "own" | "client";
+  description: L;
+  problem: L;
+  solution: L;
+  impact: L;
+  techStack: string[];
+  category: string;
+  link?: string;
+};
+
+export type Insight = {
+  id: string;
+  title: L;
+  summary: L;
+  date: string;
+  cover: Cover;
+  body: ArticleBlock[];
+};
+
+export type Service = {
+  slug: string;
+  title: L;
+  summary: L;
+  lead: L;
+  points: L[];
+  stack?: string[];
+  related: { href: string; title: L }[];
+  faq: { q: L; a: L }[];
+  keywords: string[];
+  cover: Cover;
+};
+
+const EMAIL = "hklee@lifoli.co.kr";
+
+export const DIAGNOSIS_SUBJECT = "30분 업무 자동화 진단 요청";
+
+export const MAIL_TEMPLATE = {
+  ko: "안녕하세요, 30분 업무 자동화 진단을 요청합니다.\n\n회사와 하는 일:\n지금 상황:\n막히는 지점:\n원하는 결과:\n",
+  en: "Hello, I'd like to request the 30-minute work automation diagnosis.\n\nCompany and what we do:\nWhere things stand:\nWhere it gets stuck:\nWhat we want:\n",
+};
+
+export function diagnosisMailto(body?: string) {
+  return mailto(DIAGNOSIS_SUBJECT, body);
+}
+
+export function mailto(subject: string, body?: string) {
+  const params = new URLSearchParams({ subject });
+  if (body) params.set("body", body);
+  return `mailto:${EMAIL}?${params.toString().replace(/\+/g, "%20")}`;
+}
+
+// 사진·영상 출처 (public/archive/credits.json과 같은 내용)
+export const CREDITS = [
+  {
+    title: { ko: "벨 시스템 교환대", en: "Bell System switchboard" },
+    by: "The U.S. National Archives",
+    license: { ko: "알려진 저작권 제한 없음", en: "No known copyright restrictions" },
+    href: "https://commons.wikimedia.org/wiki/File:Photograph_of_Women_Working_at_a_Bell_System_Telephone_Switchboard_(3660047829).jpg",
+  },
+  {
+    title: { ko: "인구조사 카드 천공, 1940년", en: "Census card punch, 1940" },
+    by: "U.S. National Archives",
+    license: { ko: "퍼블릭 도메인", en: "Public domain" },
+    href: "https://commons.wikimedia.org/wiki/File:Card_puncher_-_NARA_-_513295.jpg",
+  },
+  {
+    title: { ko: "타자수 사무실, 1918년", en: "Typing pool, 1918" },
+    by: "Naval History and Heritage Command",
+    license: { ko: "퍼블릭 도메인", en: "Public domain" },
+    href: "https://commons.wikimedia.org/wiki/File:NH_52909_-_typing_pool,_Navy_Department,_Washington_DC.jpg",
+  },
+  {
+    title: { ko: "카드 목록 서랍", en: "Card catalogue drawers" },
+    by: "Carolina Prysyazhnyuk",
+    license: { ko: "CC BY-SA 2.0", en: "CC BY-SA 2.0" },
+    href: "https://commons.wikimedia.org/wiki/File:Card_catalogue_drawers.jpg",
+  },
+  {
+    title: { ko: "타자기 자판, 1921년", en: "Typewriter keys, 1921" },
+    by: "Ralph Steiner, Library of Congress",
+    license: { ko: "퍼블릭 도메인", en: "Public domain" },
+    href: "https://commons.wikimedia.org/wiki/File:Typewriter_keys_LCCN2004666344.jpg",
+  },
+  {
+    title: { ko: "저금 통장 기록면, 1912–1916년", en: "Savings book entries, 1912–1916" },
+    by: "Money Museum, Wikimedia Commons",
+    license: { ko: "퍼블릭 도메인", en: "Public domain" },
+    href: "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%BD%D0%B8%D0%B6%D0%BA%D0%B0_%D1%81%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%BF%D0%BE%D1%87%D1%82%D0%BE%D0%B2%D0%BE-%D1%82%D0%B5%D0%BB%D0%B5%D0%B3%D1%80%D0%B0%D1%84%D0%BD%D0%BE%D0%B9_%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9_%D1%81%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9_%D0%BA%D0%B0%D1%81%D1%81%D1%8B._%D0%A1._2%E2%80%933--moneymuseum-by.jpg",
+  },
+  {
+    title: { ko: "교환원 교육 영화, 1949년", en: "Operator training film, 1949" },
+    by: "Prelinger Archives",
+    license: { ko: "퍼블릭 도메인", en: "Public domain" },
+    href: "https://archive.org/details/Operator1949_4",
+  },
+];
+
+// 직함이 마침표로 끝나면(Corp.) 마침표를 겹쳐 쓰지 않습니다.
+export function introLine(title: string, line: string) {
+  return `${title}${title.endsWith(".") ? "" : "."} ${line}`;
+}
 
 export const PORTFOLIO_DATA = {
   profile: {
-    name: {
-      ko: "LEE HEUNGKYU",
-      en: "LEE HEUNGKYU",
+    name: { ko: "이흥규", en: "Heungkyu Lee" },
+    title: {
+      ko: "주식회사 라이폴리 공동창업자·대표",
+      en: "Co-founder & CEO, LiFoli Corp.",
     },
-    roles: {
-      ko: ["AX Consultant", "Full Stack Developer", "AI Agent Engineer"],
-      en: ["AX Consultant", "Full Stack Developer", "AI Agent Engineer"],
-    },
-    bio: {
-      ko: "비즈니스 문제를 정의하고,\n기술로 끝까지 해결합니다.",
-      en: "Redefining business problems and solving them with technology.",
+    line: {
+      ko: "AI 에이전트와 업무 자동화를 기획하고 직접 만듭니다.",
+      en: "I plan AI agents and work automation, and build them myself.",
     },
     contact: {
-      email: "hklee@lifoli.co.kr",
+      email: EMAIL,
       github: "https://github.com/heungkyulee",
       linkedin: "https://www.linkedin.com/in/heungkyu-lee-37b888264/",
+      company: "https://lifoli.co.kr/",
     },
   },
-  about: {
-    intro: {
-      ko: "현장의 복잡함을 데이터와 AI로 단순화합니다.",
-      en: "Simplifying complexity with Data and AI.",
-    },
-    bento: [
-      {
-        type: "text",
-        title: { ko: "풀스택 개발", en: "Full Stack" },
-        content: {
-          ko: "기획부터 배포까지,\n혼자서 완주합니다.",
-          en: "From planning to deployment,\nI handle it all.",
-        },
-        detailedContent: {
-          ko: "• **Full Cycle**: 기획 → 디자인 → 개발 → 배포 → 운영 1인 수행\n• **Speed**: 평균 3~4개월 내 서비스 런칭 (티클, 단골쓰 등)\n• **Tech**: Next.js, RN, Supabase 기반 B2C/B2B 서비스 다수 구현",
-          en: "• **Full Cycle**: Solo Planning → Design → Dev → Deploy → Ops\n• **Speed**: Launch within 3-4 months (Tikkle, Daangols)\n• **Tech**: Built B2C/B2B services with Next.js, RN, Supabase",
-        },
-        tags: ["Next.js", "React Native", "Supabase"],
-        colSpan: 2,
-      },
-      {
-        type: "stat",
-        title: { ko: "AI Top 100", en: "AI Top 100" },
-        content: { ko: "Kakao 선정 AI 활용 역량 Top 100", en: "Selected by Kakao AI Top 100" },
-        detailedContent: {
-          ko: "**카카오 선정 한국 AI 활용 역량 Top 100**\n\n단순 AI 사용을 넘어, **비즈니스 문제를 AI로 해결**하는 실질적 응용 역량 보유.",
-          en: "**Kakao's Top 100 AI Talents in Korea**\n\nProven capability to **solve business problems with AI**, beyond simple usage.",
-        },
-        value: "Top 100",
-        colSpan: 1,
-      },
-      {
-        type: "text",
-        title: { ko: "AI 에이전트", en: "AI Agent" },
-        content: {
-          ko: "단순 연동을 넘어,\n업무를 대체하는\n에이전트를 설계합니다.",
-          en: "Designing agents\nthat replace actual workflows\nby synthesizing business logic with AI technology.",
-        },
-        detailedContent: {
-          ko: "• **Workflow**: API 연동을 넘어 업무 프로세스 전체 자동화\n• **Case**: 화주 메시지 분석 → 3개망 배차 → 초안 생성 (OPUS AI)\n• **Stack**: LangChain, LangGraph, n8n 기반 자율 에이전트",
-          en: "• **Workflow**: Full process automation beyond API calls\n• **Case**: Message Analysis → Dispatch across 3 networks (OPUS AI)\n• **Stack**: Autonomous agents via LangChain, LangGraph, n8n",
-        },
-        tags: ["LangChain", "n8n", "LLM Ops"],
-        colSpan: 1,
-      },
-      {
-        type: "text",
-        title: { ko: "AX 컨설팅", en: "AX Consulting" },
-        content: {
-          ko: "돈이 새는 지점을 찾아\n기술로 막습니다.",
-          en: "Identifying and fixing revenue leaks\nwith tech.",
-        },
-        detailedContent: {
-          ko: "**\"코드를 아는 컨설턴트\"**\n\n1. **진단**: 현업의 '돈과 시간이 새는 구간' 발견\n2. **설계**: 자동화 가능한 최적 구조 제안\n3. **구현**: 직접 풀스택 개발로 솔루션 완성",
-          en: "**\"Consultant who Codes\"**\n\n1. **Diagnose**: Find revenue/time leaks\n2. **Design**: Propose automation structures\n3. **Implement**: Build solutions via full-stack dev",
-        },
-        tags: ["Optimization", "Automation", "Strategy"],
-        colSpan: 2,
-      },
-      {
-        type: "stat",
-        title: { ko: "수상 이력", en: "Awards" },
-        content: { ko: "장관상 및 국제대회", en: "Minister's Award & Global" },
-        detailedContent: {
-          ko: "• **Global**: K-Startup Silicon Valley / ILS Tokyo 선정\n• **Gov**: 교육부 장관 인증 U-300 유망팀 (22', 24')\n\n아이디어를 넘어 **시장 검증**까지 완료함.",
-          en: "• **Global**: K-Startup Silicon Valley / ILS Tokyo Finalist\n• **Gov**: Minister Certified U-300 Team (22', 24')\n\nProof of **market validation**.",
-        },
-        value: "4+",
-        colSpan: 1,
-      },
-      {
-        type: "text",
-        title: { ko: "네트워킹", en: "Networking" },
-        content: {
-          ko: "결과를 만드는 사람들과\n깊게 교류합니다.",
-          en: "Deep connections with\nresult-orientedpeople.",
-        },
-        detailedContent: {
-          ko: "• **Type**: 넓은 인맥보다 깊은 관계 지향 **'소집자형'**\n• **Core**: 40대 비즈니스 파트너 & 20대 AI 엔지니어 그룹\n• **Action**: 격주 단위 아이디어 검증 및 MVP 실행",
-          en: "• **Type**: **'Convener'** focusing on deep relationships\n• **Core**: Biz Partners (40s) & AI Engineers (20s)\n• **Action**: Bi-weekly idea validation & MVP execution",
-        },
-        tags: ["Co-founders", "Experts", "Builders"],
-        colSpan: 2,
-      },
-    ],
-  },
+
+  // 홈과 AX 컨설팅 페이지가 함께 쓰는 진행 방식
   process: [
     {
-      step: "01",
-      title: { ko: "Embed", en: "Embed" },
+      title: { ko: "현장에 들어갑니다", en: "Embed" },
       description: {
-        ko: "현장에 침투하여 진짜 문제를 발견합니다.\n책상이 아닌 현장에서 답을 찾습니다.",
-        en: "We deploy to the field to discover the real problems.\nAnswers are found in the mud, not at the desk.",
+        ko: "현장에 침투하여 진짜 문제를 발견합니다. 책상이 아닌 현장에서 답을 찾습니다.",
+        en: "I go to where the work happens to find the real problem. The answer is in the field, not at the desk.",
       },
     },
     {
-      step: "02",
-      title: { ko: "Integrate", en: "Integrate" },
+      title: { ko: "흐름을 잇습니다", en: "Integrate" },
       description: {
-        ko: "파편화된 데이터와 프로세스를\n하나의 온톨로지로 통합합니다.",
-        en: "Unifying fragmented data and processes\ninto a Ontology.",
+        ko: "파편화된 데이터와 프로세스를 하나의 기준으로 통합합니다.",
+        en: "I join fragmented data and processes into one source of truth.",
       },
     },
     {
-      step: "03",
-      title: { ko: "Augment", en: "Augment" },
+      title: { ko: "판단을 돕습니다", en: "Augment" },
       description: {
-        ko: "AI와 자동화로 인간의 판단력을 증강시킵니다.\n대체가 아닌 공생을 지향합니다.",
-        en: "Augmenting human judgment with AI.\nWe aim for symbiosis, not replacement.",
+        ko: "AI와 자동화로 사람의 판단력을 증강시킵니다. 대체가 아닌 공생을 지향합니다.",
+        en: "AI and automation strengthen human judgement. The aim is working together, not replacement.",
       },
     },
     {
-      step: "04",
-      title: { ko: "Operate", en: "Operate" },
+      title: { ko: "운영까지 책임집니다", en: "Operate" },
       description: {
-        ko: "실제 운영 환경에서 지속 가능한 임팩트를 만듭니다.\n끝까지 책임집니다.",
-        en: "Creating sustainable impact in live operations.\nWe own the outcome.",
+        ko: "실제 운영 환경에서 지속 가능한 임팩트를 만듭니다. 끝까지 책임집니다.",
+        en: "I make it last in live operations, and I own the outcome.",
       },
     },
   ],
-  insights: [
-    {
-      id: "ax-reality",
-      title: { ko: "AX는 AI 도입이 아니라 운영 체제 전환이다", en: "AX is an Operating System Transition, Not Just AI Adoption" },
-      summary: {
-        ko: "AI 모델보다 먼저, 데이터 흐름과 책임 구조를 설계해야 합니다. 실무 도입 실패의 원인은 대부분 운영 체계의 부재에 있습니다.",
-        en: "Design data flow and responsibility structures before models. Most implementation failures stem from a lack of operational systems.",
-      },
-      date: "2026.01.06",
-      content: {
-        ko: "AX는 단순한 AI 도입 프로젝트가 아닙니다. 기업의 운영 체제(OS)를 업그레이드하는 프로젝트입니다.",
-        en: "AX is not just an AI project. It is a project to upgrade the corporate Operating System.",
-      },
-    },
-    {
-      id: "inefficiency-not-data",
-      title: { ko: "현장의 비효율은 데이터의 부재가 아니다", en: "Inefficiency is not a lack of data" },
-      summary: {
-        ko: "데이터는 이미 넘쳐납니다. 문제는 '연결'의 부재입니다. 사일로에 갇힌 데이터를 해방시킬 때 혁신이 시작됩니다.",
-        en: "Data is abundant. The problem is the lack of connection. Innovation begins when we liberate data from silos.",
-      },
-      date: "2025.11.19",
-      content: {
-        ko: `
-          <p>많은 기업들이 "데이터가 부족해서" 혁신을 못한다고 말합니다. 그래서 비싼 돈을 들여 데이터 레이크를 구축하고, 최신 대시보드 툴을 도입하죠. 하지만 현장에 가보면 어떤가요?</p>
-          
-          <p>현장 작업자들은 여전히 엑셀 파일을 서로 메일로 주고받고, 화이트보드에 매직으로 오늘의 할 일을 적고 있습니다. 데이터 레이크에 쌓인 그 방대한 데이터는 현장의 의사결정에 전혀 영향을 미치지 못하고 있는 겁니다.</p>
 
-          <h3>실제 사례: 물류 회사의 데이터 패러독스</h3>
-          
-          <p>작년에 만난 한 물류 회사가 있었습니다. 하루 2만 건의 배송을 처리하는데, "배차 효율을 높이려면 더 많은 데이터가 필요하다"며 IoT 센서 도입을 검토 중이었죠.</p>
-
-          <p>문제는, 이미 그 회사에는 엄청난 데이터가 있었다는 겁니다. 화물 정보망 3곳에서 실시간으로 차량 위치 데이터가 들어오고, ERP에는 과거 3년치 배송 기록이 쌓여 있었어요. 하지만 배차 담당자는 여전히 3개의 탭을 번갈아 보며 수기로 메모를 작성하고 있었습니다.</p>
-
-          <p>왜일까요? 데이터가 부서 간, 시스템 간에 갇혀서 흐르지 않았기 때문입니다.</p>
-
-          <h3>문제는 '양'이 아니라 '흐름'입니다</h3>
-          
-          <p>진정한 비효율은 데이터가 없어서가 아니라, <strong>필요한 데이터가 필요한 사람에게 제때 도달하지 못해서</strong> 발생합니다.</p>
-
-          <p>물류 창고의 재고 데이터가 영업팀의 태블릿에 실시간으로 뜨지 않는다면, 영업팀은 재고가 없는 물건을 팔아버리는 실수를 하게 됩니다. 이건 데이터 저장 용량의 문제가 아닙니다. <strong>데이터 파이프라인과 인터페이스의 문제</strong>입니다.</p>
-
-          <p>제가 진단한 대부분의 기업에서 발견한 공통점은 이겁니다:</p>
-          <ul>
-            <li>영업팀은 엑셀로 고객 관리</li>
-            <li>물류팀은 화물 정보망 사이트를 직접 조회</li>
-            <li>정산팀은 또 다른 ERP 시스템에서 수작업 대조</li>
-          </ul>
-
-          <p>같은 회사인데도 각 부서는 마치 다른 행성에 살고 있는 것처럼 단절되어 있었습니다.</p>
-
-          <h3>사일로(Silo)를 부수는 것이 AX의 시작</h3>
-          
-          <p>제가 현장에 들어가서 가장 먼저 하는 일은 새로운 AI 모델을 돌리는 게 아닙니다. <strong>부서 간의 단절된 데이터 흐름을 잇는 것</strong>입니다.</p>
-
-          <p>앞서 말한 물류 회사에서는 단순한 작업을 했습니다. 화물 정보망 3곳의 API를 연동해서, 배차 담당자가 하나의 화면에서 모든 차량 정보를 볼 수 있게 했죠. 그리고 그 데이터를 정산팀이 쓰는 시스템과 연결했습니다.</p>
-
-          <p>결과? 배차 업무 시간이 50% 줄었습니다. 새로운 알고리즘을 개발한 것도, 고가의 BI 툴을 도입한 것도 아닙니다. 그저 <strong>이미 있던 데이터를 흐르게 만든 것</strong>뿐입니다.</p>
-
-          <h3>AI는 그 다음입니다</h3>
-          
-          <p>데이터가 흐르기 시작하면, 그때부터 AI는 진짜 가치를 발휘합니다.</p>
-
-          <p>사일로가 부서진 물류 회사에서는 이제 과거 배송 데이터와 실시간 차량 위치를 결합해서 "최적 배차 경로"를 AI가 추천할 수 있게 되었습니다. 고인 물 위에서는 어떤 배도 띄울 수 없지만, 데이터가 흐르는 순간 AI라는 배는 빠르게 움직일 수 있게 됩니다.</p>
-
-          <h3>당신의 회사는 어떤가요?</h3>
-          
-          <p>혹시 지금 "데이터가 부족하다"고 느끼고 계신가요? 한번 점검해보세요:</p>
-          <ul>
-            <li>부서 간 데이터를 수작업으로 옮기고 있지는 않나요?</li>
-            <li>같은 정보를 여러 시스템에 중복 입력하고 있지는 않나요?</li>
-            <li>의사결정을 위해 "데이터를 찾는 시간"이 너무 길지는 않나요?</li>
-          </ul>
-
-          <p>만약 하나라도 해당된다면, 문제는 데이터의 양이 아닙니다. <strong>데이터의 흐름</strong>입니다.</p>
-
-          <p>더 많은 데이터를 모으기 전에, 이미 있는 데이터부터 제대로 연결하세요. 혁신은 거기서 시작됩니다.</p>
-        `,
-        en: `
-          <p>Many companies claim they can't innovate because they "lack data." So they spend fortunes building data lakes and adopting the latest dashboard tools. But what happens when you go to the actual field?</p>
-          
-          <p>Field workers are still emailing Excel files back and forth and writing today's tasks on whiteboards with markers. That massive amount of data sitting in the data lake is having absolutely no impact on field decision-making.</p>
-
-          <h3>Real Case: A Logistics Company's Data Paradox</h3>
-          
-          <p>Last year, I met a logistics company processing 20,000 deliveries per day. They were considering IoT sensors, believing "We need more data to improve dispatch efficiency."</p>
-
-          <p>The problem? They already had massive data. Real-time vehicle location data was streaming in from 3 freight networks, and their ERP held 3 years of delivery history. Yet dispatchers were still manually switching between 3 tabs, taking notes by hand.</p>
-
-          <p>Why? Because the data was trapped—siloed between departments and systems with no flow.</p>
-
-          <h3>The problem isn't 'Volume', it's 'Flow'</h3>
-          
-          <p>True inefficiency stems not from a lack of data, but from <strong>the failure of necessary data to reach the right person at the right time</strong>.</p>
-
-          <p>If warehouse inventory data doesn't appear in real-time on the sales team's tablet, they'll sell out-of-stock items. This isn't a storage capacity issue—it's a <strong>data pipeline and interface issue</strong>.</p>
-
-          <p>The common pattern I've found in most companies I've diagnosed:</p>
-          <ul>
-            <li>Sales team manages customers in Excel</li>
-            <li>Logistics team manually checks freight network sites</li>
-            <li>Finance team cross-references data in yet another ERP system</li>
-          </ul>
-
-          <p>Same company, but each department operates like they're on different planets.</p>
-
-          <h3>Breaking Silos is the start of AX</h3>
-          
-          <p>The first thing I do when entering the field isn't running a new AI model. It's <strong>connecting the severed data flows between departments</strong>.</p>
-
-          <p>For that logistics company, we did something simple: integrated APIs from 3 freight networks so dispatchers could see all vehicle info on one screen. Then connected that data to the finance team's system.</p>
-
-          <p>Result? Dispatch time dropped 50%. We didn't develop new algorithms or buy expensive BI tools. We just <strong>made existing data flow</strong>.</p>
-
-          <h3>AI comes next</h3>
-          
-          <p>Once data starts flowing, AI can deliver real value.</p>
-
-          <p>With silos broken, the logistics company can now combine historical delivery data with real-time vehicle locations for AI-recommended optimal routes. You can't sail a ship on stagnant water, but once data flows, the AI ship moves fast.</p>
-
-          <h3>How about your company?</h3>
-          
-          <p>Do you feel you "lack data"? Check this:</p>
-          <ul>
-            <li>Are you manually moving data between departments?</li>
-            <li>Are you entering the same info into multiple systems?</li>
-            <li>Does "finding data" for decisions take too long?</li>
-          </ul>
-
-          <p>If any apply, the problem isn't data quantity—it's <strong>data flow</strong>.</p>
-
-          <p>Before collecting more data, properly connect what you already have. Innovation starts there.</p>
-        `
-      }
-    },
-    {
-      id: "ai-agents-colleagues",
-      title: { ko: "AI 에이전트: 도구를 넘어선 동료", en: "AI Agents: Beyond Tools, Towards Colleagues" },
-      summary: {
-        ko: "단순한 챗봇이 아닙니다. 스스로 계획하고, 도구를 사용하고, 결과를 보고하는 '디지털 동료'를 설계해야 합니다.",
-        en: "Not just chatbots. We must design 'digital colleagues' that plan, use tools, and report results.",
-      },
-      date: "2025.11.19",
-      content: {
-        ko: `
-          <p>우리는 지금까지 소프트웨어를 '도구(Tool)'로만 사용해왔습니다. 엑셀은 계산을 위한 도구이고, 슬랙은 대화를 위한 도구죠. 도구의 특징은 명확합니다. <strong>인간이 명령하지 않으면 아무것도 하지 않는다</strong>는 것입니다.</p>
-          
-          <p>하지만 LLM(거대언어모델)의 등장으로 소프트웨어의 정의가 바뀌고 있습니다. 이제 소프트웨어는 '에이전트(Agent)', 즉 대리인이 될 수 있습니다.</p>
-
-          <h3>명령(Command)에서 위임(Delegation)으로</h3>
-          
-          <p>챗봇에게 "이 문장 번역해줘"라고 시키는 건 명령입니다. 즉각적이고, 단순하고, 일회성입니다.</p>
-
-          <p>하지만 에이전트에게는 이렇게 말할 수 있습니다: <strong>"이번 주 해외 물류 동향 보고서 작성해서 월요일 아침까지 내 책상에 올려놔"</strong></p>
-
-          <p>이 에이전트는 스스로:</p>
-          <ul>
-            <li><strong>Planning</strong>: 어떤 정보가 필요한지 계획을 세웁니다</li>
-            <li><strong>Reasoning</strong>: 웹을 검색하고 주요 기사를 요약합니다</li>
-            <li><strong>Tool Use</strong>: 번역 툴을 사용하고, 데이터를 시각화합니다</li>
-            <li><strong>Action</strong>: 보고서 양식에 맞춰 문서를 생성합니다</li>
-          </ul>
-
-          <p>중간에 막히면? 인간에게 질문도 합니다. "2023년 EU 물류 규제 변경 사항 중 어떤 부분을 중점적으로 다룰까요?"</p>
-
-          <h3>실제 사례: OPUS AI의 배차 자동화</h3>
-
-          <p>제가 개발한 OPUS AI는 바로 이런 에이전트 개념을 물류 현장에 적용한 케이스입니다.</p>
-
-          <p>기존에는 배차 담당자가 화주(화물을 보내는 사람)로부터 카카오톡 메시지를 받으면:</p>
-          <ol>
-            <li>메시지를 읽고 화물 정보를 파악</li>
-            <li>화물 정보망에서 적합한 차량 검색</li>
-            <li>차주(차량 소유자)에게 연락해서 가격 협상</li>
-            <li>확정되면 배차 시스템에 수기 입력</li>
-          </ol>
-
-          <p>이 과정이 한 건당 평균 15분 걸렸습니다. 하루 100건이면 25시간 분량의 작업이죠.</p>
-
-          <p>OPUS AI 에이전트는 이렇게 작동합니다:</p>
-
-          <p><strong>1단계 - 메시지 분석:</strong> 카카오톡 메시지를 읽고 "출발지: 서울 강남, 도착지: 부산 해운대, 화물: 가전제품 5톤, 희망일: 내일"을 자동 추출</p>
-
-          <p><strong>2단계 - 최적 차량 탐색:</strong> 화물 정보망 API를 호출해서 조건에 맞는 차량 10대를 찾고, 과거 배송 이력을 기반으로 신뢰도 순위 매김</p>
-
-          <p><strong>3단계 - 배차 초안 생성:</strong> "부산행 가전 5톤, 내일 오전 픽업 가능한 차량 3대 후보입니다. 예상 운임: 50만원"이라는 요약을 만들어 담당자에게 제시</p>
-
-          <p><strong>결과?</strong> 단순 문의 응대율 80% 자동화. 배차 담당자는 이제 복잡한 케이스에만 집중할 수 있습니다.</p>
-
-          <h3>디지털 동료를 채용하는 시대</h3>
-          
-          <p>저는 이제 개발자가 아니라 <strong>'인사 담당자'</strong>가 된 기분으로 코딩을 합니다.</p>
-
-          <p>OPUS AI를 설계할 때 고민한 것들:</p>
-          <ul>
-            <li><strong>성격</strong>: 이 에이전트는 보수적일까, 적극적일까? → 물류는 신뢰가 중요하니 "보수적이되 명확한" 톤으로 설정</li>
-            <li><strong>권한</strong>: 어디까지 스스로 결정할 수 있을까? → 50만원 이하 배차는 자동 추천, 그 이상은 인간 승인 필요</li>
-            <li><strong>피드백</strong>: 실수하면 어떻게 학습시킬까? → 담당자가 "이건 아니야"라고 하면 그 패턴을 기록하고 다음에 반영</li>
-          </ul>
-
-          <p>이건 마치 신입사원을 교육하는 과정과 똑같습니다. 차이점은 이 "신입사원"이 24시간 일하고, 피곤해하지 않고, 배운 것을 절대 잊어버리지 않는다는 것뿐입니다.</p>
-
-          <h3>에이전트 시대의 핵심 질문</h3>
-
-          <p>앞으로 기업의 경쟁력은 <strong>"얼마나 좋은 SaaS를 쓰느냐"</strong>가 아니라, <strong>"얼마나 유능한 디지털 동료들을 보유하고 있느냐"</strong>로 결정될 것입니다.</p>
-
-          <p>생각해보세요:</p>
-          <ul>
-            <li>당신의 팀에서 반복적으로 하는 일이 무엇인가요?</li>
-            <li>그 일을 "위임"할 수 있다면 어떻게 설명하시겠어요?</li>
-            <li>에이전트가 그 일을 하려면 어떤 "권한"과 "도구"가 필요할까요?</li>
-          </ul>
-
-          <p>이 질문들에 답할 수 있다면, 당신은 이미 에이전트 시대의 준비를 시작한 겁니다.</p>
-
-          <p><strong>당신의 팀에는 몇 명의 디지털 동료가 있나요?</strong></p>
-        `,
-        en: `
-          <p>Until now, we have used software strictly as 'Tools'. Excel is a tool for calculation, Slack is a tool for communication. The characteristic of a tool is clear: <strong>it does nothing unless a human commands it</strong>.</p>
-          
-          <p>However, with the advent of LLMs (Large Language Models), the definition of software is changing. Software can now become an 'Agent'.</p>
-
-          <h3>From Command to Delegation</h3>
-          
-          <p>Asking a chatbot to "translate this sentence" is a command. It's immediate, simple, one-off.</p>
-
-          <p>But you can delegate to an agent: <strong>"Draft a report on global logistics trends for this week and have it on my desk by Monday morning."</strong></p>
-
-          <p>This agent autonomously:</p>
-          <ul>
-            <li><strong>Planning</strong>: Determines what information is needed</li>
-            <li><strong>Reasoning</strong>: Searches the web and summarizes key articles</li>
-            <li><strong>Tool Use</strong>: Uses translation tools and visualizes data</li>
-            <li><strong>Action</strong>: Generates a document in the report format</li>
-          </ul>
-
-          <p>Gets stuck? It asks humans questions. "Which aspects of the 2023 EU logistics regulatory changes should I focus on?"</p>
-
-          <h3>Real Case: OPUS AI's Dispatch Automation</h3>
-
-          <p>OPUS AI, which I developed, is a case study of applying this agent concept to logistics operations.</p>
-
-          <p>Previously, when a dispatcher received a KakaoTalk message from a shipper, they had to:</p>
-          <ol>
-            <li>Read the message and understand freight details</li>
-            <li>Search freight networks for suitable vehicles</li>
-            <li>Contact vehicle owners for price negotiation</li>
-            <li>Manually enter confirmed dispatch into the system</li>
-          </ol>
-
-          <p>This took an average of 15 minutes per case. 100 cases per day = 25 hours of work.</p>
-
-          <p>OPUS AI agent works like this:</p>
-
-          <p><strong>Step 1 - Message Analysis:</strong> Reads KakaoTalk messages and auto-extracts "Origin: Seoul Gangnam, Destination: Busan Haeundae, Cargo: Appliances 5 tons, Preferred date: Tomorrow"</p>
-
-          <p><strong>Step 2 - Optimal Vehicle Search:</strong> Calls freight network APIs to find 10 matching vehicles, ranks them by reliability based on past delivery history</p>
-
-          <p><strong>Step 3 - Draft Generation:</strong> Creates a summary: "3 vehicle candidates for 5-ton appliances to Busan, pickup available tomorrow morning. Estimated freight: 500,000 KRW" for the dispatcher</p>
-
-          <p><strong>Result?</strong> 80% automation of simple inquiries. Dispatchers now focus only on complex cases.</p>
-
-          <h3>The Era of Hiring Digital Colleagues</h3>
-          
-          <p>I now code feeling less like a developer and more like an <strong>'HR Manager'</strong>.</p>
-
-          <p>Design considerations for OPUS AI:</p>
-          <ul>
-            <li><strong>Personality</strong>: Conservative or proactive? → Chose "conservative but clear" tone for trust-critical logistics</li>
-            <li><strong>Authority</strong>: How much autonomy? → Auto-recommend for <500K KRW dispatches, require human approval above</li>
-            <li><strong>Feedback</strong>: How to learn from mistakes? → Record when dispatcher says "not this" and apply pattern next time</li>
-          </ul>
-
-          <p>It's exactly like training a new employee. The difference? This "new hire" works 24/7, never gets tired, and never forgets what it learned.</p>
-
-          <h3>Key Questions for the Agent Era</h3>
-
-          <p>Future competitiveness won't be decided by <strong>"what SaaS you use"</strong>, but by <strong>"how many competent digital colleagues you possess"</strong>.</p>
-
-          <p>Consider:</p>
-          <ul>
-            <li>What repetitive tasks does your team do?</li>
-            <li>If you could "delegate" that work, how would you describe it?</li>
-            <li>What "permissions" and "tools" would an agent need to do that work?</li>
-          </ul>
-
-          <p>If you can answer these, you've already started preparing for the agent era.</p>
-
-          <p><strong>How many digital colleagues are on your team?</strong></p>
-        `
-      }
-    },
-    {
-      id: "software-sovereignty",
-      title: { ko: "소프트웨어 주권과 운영의 현실", en: "Software Sovereignty and Operational Reality" },
-      summary: {
-        ko: "가장 좋은 소프트웨어는 사용자가 주도권을 쥐는 소프트웨어입니다. 블랙박스가 되어서는 안 됩니다.",
-        en: "The best software empowers the user to hold the reins. It must never be a black box.",
-      },
-      date: "2025.11.19",
-      content: {
-        ko: `
-          <p>편리함에는 대가가 따릅니다. 많은 기업들이 운영의 효율을 위해 거대 SaaS 플랫폼에 자신의 비즈니스 프로세스를 맞춥니다. "업계 표준이니까", "다들 쓰니까"라는 이유로 말이죠.</p>
-          <p>하지만 기업의 핵심 경쟁력은 남들과 '다른' 프로세스에서 나옵니다. 남들과 똑같은 ERP, 똑같은 CRM을 쓰면서 어떻게 차별화된 가치를 만들 수 있을까요?</p>
-          <h3>블랙박스에 갇힌 비즈니스</h3>
-          <p>더 큰 문제는 데이터 주권입니다. 플랫폼에 종속되는 순간, 내 고객의 데이터와 내 비즈니스의 로직은 블랙박스 안에 갇힙니다. 알고리즘이 왜 이런 결과를 냈는지 알 수 없고, 프로세스를 조금만 바꾸고 싶어도 "기능 지원이 안 됩니다"라는 답변만 돌아옵니다.</p>
-          <h3>운영을 위한 소프트웨어, 소프트웨어를 위한 운영?</h3>
-          <p>소프트웨어가 운영을 지원해야지, 운영이 소프트웨어에 맞춰져서는 안 됩니다. 제가 'Forward Deployed Engineer'로서 현장을 중시하는 이유가 여기에 있습니다.</p>
-          <p>현장의 독특한 맥락, 그 기업만의 고유한 노하우를 소프트웨어에 녹여내야 합니다. 비록 투박하더라도, 우리만의 로직과 우리만의 데이터가 흐르는 '자주적인 소프트웨어'를 가져야 합니다. 그것이 진정한 디지털 전환의 완성입니다.</p>
-        `,
-        en: `
-          <p>Convenience comes at a cost. Many companies align their business processes with massive SaaS platforms for the sake of operational efficiency. "It's the industry standard," or "Everyone uses it," they say.</p>
-          <p>But a company's core competitiveness comes from processes that are 'different' from others. How can you create differentiated value while using the same ERP and CRM as everyone else?</p>
-          <h3>Business Trapped in a Black Box</h3>
-          <p>The bigger issue is data sovereignty. The moment you become dependent on a platform, your customer data and business logic are trapped inside a black box. You can't Chnow why the algorithm produced a certain result, and if you want to tweak the process slightly, you're told, "That feature is not supported."</p>
-          <h3>Software for Operations, or Operations for Software?</h3>
-          <p>Software should support operations; operations should not be tailored to software. This is why I, as a 'Forward Deployed Engineer', prioritize the field.</p>
-          <p>We must embed the unique context of the field and the company's proprietary Chnow-how into the software. Even if it's rough around the edges, we must possess 'sovereign software' where our own logic and data flow. That is the completion of true digital transformation.</p>
-        `
-      }
-    },
-  ],
-  testimonials: [
-    {
-      name: { ko: "이강훈", en: "Kanghoon Lee" },
-      role: { ko: "운송 주선업 CEO", en: "CEO, Logistics Startup" },
-      quote: {
-        ko: "흥규님은 개발자가 아닙니다.\n비즈니스의 막힌 혈을 뚫어주는 파트너입니다.",
-        en: "He is not just a developer. He is a partner who unblocks the critical arteries of our business.",
-      },
-    },
-    {
-      name: { ko: "송락현", en: "Rakhyun Song" },
-      role: { ko: "시니어 PM", en: "Senior PM" },
-      quote: {
-        ko: "우리가 놓치고 있던 '현장의 디테일'을 가장 먼저 발견하고 해결책을 가져왔습니다.",
-        en: "He was the first to discover the 'field details' we missed and brought the solution.",
-      },
-    },
-  ],
-  experience: [
-    {
-      period: "2025 - Present",
-      role: { ko: "CTO", en: "CTO" },
-      company: { ko: "주식회사 한국물류데이터", en: "Korean Logistics Data Corp." },
-      description: {
-        ko: "국내 물류 현장의 비효율을 줄이는 AX 솔루션 총괄. Maestro TMS 및 OPUS AI 개발 주도.",
-        en: "Leading AX solutions to reduce inefficiencies in domestic logistics. Spearheaded Maestro TMS and OPUS AI development.",
-      },
-    },
-    {
-      period: "2025",
-      role: { ko: "AI Top 100", en: "AI Top 100" },
-      company: { ko: "Kakao", en: "Kakao" },
-      description: {
-        ko: "한국에서 AI 활용 역량을 공식적으로 인정받은 100인 선정.",
-        en: "Selected as one of the top 100 AI talents in Korea by Kakao.",
-      },
-    },
-    {
-      period: "2022 - Present",
-      role: { ko: "Founder", en: "Founder" },
-      company: { ko: "주식회사 라이폴리", en: "LiFoli Corp." },
-      description: {
-        ko: "실무에 바로 적용 가능한 AX 솔루션 설계 및 구현. 다양한 B2B/B2C 서비스 런칭.",
-        en: "Designing and implementing practical AX solutions. Launched various B2B/B2C services.",
-      },
-    },
-    {
-      period: "Education",
-      role: { ko: "인공지능융합학과", en: "Dept. of AI Convergence" },
-      company: { ko: "성균관대학교", en: "Sungkyunkwan University" },
-      description: {
-        ko: "학부 재학 중",
-        en: "Undergraduate Student",
-      },
-    },
-  ],
-  techStack: {
-    frontend: ["Next.js", "React", "React Native", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    backend: ["Node.js", "Python", "PostgreSQL", "Supabase", "FastAPI"],
-    ai: ["LangChain", "LangGraph", "OpenAI API", "Claude API", "n8n", "RAG"],
-    tools: ["Git", "Docker", "Vercel", "Figma", "Notion"],
+  famoCase: {
+    before: { ko: "6개월", en: "6 months" },
+    beforeNote: { ko: "콘텐츠 40편을 기획·디자인·개발", en: "to plan, design and build 40 pieces" },
+    after: { ko: "20분", en: "20 minutes" },
+    afterNote: { ko: "지금 한 편을 만드는 데 드는 시간", en: "to make one piece now" },
+    stages: [
+      { ko: "SEL·CBT 근거 조사", en: "SEL and CBT evidence research" },
+      { ko: "놀이 기획", en: "Play planning" },
+      { ko: "페이지별 JSON·이미지 생성", en: "JSON and images, page by page" },
+      { ko: "구조·중복·시각 정합성 검증", en: "Structure, duplicate and visual checks" },
+      { ko: "사람의 승인", en: "Human approval" },
+      { ko: "내보내기", en: "Export" },
+    ],
   },
+
   projects: [
     {
-      id: "maestro-tms",
-      title: { ko: "Maestro TMS", en: "Maestro TMS" },
+      id: "famo-play-factory",
+      title: { ko: "Famo Play Factory", en: "Famo Play Factory" },
+      year: "2026",
+      owner: "client",
       description: {
-        ko: "운송 주선사를 위한 배차 오케스트레이팅 SaaS",
-        en: "Dispatch orchestration SaaS for logistics brokers",
+        ko: "아동 놀이 콘텐츠 제작·검토 도구",
+        en: "Production and review tool for children's play content",
       },
       problem: {
-        ko: "국내 화물 정보망이 화물맨, 운송365, 트럭온 등 3곳으로 분산되어 있어, 배차 직원이 3개 탭을 오가며 수기로 정보를 복사-붙여넣기 해야 했습니다. 하루 평균 100건의 배차를 처리하는데, 한 건당 15분씩 총 25시간 분량의 반복 작업이 발생했습니다.",
-        en: "Domestic freight networks were fragmented across three platforms. Dispatchers had to manually copy-paste information across 3 browser tabs. Processing 100 dispatches/day meant 25 hours of repetitive work.",
+        ko: "아동 놀이 콘텐츠 40편을 기획·디자인·개발하는 데 6개월이 걸렸습니다. 근거 조사부터 페이지별 이미지까지 전부 사람의 손을 거쳤습니다.",
+        en: "Forty children's play pieces took six months to plan, design and build. Every step, from evidence research to page images, went through people's hands.",
       },
       solution: {
-        ko: "주요 정보망 3사의 API를 직접 연동하여, 하나의 대시보드에서 모든 차량 정보를 실시간으로 조회할 수 있는 통합 SaaS를 구축했습니다. Next.js 기반의 반응형 웹앱으로 개발하여 PC와 태블릿 모두에서 사용 가능하도록 했고, Supabase를 활용해 실시간 데이터 동기화를 구현했습니다.",
-        en: "Built a unified SaaS integrating APIs from all 3 major freight networks. Developed as a Next.js responsive web app for use on both PC and tablets. Implemented real-time data sync using Supabase.",
+        ko: "SEL·CBT 근거 조사, 놀이 기획, 페이지별 JSON·이미지 생성, 구조·중복·시각 정합성 검증을 하나의 흐름으로 잇고, 사람이 승인한 뒤 내보내도록 만들었습니다. 초대제 대시보드와 Hermes 기반 실행 구조입니다.",
+        en: "I joined SEL and CBT evidence research, play planning, page-by-page JSON and image generation, and structure, duplicate and visual checks into one flow that exports only after a person approves. Invitation-only dashboard, running on Hermes.",
       },
       impact: {
-        ko: "배차 업무 시간 50% 단축 (건당 15분 → 7분). 수기 입력 오류 제로화. 현재 국내 5개 운송 주선사에서 사용 중이며, 월간 처리 배차 건수 15,000건 달성.",
-        en: "Reduced dispatch time by 50% (15 min → 7 min). Eliminated manual entry errors. Currently used by 5 domestic logistics brokers, processing 15,000 monthly dispatches.",
+        ko: "지금은 콘텐츠 한 편을 만드는 데 20분이 걸립니다. 마지막 승인은 사람이 합니다.",
+        en: "One piece now takes 20 minutes. A person still gives the final approval.",
       },
-      techStack: ["Next.js", "Supabase", "API Integration", "Real-time Sync"],
-      category: "B2B SaaS",
+      techStack: ["AI Agent", "Hermes", "Image Generation", "Review Workflow"],
+      category: "AI Workflow",
     },
     {
-      id: "opus-ai",
-      title: { ko: "OPUS AI", en: "OPUS AI" },
+      id: "Famo-therapy",
+      title: { ko: "Famo Play Therapy", en: "Famo Play Therapy" },
+      year: "2024–",
+      owner: "client",
       description: {
-        ko: "배차 업무 자동화 AI 코파일럿",
-        en: "AI Copilot for automated dispatching",
+        ko: "ADHD 아동을 위한 놀이 치료 서비스",
+        en: "Play therapy service for children with ADHD",
       },
       problem: {
-        ko: "화주와 차주 간의 단순 반복적인 커뮤니케이션('어디 계세요?', '가격 얼마인가요?')이 업무의 60%를 차지. 담당자가 자리를 비우면 기회 손실 발생.",
-        en: "Repetitive communication ('Where are you?', 'Price?') consumed 60% of work time. Delayed responses led to lost opportunities.",
+        ko: "ADHD 아동의 놀이를 돕는 디지털 도구가 필요했습니다.",
+        en: "The client needed digital tools to support play for children with ADHD.",
       },
       solution: {
-        ko: "LangChain과 Claude Agent SDK를 활용한 AI 에이전트 설계. 카카오톡 메시지를 분석해 Maestro TMS 데이터베이스와 화물 정보망 API를 자동 조회. 단순 문의 즉시 응답 및 배차 초안 생성.",
-        en: "Designed AI agent using LangChain and Claude Agent SDK. Analyzes KakaoTalk messages to query Maestro TMS DB and freight APIs. Auto-responds to inquiries and drafts dispatches.",
+        ko: "치료 목적에 맞춘 웹 기반 놀이 10가지를 개발하고, 아동의 놀이 데이터를 보고서로 정리해 제공했습니다.",
+        en: "Built ten web-based plays designed around therapy goals, with reports that summarise each child's play data.",
       },
       impact: {
-        ko: "단순 문의 응대율 80% 자동화로 일일 3시간 절감. 야간/주말 긴급 배차 응대율 100% 달성. 월 6,000건 이상의 대화 자동화.",
-        en: "80% automation of simple inquiries saved 3 hours daily. 100% response for emergency dispatches. Automates 6,000+ monthly conversations.",
+        ko: "초기 4개월 동안 놀이 10가지를 만들었고, 지금도 운영과 콘텐츠 고도화를 맡고 있습니다.",
+        en: "Ten plays in the first four months; I still run and extend the content today.",
       },
-      techStack: ["LangChain", "Claude Agent SDK", "AI Agent", "NLP"],
-      category: "AI Agent",
+      techStack: ["React", "Gamification", "Data Analysis"],
+      category: "Digital Health",
+    },
+    {
+      id: "ikhi",
+      title: { ko: "익히", en: "ikhi" },
+      year: "2026",
+      owner: "own",
+      description: {
+        ko: "강의 기록에서 시험 연습까지 잇는 학습 서비스",
+        en: "A study service from lecture notes to exam practice",
+      },
+      problem: {
+        ko: "강의 녹화, 자료, 시험 준비가 서로 다른 곳에 흩어져 있어 복습이 이어지지 않았습니다.",
+        en: "Lecture recordings, materials and exam prep lived in different places, so revision never connected.",
+      },
+      solution: {
+        ko: "강의 녹화와 자료를 올리면 영상·대본을 잇고, AI 요약과 퀴즈를 만들고, 틀린 문제를 다시 풀게 합니다. 에브리타임 시간표도 가져옵니다.",
+        en: "Upload a recording and materials; it links video and transcript, writes AI summaries and quizzes, and brings wrong answers back for review. It also imports an Everytime timetable.",
+      },
+      impact: {
+        ko: "ikhi.app에서 웹 서비스로 공개했습니다.",
+        en: "Live as a web service at ikhi.app.",
+      },
+      techStack: ["Next.js", "LLM API", "Chrome Extension", "Mobile"],
+      category: "Learning",
+      link: "https://ikhi.app/",
     },
     {
       id: "tikkle",
-      title: { ko: "tikkle", en: "tikkle" },
+      title: { ko: "티클", en: "tikkle" },
+      year: "2023",
+      owner: "own",
       description: {
-        ko: "크라우드 펀딩 방식 선물하기 앱",
-        en: "Crowdfunding-based gifting app",
+        ko: "여럿이 함께 모아 주는 선물하기 앱",
+        en: "Crowdfunded gifting app",
       },
       problem: {
-        ko: "비싼 선물을 주고 싶지만 혼자 부담하기엔 가격 장벽이 존재함.",
-        en: "Price barriers made it difficult for individuals to give expensive gifts.",
+        ko: "비싼 선물을 주고 싶어도 혼자 부담하기엔 가격 장벽이 있었습니다.",
+        en: "Expensive gifts were out of reach for one person alone.",
       },
       solution: {
-        ko: "여러 친구가 돈을 모아 선물할 수 있는 크라우드 펀딩 기능과 에스크로 결제 시스템 구현. 카카오톡/연락처 연동으로 쉬운 친구 초대.",
-        en: "Implemented crowdfunding features and escrow payments. Easy friend invitation via KakaoTalk/Contacts integration.",
+        ko: "여러 친구가 돈을 모아 선물하는 펀딩 기능과 에스크로 결제를 만들고, 카카오톡·연락처로 친구를 쉽게 초대하게 했습니다.",
+        en: "Pooled funding with escrow payments, and easy invitations through KakaoTalk and contacts.",
       },
       impact: {
-        ko: "4개월 만에 안드로이드/iOS 크로스플랫폼 앱 런칭.",
-        en: "Launched Android/iOS cross-platform apps within 4 months.",
+        ko: "4개월 만에 iOS·Android 앱을 출시했습니다.",
+        en: "Shipped on iOS and Android in four months.",
       },
       techStack: ["React Native", "Payment", "Mobile"],
       category: "Mobile App",
     },
     {
       id: "daangols",
-      title: { ko: "daangols", en: "daangols" },
+      title: { ko: "단골쓰", en: "daangols" },
+      year: "2024",
+      owner: "own",
       description: {
-        ko: "외식업 점주용 CRM 솔루션",
-        en: "CRM solution for restaurant owners",
+        ko: "외식업 점주를 위한 단골 관리 서비스",
+        en: "Regular-customer CRM for restaurant owners",
       },
       problem: {
-        ko: "소규모 식당은 체계적인 단골 관리와 마케팅 도구가 부재함.",
-        en: "Small restaurants lacked systematic tools for regular customer management.",
+        ko: "작은 식당에는 단골을 체계적으로 관리하고 다시 부를 도구가 없었습니다.",
+        en: "Small restaurants had no tool to keep track of regulars and bring them back.",
       },
       solution: {
-        ko: "방문 기록 기반 스탬프 적립 앱(모바일)과 점주용 CRM 대시보드(데스크톱) 제공. 카카오 알림톡을 통한 마케팅 실행.",
-        en: "Provided stamp app (mobile) and CRM dashboard (desktop). Enabled marketing via Kakao AlimTalk.",
+        ko: "방문 기록으로 쌓는 스탬프 앱과 점주용 대시보드를 만들고, 카카오 알림톡으로 재방문 캠페인을 보낼 수 있게 했습니다.",
+        en: "A visit-based stamp app, an owner dashboard, and revisit campaigns sent by Kakao AlimTalk.",
       },
       impact: {
-        ko: "재방문 유도 캠페인 실행 용이성 증대. 기획 및 개발 3개월 소요.",
-        en: "Simplified execution of revisit campaigns. Developed in 3 months.",
+        ko: "기획부터 개발까지 3개월 걸렸습니다.",
+        en: "Planned and built in three months.",
       },
-      techStack: ["Web App", "Dashboard", "B2B"],
+      techStack: ["Web App", "Dashboard", "AlimTalk"],
       category: "B2B Solution",
     },
     {
-      id: "Chno-ai",
-      title: { ko: "Chno AI", en: "Chno AI" },
-      description: {
-        ko: "개발자를 위한 AI 블로그 작성 솔루션",
-        en: "AI blog writing solution for developers",
-      },
-      problem: {
-        ko: "개발 과정에서 얻은 지식을 블로그로 정리하고 싶지만, 글쓰기에 많은 시간이 소요됨.",
-        en: "Developers want to document Chnowledge but blog writing consumes too much time.",
-      },
-      solution: {
-        ko: "ChatGPT 공유 링크를 분석해 개발 환경, 스택, 요구사항을 파악하고 기술 블로그를 자동 생성. 노션 페이지로 즉시 발행.",
-        en: "Analyzes ChatGPT shared links to identify tech stack and requirements, auto-generating tech blogs. Publishes directly to Notion.",
-      },
-      impact: {
-        ko: "개발 지식 공유 장벽 낮춤. 기획 및 개발 2개월 소요.",
-        en: "Lowered barrier to sharing dev Chnowledge. Developed in 2 months.",
-      },
-      techStack: ["OpenAI API", "React", "Supabase", "Notion API"],
-      category: "AI Tool",
-    },
-    {
       id: "conaly",
-      title: { ko: "Conaly", en: "Conaly" },
+      title: { ko: "코낼리", en: "Conaly" },
+      year: "2024",
+      owner: "own",
       description: {
-        ko: "커머스 리뷰 분석 AI 솔루션",
-        en: "E-commerce review analysis AI",
+        ko: "커머스 리뷰 분석 서비스",
+        en: "Commerce review analysis",
       },
       problem: {
-        ko: "수천 개의 리뷰를 일일이 읽고 분석하여 인사이트를 도출하기 어려움.",
-        en: "Difficult to manually analyze thousands of reviews for insights.",
+        ko: "수천 개의 리뷰를 일일이 읽어서는 마케팅에 쓸 인사이트를 뽑기 어려웠습니다.",
+        en: "Reading thousands of reviews by hand never turned into usable marketing insight.",
       },
       solution: {
-        ko: "다양한 쇼핑몰 리뷰를 크롤링하고 NLP로 감정/키워드를 분석. 긍/부정 평가 및 소구 포인트를 시각화하여 제공.",
-        en: "Crawls reviews and uses NLP for sentiment/keyword analysis. Visualizes positive/negative feedback and selling points.",
+        ko: "여러 쇼핑몰의 리뷰를 모아 감정과 키워드를 분석하고, 긍정·부정 평가와 소구 포인트를 한눈에 보이게 했습니다.",
+        en: "Collected reviews across stores, analysed sentiment and keywords, and visualised praise, complaints and selling points.",
       },
       impact: {
-        ko: "마케팅 소구 포인트 발굴 시간 단축. 개발 기간 4개월.",
-        en: "Reduced time to identify marketing selling points. Developed in 4 months.",
+        ko: "개발 기간은 4개월이었습니다.",
+        en: "Built in four months.",
       },
       techStack: ["NLP", "Crawling", "React", "Analytics"],
       category: "Data Analytics",
     },
     {
-      id: "our-gwangju",
-      title: { ko: "wooriGwangju", en: "wooriGwangju" },
+      id: "Chno-ai",
+      title: { ko: "크노AI", en: "Chno AI" },
+      year: "2024",
+      owner: "own",
       description: {
-        ko: "장애인을 위한 무장애 길찾기 서비스",
-        en: "Barrier-free navigation for the disabled",
+        ko: "개발 대화를 기술 블로그로 바꾸는 도구",
+        en: "Turns development conversations into tech blog posts",
       },
       problem: {
-        ko: "휠체어 이용자 등 교통약자를 위한 이동 정보와 편의시설 위치 정보가 부족함.",
-        en: "Lack of navigation and facility information for wheelchair users and the mobility impaired.",
+        ko: "개발하며 얻은 지식을 블로그로 남기고 싶어도 글쓰기에 시간이 너무 많이 들었습니다.",
+        en: "Developers want to write up what they learn, but writing takes too long.",
       },
       solution: {
-        ko: "휠체어 이동 경로 안내, 음성 인식/안내, 장애인 전용 화장실 및 편의시설 위치 제공. 공공데이터 및 TMAP API 활용.",
-        en: "Provides wheelchair routes, voice guidance, and accessible facility locations. Used Public Data & TMAP APIs.",
+        ko: "ChatGPT 공유 링크에서 개발 환경, 스택, 요구사항을 읽어 기술 블로그를 쓰고, 노션 페이지로 바로 발행합니다.",
+        en: "Reads a ChatGPT share link for environment, stack and requirements, writes the post and publishes it straight to Notion.",
       },
       impact: {
-        ko: "교통약자의 이동권 증진에 기여. 개발 기간 3개월.",
-        en: "Contributed to mobility rights for the disabled. Developed in 3 months.",
+        ko: "기획부터 개발까지 2개월 걸렸습니다.",
+        en: "Planned and built in two months.",
+      },
+      techStack: ["OpenAI API", "React", "Supabase", "Notion API"],
+      category: "AI Tool",
+    },
+    {
+      id: "our-gwangju",
+      title: { ko: "우리광주", en: "wooriGwangju" },
+      year: "2024",
+      owner: "own",
+      description: {
+        ko: "교통약자를 위한 무장애 길찾기",
+        en: "Barrier-free routes for people with limited mobility",
+      },
+      problem: {
+        ko: "휠체어 이용자 같은 교통약자에게 필요한 이동 경로와 편의시설 정보가 부족했습니다.",
+        en: "Wheelchair users and others lacked route and facility information made for them.",
+      },
+      solution: {
+        ko: "휠체어 이동 경로와 음성 안내, 장애인 화장실 같은 편의시설 위치를 공공데이터와 TMAP API로 제공했습니다.",
+        en: "Wheelchair routes, voice guidance and accessible facility locations from public data and the TMAP API.",
+      },
+      impact: {
+        ko: "개발 기간은 3개월이었습니다.",
+        en: "Built in three months.",
       },
       techStack: ["React Native", "TMAP API", "Accessibility"],
       category: "Public Service",
     },
     {
-      id: "Eterners-chat",
-      title: { ko: "Eterners Chat", en: "Eterners Chat" },
+      id: "wesome",
+      title: { ko: "위솜", en: "wesome" },
+      year: "2024–2025",
+      owner: "own",
       description: {
-        ko: "인터랙티브 이모티콘 채팅 앱 (MVP)",
-        en: "Interactive emoticon chat app (MVP)",
+        ko: "AI 캐릭터가 답장하는 일기",
+        en: "A diary that an AI character answers",
       },
       problem: {
-        ko: "정적인 이모티콘으로는 감정 표현에 한계가 있으며, 새로운 채팅 경험이 필요함.",
-        en: "Static emoticons limit emotional expression; needed a novel chat experience.",
+        ko: "기존 일기 앱은 기록에서 끝나 마음을 나누는 경험이 없었습니다.",
+        en: "Diary apps stopped at recording; nothing answered back.",
       },
       solution: {
-        ko: "사용자 조작에 따라 모양과 상태가 변하는 인터랙티브 이모티콘 채팅 구현. 웹소켓을 이용한 실시간 통신 및 동시 조작 지원.",
-        en: "Implemented interactive emoticons that change state via user input. Real-time communication & concurrent control using WebSockets.",
+        ko: "일기 내용에 맞춰 AI 캐릭터가 공감하는 답장을 씁니다. 따뜻한 말투를 프롬프트 설계로 만들었습니다.",
+        en: "An AI character writes an empathetic reply to each entry, with its warm voice shaped by prompt design.",
       },
       impact: {
-        ko: "2주 만에 MVP 개발 완료 및 트래픽 처리 구조 검증.",
-        en: "Completed MVP in 2 weeks and verified traffic handling structure.",
+        ko: "개발 기간은 4개월이었습니다.",
+        en: "Built in four months.",
+      },
+      techStack: ["GenAI", "Mobile Web"],
+      category: "AI Service",
+    },
+    {
+      id: "Eterners-chat",
+      title: { ko: "이터너스 챗", en: "Eterners Chat" },
+      year: "2024",
+      owner: "own",
+      description: {
+        ko: "움직이는 이모티콘 채팅 (MVP)",
+        en: "Interactive emoticon chat (MVP)",
+      },
+      problem: {
+        ko: "멈춰 있는 이모티콘으로는 감정을 표현하는 데 한계가 있었습니다.",
+        en: "Static emoticons limit what people can express.",
+      },
+      solution: {
+        ko: "사용자가 만지면 모양과 상태가 바뀌는 이모티콘 채팅을 만들고, 웹소켓으로 실시간 동시 조작을 지원했습니다.",
+        en: "Emoticons that change shape and state as people touch them, with real-time shared control over WebSockets.",
+      },
+      impact: {
+        ko: "2주 만에 MVP를 완성하고 트래픽 처리 구조를 검증했습니다.",
+        en: "MVP finished in two weeks, with the traffic design tested.",
       },
       techStack: ["React", "WebSocket", "Interactive UI"],
       category: "MVP",
     },
     {
-      id: "wesome",
-      title: { ko: "wesome", en: "wesome" },
-      description: {
-        ko: "AI 캐릭터 감정 케어 일기",
-        en: "AI character emotional care diary",
-      },
-      problem: {
-        ko: "기존 일기 앱은 단순 기록에 그쳐 정서적 교감이 부족함.",
-        en: "Existing diary apps lacked emotional connection, serving only as records.",
-      },
-      solution: {
-        ko: "일기 내용에 따라 귀여운 AI 캐릭터가 위로와 공감의 답장을 써주는 힐링 서비스. 프롬프트 엔지니어링으로 따뜻한 페르소나 구현.",
-        en: "Healing service where cute AI characters reply with empathy based on diary entries. Warm persona via prompt engineering.",
-      },
-      impact: {
-        ko: "사용자 감정 케어 효과 확인. 개발 기간 4개월.",
-        en: "Verified emotional care effects. Developed in 4 months.",
-      },
-      techStack: ["GenAI", "Mobile Web", "Healing"],
-      category: "AI Service",
-    },
-    {
-      id: "Famo-therapy",
-      title: { ko: "Famo Play Therapy", en: "Famo Play Therapy" },
-      description: {
-        ko: "ADHD 아동을 위한 놀이 치료 서비스",
-        en: "Play therapy service for children with ADHD",
-      },
-      problem: {
-        ko: "ADHD 아동을 위한 디지털 치료 보조 수단이 필요함.",
-        en: "Need for digital therapeutic aids for children with ADHD.",
-      },
-      solution: {
-        ko: "증상 완화를 위한 10가지 치료 목적의 웹 기반 놀이 개발. 아동 놀이 데이터 분석 보고서 제공.",
-        en: "Developed 10 web-based therapeutic games. Provides analysis reports on children's play data.",
-      },
-      impact: {
-        ko: "디지털 치료제 가능성 탐색. 개발 기간 4개월.",
-        en: "Explored potential as digital therapeutics. Developed in 4 months.",
-      },
-      techStack: ["React", "Gamification", "Data Analysis"],
-      category: "Digital Health",
-    },
-    {
       id: "interior-rec",
-      title: { ko: "Interior Rec System", en: "Interior Rec System" },
+      title: { ko: "인테리어 매칭", en: "Interior Rec System" },
+      year: "",
+      owner: "own",
       description: {
-        ko: "고객-인테리어 업체 매칭 추천 시스템",
-        en: "Customer-Interior Firm matching system",
+        ko: "고객과 인테리어 업체를 잇는 추천 시스템",
+        en: "Matches customers with interior firms",
       },
       problem: {
-        ko: "고객은 수많은 업체 중 자신에게 맞는 곳을 찾기 어렵고, 업체는 적합한 고객을 만나기 어려움.",
-        en: "Hard for customers to find the right firm, and for firms to find suitable customers.",
+        ko: "고객은 수많은 업체 중 자신에게 맞는 곳을 찾기 어렵고, 업체는 맞는 고객을 만나기 어려웠습니다.",
+        en: "Customers struggled to find the right firm, and firms the right customers.",
       },
       solution: {
-        ko: "고객 요구사항과 업체 정보를 매칭 알고리즘으로 분석하여 최적의 파트너 추천.",
-        en: "Analyzes customer requirements and firm data via matching algorithm to recommend optimal partners.",
+        ko: "고객의 요구사항과 업체 정보를 매칭 알고리즘으로 분석해 맞는 업체를 추천합니다.",
+        en: "A matching algorithm reads customer requirements against firm data and recommends a fit.",
       },
       impact: {
-        ko: "매칭 효율성 증대 및 계약 성사율 향상 기대.",
-        en: "Expected to increase matching efficiency and contract success rate.",
+        ko: "요구사항과 업체 조건을 한 번에 비교하게 했습니다.",
+        en: "Requirements and firm conditions are compared in one pass.",
       },
-      techStack: ["Recommendation Algo", "Matching", "Web"],
+      techStack: ["Recommendation", "Matching", "Web"],
       category: "Recommendation",
     },
+  ] satisfies Project[],
+
+  // 연도별 기록 (홈·소개 페이지의 기록표)
+  timeline: [
+    {
+      year: "2026",
+      items: [
+        { what: { ko: "Famo Play Factory", en: "Famo Play Factory" }, kind: { ko: "고객 프로젝트", en: "Client project" }, where: { ko: "콘텐츠 제작·검토 도구", en: "Content production tool" }, when: "2026", href: "/projects/famo-play-factory" },
+        { what: { ko: "익히", en: "ikhi" }, kind: { ko: "직접 만든 서비스", en: "Own product" }, where: { ko: "ikhi.app 공개", en: "Live at ikhi.app" }, when: "2026", href: "/projects/ikhi" },
+      ],
+    },
+    {
+      year: "2025",
+      items: [
+        { what: { ko: "AI TOP 100", en: "AI TOP 100" }, kind: { ko: "본선 진출 100인 선정", en: "One of 100 finalists" }, where: { ko: "카카오임팩트·브라이언임팩트", en: "Kakao Impact, Brian Impact" }, when: "2025", award: true },
+        { what: { ko: "한국물류데이터", en: "Korea Logistics Data" }, kind: { ko: "공동창업자·CTO", en: "Co-founder & CTO" }, where: { ko: "경력", en: "Career" }, when: "2025.04 – 2026.07" },
+      ],
+    },
+    {
+      year: "2024",
+      items: [
+        { what: { ko: "학생창업유망팀 300", en: "Student Startup Team 300" }, kind: { ko: "최종 선정", en: "Final selection" }, where: { ko: "도약트랙, 교육부장관 인증서", en: "Leap track, Minister of Education certificate" }, when: "2024", award: true },
+        { what: { ko: "한국일보 인터뷰", en: "Hankook Ilbo interview" }, kind: { ko: "인용", en: "Quoted" }, where: { ko: "커머스 리뷰 분석 스타트업 운영자로 소개", en: "As operator of a review analysis startup" }, when: "2024.07.13", href: "https://www.hankookilbo.com/News/Read/A2024071009470001701" },
+        { what: { ko: "단골쓰, 코낼리, 크노AI, 우리광주", en: "daangols, Conaly, Chno AI, wooriGwangju" }, kind: { ko: "출시", en: "Launched" }, where: { ko: "직접 만든 서비스", en: "Own products" }, when: "2024" },
+        { what: { ko: "Famo Play Therapy", en: "Famo Play Therapy" }, kind: { ko: "고객 프로젝트", en: "Client project" }, where: { ko: "개발·운영", en: "Build and operation" }, when: "2024 –", href: "/projects/Famo-therapy" },
+      ],
+    },
+    {
+      year: "2023",
+      items: [
+        { what: { ko: "주식회사 라이폴리", en: "LiFoli Corp." }, kind: { ko: "법인 설립·대표이사", en: "Incorporated, CEO" }, where: { ko: "공동창업", en: "Co-founded" }, when: "2023.09.26" },
+        { what: { ko: "티클", en: "tikkle" }, kind: { ko: "출시", en: "Launched" }, where: { ko: "iOS, Android", en: "iOS, Android" }, when: "2023", href: "/projects/tikkle" },
+        { what: { ko: "K-Startup Silicon Valley Dream Challenge", en: "K-Startup Silicon Valley Dream Challenge" }, kind: { ko: "최종 선정", en: "Final selection" }, where: { ko: "실리콘밸리 데모데이", en: "Silicon Valley demo day" }, when: "2023", award: true },
+        { what: { ko: "Innovation Leaders Summit Tokyo", en: "Innovation Leaders Summit Tokyo" }, kind: { ko: "선정", en: "Selected" }, where: { ko: "도쿄 스타트업 피치", en: "Tokyo startup pitch" }, when: "2023", award: true },
+        { what: { ko: "성균관대학교 창업중심대학", en: "SKKU Startup-Centred University" }, kind: { ko: "선정", en: "Selected" }, where: { ko: "사업화 지원금 5,200만 원", en: "KRW 52M commercialisation grant" }, when: "2023", award: true },
+      ],
+    },
+    {
+      year: "2022",
+      items: [
+        { what: { ko: "라이폴리 창업팀", en: "LiFoli founding team" }, kind: { ko: "시작", en: "Started" }, where: { ko: "공동창업", en: "Co-founded" }, when: "2022.09" },
+        { what: { ko: "학생창업유망팀 300", en: "Student Startup Team 300" }, kind: { ko: "최종 선정", en: "Final selection" }, where: { ko: "초기트랙, 교육부장관 인증서", en: "Early track, Minister of Education certificate" }, when: "2022", award: true },
+        { what: { ko: "U300 모의투자대회", en: "U300 mock investment contest" }, kind: { ko: "전국 3위", en: "3rd nationally" }, where: { ko: "경기·인천 권역 1위", en: "1st in Gyeonggi and Incheon" }, when: "2022", award: true },
+      ],
+    },
+    {
+      year: "2019",
+      items: [
+        { what: { ko: "성균관대학교", en: "Sungkyunkwan University" }, kind: { ko: "입학", en: "Entered" }, where: { ko: "융합생명공학·인공지능융합 복수전공", en: "Double major, Biotechnology and AI" }, when: "2019 – 2027.08" },
+      ],
+    },
+    {
+      year: "강의",
+      yearEn: "Teaching",
+      items: [
+        { what: { ko: "하나증권", en: "Hana Securities" }, kind: { ko: "AI 강의·컨설팅", en: "AI lectures, consulting" }, where: { ko: "강사", en: "Lecturer" }, when: "" },
+        { what: { ko: "성균관대학교 창업지원단", en: "SKKU Startup Support Foundation" }, kind: { ko: "업무 자동화 강의", en: "Work automation lecture" }, where: { ko: "강사", en: "Lecturer" }, when: "" },
+      ],
+    },
+  ] as { year: string; yearEn?: string; items: { what: L; kind: L; where: L; when: string; href?: string; award?: boolean }[] }[],
+
+  experience: [
+    {
+      period: "2023.09 –",
+      role: { ko: "공동창업자·대표이사", en: "Co-founder & CEO" },
+      company: { ko: "주식회사 라이폴리", en: "LiFoli Corp." },
+      description: {
+        ko: "2022년 9월 창업팀으로 시작해 2023년 9월 26일 법인을 세웠습니다. AI 에이전트와 업무 자동화 제품을 기획하고 직접 만듭니다.",
+        en: "Started as a founding team in September 2022 and incorporated on 26 September 2023. I plan and build AI agent and work automation products.",
+      },
+    },
+    {
+      period: "2025.04 – 2026.07",
+      role: { ko: "공동창업자·CTO", en: "Co-founder & CTO" },
+      company: { ko: "한국물류데이터", en: "Korea Logistics Data" },
+      description: {
+        ko: "공동창업자이자 CTO로 일했습니다.",
+        en: "Worked as co-founder and CTO.",
+      },
+    },
+    {
+      period: "2019 – 2027.08",
+      role: { ko: "융합생명공학·인공지능융합 복수전공", en: "Double major, Biotechnology and AI" },
+      company: { ko: "성균관대학교", en: "Sungkyunkwan University" },
+      description: {
+        ko: "2027년 8월 졸업 예정입니다.",
+        en: "Graduating in August 2027.",
+      },
+    },
   ],
+
+  techStack: {
+    product: ["TypeScript", "React", "Next.js", "Node.js", "Expo", "React Native", "Tauri"],
+    data: ["Supabase", "PostgreSQL", "SQLite", "FastAPI", "Python"],
+    ai: ["LangChain", "LangGraph", "n8n", "RAG", "LLM API", "MCP", "Playwright"],
+    tools: ["Claude Code", "Codex", "Vercel", "Cloudflare", "Docker"],
+  },
+
+  services: [
+    {
+      slug: "ax-consulting",
+    cover: {
+      src: "/archive/nh-52909-typing-pool-navy-department-washington.jpg",
+      alt: { ko: "1918년 워싱턴의 한 사무실에서 타자기 앞에 줄지어 앉아 일하는 직원들", en: "Clerks working in rows at typewriters in a Washington office, 1918" },
+      caption: { ko: "타자수들의 사무실, 1918년", en: "A typing pool, 1918" },
+    },
+      title: { ko: "AX 컨설팅", en: "AX consulting" },
+      summary: {
+        ko: "AI 도입이 아니라 운영 체제 전환. 데이터 흐름과 책임 구조, 자동화를 함께 설계합니다.",
+        en: "Not adopting AI, changing how the company runs: data flow, responsibility and automation, designed together.",
+      },
+      lead: {
+        ko: "모델을 고르기 전에 데이터 흐름과 책임 구조를 먼저 설계해, 현장에서 실제로 돌아가는 시스템을 만듭니다.",
+        en: "Before any model is chosen, I design the data flow and who is responsible, so the system actually runs on the floor.",
+      },
+      points: [
+        { ko: "진단: 돈과 시간이 새는 병목을 정의하고 자동화할 지점을 찾습니다.", en: "Diagnose: name the bottlenecks that leak time and money, and find what can be automated." },
+        { ko: "설계: 데이터 흐름과 권한·책임을 정리해 운영 가능한 구조로 만듭니다.", en: "Design: map data flow, permissions and responsibility into a structure people can run." },
+        { ko: "구현: 필요하면 직접 MVP까지 개발하고 운영과 모니터링을 붙입니다.", en: "Build: where needed I develop the MVP myself and add operations and monitoring." },
+      ],
+      related: [
+        { href: "/insights/ax-reality", title: { ko: "AX는 AI 도입이 아니라 운영 체제 전환이다", en: "AX is an operating system transition" } },
+        { href: "/projects/famo-play-factory", title: { ko: "Famo Play Factory", en: "Famo Play Factory" } },
+      ],
+      faq: [
+        {
+          q: { ko: "AX 컨설팅은 AI 도입 컨설팅과 무엇이 다른가요?", en: "How is AX consulting different from AI adoption consulting?" },
+          a: {
+            ko: "도구나 모델을 고르기 전에 데이터가 흘러야 하고 책임 구조가 정해져야 합니다. AX는 운영 체계를 바꾸는 일이라 현장 프로세스, 데이터 파이프라인, 권한과 책임을 함께 설계합니다.",
+            en: "Before choosing a tool or model, data has to flow and responsibility has to be clear. AX changes how the company runs, so process, data pipeline, permissions and responsibility are designed together.",
+          },
+        },
+        {
+          q: { ko: "어디부터 시작하나요?", en: "Where does it start?" },
+          a: {
+            ko: "반복 업무, 대기, 오류, 정산 같은 현장 병목을 먼저 정의하고, 데이터를 연결한 뒤 자동화와 에이전트를 적용할 범위를 정합니다. 30분 진단으로 시작해, 2주 진단과 4~8주 실행으로 설계합니다.",
+            en: "First the bottlenecks on the floor: repeated tasks, waiting, errors, settlement. Then the data is connected, and only then is the scope for automation and agents set. It begins with a 30-minute diagnosis and is planned as a two-week diagnosis and four to eight weeks of work.",
+          },
+        },
+        {
+          q: { ko: "결과물은 어떤 형태인가요?", en: "What do I get?" },
+          a: {
+            ko: "업무 흐름과 역할 정리, 데이터 사전과 파이프라인 설계, 화면·워크플로우 프로토타입, KPI와 모니터링 지표, 필요하면 실제 제품(MVP)까지 포함합니다.",
+            en: "A map of the work and roles, a data dictionary and pipeline design, screen and workflow prototypes, KPIs and monitoring, and a working MVP where it is needed.",
+          },
+        },
+      ],
+      keywords: ["AX 컨설팅", "AI 전환", "업무 전환", "프로세스 설계", "데이터 흐름"],
+    },
+    {
+      slug: "ai-agents",
+    cover: {
+      src: "/archive/photograph-of-women-working-at-a-bell.jpg",
+      alt: { ko: "전화 교환대 앞에 줄지어 앉아 회선을 연결하는 교환원들", en: "Operators in a row connecting lines at a telephone switchboard" },
+      caption: { ko: "벨 시스템 국제 전화 교환대", en: "A Bell System international switchboard" },
+    },
+      title: { ko: "AI 에이전트·업무 자동화", en: "AI agents and work automation" },
+      summary: {
+        ko: "계획하고 실행하는 디지털 동료를 만듭니다. 조회·분류·요약·초안 작성부터 승인 흐름까지 운영 가능한 형태로 설계합니다.",
+        en: "Digital colleagues that plan and act: lookup, sorting, summaries and drafts, up to the approval flow, designed to be run.",
+      },
+      lead: {
+        ko: "단순 챗봇이 아니라 계획하고 실행하는 디지털 동료를 만듭니다. 사람의 승인이 들어갈 자리와 로그를 먼저 정합니다.",
+        en: "Not a chatbot: a digital colleague that plans and acts. Where a person approves, and what gets logged, is decided first.",
+      },
+      points: [
+        { ko: "문의와 메시지에서 핵심 정보를 뽑고, 시스템을 조회해 답장 초안을 씁니다.", en: "Pull the key facts from an enquiry, look them up in your systems and draft the reply." },
+        { ko: "문서와 회의록을 요약해 할 일을 만들고 담당자에게 알립니다.", en: "Summarise documents and minutes into tasks and notify the owner." },
+        { ko: "주간·월간 운영 리포트를 쓰고 KPI 이상을 알립니다.", en: "Write weekly and monthly reports and flag KPI anomalies." },
+        { ko: "정산과 검증을 돕습니다. 대조하고, 불일치를 찾고, 근거 링크를 붙입니다.", en: "Help with settlement and checks: reconcile, find mismatches, link the evidence." },
+      ],
+      stack: ["LangChain", "LangGraph", "n8n", "RAG", "MCP", "Claude Code", "Codex"],
+      related: [
+        { href: "/projects/famo-play-factory", title: { ko: "Famo Play Factory", en: "Famo Play Factory" } },
+        { href: "/insights/software-sovereignty", title: { ko: "소프트웨어 주권과 운영의 현실", en: "Software sovereignty and operational reality" } },
+      ],
+      faq: [
+        {
+          q: { ko: "AI 에이전트와 기존 자동화(RPA·매크로)는 무엇이 다른가요?", en: "How is an AI agent different from RPA or macros?" },
+          a: {
+            ko: "정해진 화면과 규칙만 따라가지 않고, 목표를 받아 계획을 세우고 API·DB·문서 같은 도구를 호출해 결과를 만듭니다. 그래서 운영 안전을 위한 권한, 승인, 로그 설계가 핵심입니다.",
+            en: "It does not just follow fixed screens and rules: it takes a goal, plans, and calls tools such as APIs, databases and documents. That is why permissions, approvals and logs are the core of the design.",
+          },
+        },
+        {
+          q: { ko: "어디까지 자동화할 수 있나요?", en: "How far can it go?" },
+          a: {
+            ko: "초안 작성, 정보 조회, 분류, 요약, 알림부터 시작해 승인 흐름을 붙여 단계적으로 넓히는 방식이 가장 안전합니다.",
+            en: "The safest path starts with drafts, lookups, sorting, summaries and alerts, then widens step by step with an approval flow attached.",
+          },
+        },
+        {
+          q: { ko: "LLM 비용과 품질은 어떻게 관리하나요?", en: "How are LLM cost and quality managed?" },
+          a: {
+            ko: "프롬프트와 도구 호출 구조를 고정하고, 캐시·라우팅·재시도·가드레일(금칙어·개인정보·정책)을 둬서 비용과 품질을 함께 관리합니다.",
+            en: "Fixed prompt and tool-call structure, plus caching, routing, retries and guardrails for banned terms, personal data and policy.",
+          },
+        },
+      ],
+      keywords: ["AI 에이전트", "업무 자동화", "LangChain", "LangGraph", "n8n"],
+    },
+    {
+      slug: "fullstack-development",
+    cover: {
+      src: "/archive/a-woman-with-a-hollerith-pantograph-punch.jpg",
+      alt: { ko: "천공기 앞에서 인구조사 카드에 구멍을 뚫는 사람", en: "A woman punching census cards at a pantograph punch" },
+      caption: { ko: "인구조사 카드 천공, 1940년", en: "Punching census cards, 1940" },
+    },
+      title: { ko: "풀스택 개발", en: "Full-stack development" },
+      summary: {
+        ko: "아이디어를 쓸 수 있는 제품으로 바꿉니다. 기획부터 배포와 운영까지 혼자 완주합니다.",
+        en: "From an idea to a product people can use: planning to deployment and operation, done end to end.",
+      },
+      lead: {
+        ko: "아이디어를 사용 가능한 제품으로 바꾸는 속도와 운영 품질에 집중합니다. 빠르게 출시하고 실제 사용 데이터로 고칩니다.",
+        en: "Speed from idea to usable product, and quality once it runs. Ship early, then improve from real usage.",
+      },
+      points: [
+        { ko: "B2B SaaS, 내부 운영 도구, 데이터 파이프라인과 대시보드", en: "B2B SaaS, internal tools, data pipelines and dashboards" },
+        { ko: "웹 MVP와 제품, React Native·Expo 모바일 앱", en: "Web MVPs and products, React Native and Expo apps" },
+        { ko: "배포, 모니터링, 에러 수집을 기본으로 포함", en: "Deployment, monitoring and error tracking included by default" },
+      ],
+      stack: ["TypeScript", "Next.js", "React", "Supabase", "PostgreSQL", "Expo", "Vercel"],
+      related: [
+        { href: "/projects/tikkle", title: { ko: "티클", en: "tikkle" } },
+        { href: "/projects/ikhi", title: { ko: "익히", en: "ikhi" } },
+      ],
+      faq: [
+        {
+          q: { ko: "어떤 프로젝트를 맡을 수 있나요?", en: "What kind of project can you take on?" },
+          a: {
+            ko: "B2B SaaS, 내부 운영 도구, 데이터 파이프라인과 대시보드, 웹 MVP와 제품, React Native 모바일 앱까지 가능합니다.",
+            en: "B2B SaaS, internal tools, data pipelines and dashboards, web MVPs and products, and React Native apps.",
+          },
+        },
+        {
+          q: { ko: "기간은 얼마나 걸리나요?", en: "How long does it take?" },
+          a: {
+            ko: "범위에 따라 다릅니다. 지금까지 만든 서비스는 MVP 2주부터 출시까지 2~4개월이 걸렸습니다. 이후 운영과 개선은 스프린트로 이어갑니다.",
+            en: "It depends on scope. Past products took from a two-week MVP to two to four months to launch. After that, improvements run in sprints.",
+          },
+        },
+        {
+          q: { ko: "품질은 어떻게 지키나요?", en: "How is quality kept?" },
+          a: {
+            ko: "지표, 로그, 에러 모니터링을 먼저 깔고, 요구사항을 좁게 정의한 뒤 빠르게 배포해 실제 사용 데이터로 고칩니다.",
+            en: "Metrics, logs and error monitoring go in first; requirements are kept narrow, shipped fast and corrected from real usage.",
+          },
+        },
+      ],
+      keywords: ["풀스택 개발자", "Next.js 개발", "React 개발", "Supabase", "MVP"],
+    },
+  ] satisfies Service[],
+
+  insights: [
+    {
+      id: "ai-that-works",
+      title: {
+        ko: "이제는 실제로 일할 수 있어야 한다",
+        en: "Now AI has to do the work",
+      },
+      summary: {
+        ko: "AI는 이미 충분히 똑똑하다. AI가 무언가를 잘하는 것과 AI에게 실제 업무를 맡길 수 있다는 것은 다르다. 기업의 AI 전환을 완성하는 실행 인프라, Foli를 만드는 이유.",
+        en: "AI is already smart enough. Being good at something is different from being able to hand it real work. Why we are building Foli, the execution infrastructure that completes AX.",
+      },
+      date: "2026.10.20",
+      cover: {
+        src: "/archive/photograph-of-women-working-at-a-bell.jpg",
+        alt: { ko: "전화 교환대 앞에 줄지어 앉아 회선을 연결하는 교환원들", en: "Operators in a row connecting lines at a telephone switchboard" },
+        caption: { ko: "벨 시스템 국제 전화 교환대", en: "A Bell System international switchboard" },
+      },
+      body: [
+        { type: "quote", text: { ko: "AI는 이미 충분히 똑똑하다. 이제는 실제로 일할 수 있어야 한다. 우리는 기업의 AI 전환(AX)을 완성하는 실행 인프라 플랫폼, Foli를 만든다.", en: "AI is already smart enough. Now it has to be able to do the work. We are building Foli, the execution infrastructure platform that completes a company's AI transition (AX)." } },
+        { type: "h2", text: { ko: "AI가 코드를 작성하는 것과, 개발자의 일을 대신하는 것은 다르다", en: "Writing code is not the same as doing a developer's work" } },
+        { type: "p", text: { ko: "2년 전에도 ChatGPT는 코드를 제법 잘 작성했다. 하지만 당시 개발자들은 지금처럼 자신의 일자리를 진지하게 걱정하지 않았다. 불과 2년 만에 무엇이 달라졌을까?", en: "Two years ago ChatGPT already wrote decent code. Yet developers were not seriously worried about their jobs the way they are now. What changed in just two years?" } },
+        { type: "p", text: { ko: "물론 AI 모델 자체도 훨씬 똑똑해졌다. 하지만 본질적인 변화는 다른 곳에 있다. AI가 무언가를 잘하는 것과, AI에게 실제 업무를 맡길 수 있다는 것은 전혀 다른 차원의 이야기다.", en: "The models did get much smarter. But the essential change lies elsewhere. AI being good at something and being able to hand AI real work are entirely different things." } },
+        { type: "p", text: { ko: "과거에는 AI가 작성한 코드를 개발자가 직접 복사해 옮기고, 테스트하고, 배포해야 했다. 반면 지금은 Claude Code나 Codex에 원하는 결과를 말하면, 에이전트가 직접 로컬 파일을 수정하고, 터미널을 실행해 테스트를 돌리고, 발생한 오류를 스스로 고치며, 필요한 도구를 호출해 작업을 끝낸다.", en: "Back then, developers copied the code AI wrote, moved it, tested it and deployed it themselves. Now you tell Claude Code or Codex the result you want, and the agent edits local files, runs the tests in a terminal, fixes the errors it hits and calls whatever tools it needs to finish the job." } },
+        { type: "p", text: { ko: "달라진 것은 모델의 지능만이 아니다. 개발자의 업무 환경인 IDE, 터미널, Git, CI/CD 파이프라인이 AI와 직접 연결되었다. 여기에 자연어로 업무를 지시하고 결과만 확인하는 직관적인 UX가 결합되었다.", en: "What changed is not only the model's intelligence. The developer's working environment, the IDE, the terminal, Git and the CI/CD pipeline, was connected directly to AI, and joined with an intuitive experience: give the instruction in plain language and check the result." } },
+        { type: "p", text: { ko: "이제 개발자는 \"AI가 유용하다\"는 설명을 듣는 데 그치지 않는다. AI에게 일을 맡겼더니 실제로 그 일이 끝나 있는 경험을 한다. 우리는 이것을 AI의 '유효경험'이라고 부른다. 그리고 이 유효경험이 임계점을 넘었을 때, 사람들은 비로소 일하는 방식을 근본적으로 바꾸기 시작한다.", en: "Developers no longer just hear that AI is useful. They hand AI a task and find the task actually done. We call this AI's effective experience. When effective experience crosses a threshold, people finally begin to change how they work." } },
+        { type: "h2", text: { ko: "왜 대부분의 기업에서는 아직 같은 일이 일어나지 않는가?", en: "Why the same thing has not happened in most companies" } },
+        { type: "p", text: { ko: "개발, 디자인, 영상 편집, 문서 작성까지 디지털 네이티브 영역에서 AI 에이전트의 영토는 폭발적으로 넓어지고 있다. 하지만 공장, 물류센터, 운송주선사, 콜센터는 어떨까? 이 현장에서 일하는 사람들도 개발자처럼 AI에게 업무를 맡기고 완성된 결과를 받아볼 수 있을까?", en: "In digital-native work, development, design, video editing and writing, the territory of AI agents is expanding explosively. But what about factories, warehouses, freight brokers and call centres? Can the people working there hand AI their work and get a finished result back, the way developers do?" } },
+        { type: "p", text: { ko: "현실은 전혀 그렇지 않다. 우리가 현장에서 가장 먼저 마주했던 한 물류 기업의 일상을 보자.", en: "Not at all. Look at an ordinary day at a logistics company, one of the first places we met in the field." } },
+        { type: "p", text: { ko: "고객이 카카오톡으로 화물 운송을 요청한다. 배차 담당자는 메시지를 읽고, 사내 레거시 ERP에서 거래처 정보와 단가를 확인한 뒤, 외부 배차 플랫폼을 열어 적합한 차량을 찾는다. 이후 운송기사에게 직접 전화를 걸어 상하차 일정을 조율하고, 확정된 결과를 다시 고객에게 카카오톡으로 안내한다.", en: "A customer asks for a shipment over KakaoTalk. The dispatcher reads the message, checks the account and rate in the company's legacy ERP, then opens an external dispatch platform to find a suitable truck. Next they phone the driver to arrange loading and unloading, and send the confirmed result back to the customer on KakaoTalk." } },
+        { type: "p", text: { ko: "만약 아주 똑똑한 AI가 이 운송 요청을 완벽하게 이해하고 최적의 배차 계획까지 세웠다고 가정해 보자. 그런데 이 AI가 사내 ERP에 접근할 수 없고, 외부 배차 플랫폼 화면을 조작할 수 없으며, 기사에게 전화를 걸 수도 없다면 어떻게 될까? 결국 나머지 모든 실행은 여전히 사람이 직접 손으로 해야 한다.", en: "Suppose a very smart AI understood this request perfectly and drew up the best dispatch plan. If it cannot reach the ERP, cannot operate the dispatch platform's screens and cannot call the driver, every remaining step still has to be done by hand." } },
+        { type: "p", text: { ko: "개발자의 업무 환경은 API와 CLI를 통해 빠르게 AI와 연결되고 있지만, 현실 경제를 움직이는 수많은 기업의 업무 환경은 철저히 단절되어 있다.", en: "The developer's environment is being connected to AI quickly through APIs and CLIs. The working environments of the countless companies that run the real economy remain thoroughly disconnected." } },
+        { type: "p", text: { ko: "공식 API조차 없는 오래된 ERP, 직원의 업무용 스마트폰, 카카오톡과 문자 메시지, 전화와 팩스, 고객사 전용 웹 포털, 나아가 공장의 설비와 연구실의 실험 장비까지. 기업의 실제 업무는 파편화된 소프트웨어와 물리적 장비를 쉴 새 없이 넘나들며 이루어진다. 지금 이 순간에도 수많은 직원들이 시스템과 시스템 사이에서 정보를 옮기는 '인간 라우터' 역할을 하고 있다.", en: "Old ERPs with no official API, staff work phones, KakaoTalk and text messages, phone and fax, customer-only web portals, even factory equipment and laboratory instruments. Real work moves constantly across fragmented software and physical machines. Right now, countless employees are acting as human routers, carrying information from one system to the next." } },
+        { type: "p", text: { ko: "그렇다고 AI를 도입하자고 수십 년간 써온 인프라를 하루아침에 전부 교체할 수는 없다. 당장 내일부터 거래처에 카카오톡 대신 Slack으로 연락해 달라고 요구할 수도 없는 노릇이다.", en: "Nor can a company replace decades of infrastructure overnight to adopt AI. It cannot ask its partners to switch from KakaoTalk to Slack starting tomorrow." } },
+        { type: "p", text: { ko: "우리는 바로 이 단절에서 가장 거대한 기회를 발견했다. AI를 쓰기 위해 기업이 일하는 방식을 억지로 바꾸는 것이 아니라, AI가 기업의 기존 환경 속으로 직접 들어가 일할 수 있어야 한다.", en: "We found the largest opportunity in exactly this disconnection. Companies should not have to force a new way of working to use AI. AI should go into the environment they already have and work there." } },
+        { type: "h2", text: { ko: "Foli가 만드는 '유효경험': 시작부터 끝까지 완결되는 업무", en: "The effective experience Foli makes: work completed from start to finish" } },
+        { type: "p", text: { ko: "Foli가 연결되면 같은 현장은 완전히 다르게 작동한다.", en: "With Foli connected, the same floor works completely differently." } },
+        { type: "p", text: { ko: "어느 날 고객이 평소처럼 카카오톡으로 운송을 요청한다. Foli의 에이전트는 즉시 메시지를 감지하고 주문에 필요한 핵심 정보를 추출한다. 이어서 사내 ERP를 조회해 기존 거래 조건을 확인하고, 외부 배차 플랫폼을 직접 조작해 조건에 맞는 차량을 확보한다.", en: "A customer requests a shipment on KakaoTalk as usual. Foli's agent picks up the message at once and extracts what the order needs. It checks the existing terms in the ERP, then operates the external dispatch platform itself to secure a truck that fits." } },
+        { type: "p", text: { ko: "에이전트는 운송기사에게 연락해 일정을 조율한 뒤, 확정된 배차 결과를 고객에게 전달한다. 마지막으로 사내 ERP의 배차 상태와 정산 문서를 갱신하는 것까지 스스로 마무리한다. 단가 조율이나 긴급 변경처럼 사람의 판단이 꼭 필요한 예외적인 순간에만 담당자에게 개입을 요청한다.", en: "The agent contacts the driver to settle the schedule and sends the confirmed dispatch to the customer. Finally it updates the dispatch status and settlement documents in the ERP on its own. It asks a person to step in only at the exceptional moments that need human judgement, such as negotiating a rate or an urgent change." } },
+        { type: "p", text: { ko: "모든 처리가 끝나면 담당자는 Foli에서 단 하나의 결과 보고를 확인한다.", en: "When everything is done, the person in charge sees a single report in Foli." } },
+        { type: "report", title: { ko: "배차가 완료되었습니다", en: "Dispatch complete" }, text: { ko: "고객의 운송 요청을 접수하고, 차량 배정과 기사 확인을 마쳤습니다. 고객에게 배차 정보를 안내했으며, ERP에도 정상 반영했습니다.", en: "The customer's request was received, a truck assigned and the driver confirmed. The customer has the dispatch details, and the ERP is updated." } },
+        { type: "p", text: { ko: "이것이 Foli가 현실 기업에 만들어 주려는 '유효경험'이다. 직원이 서너 개의 화면과 전화기를 오가며 직접 처리하던 파편화된 노동이, 에이전트에게 위임하는 '하나의 완결된 업무'로 바뀐다.", en: "This is the effective experience Foli sets out to give real companies. Fragmented labour, done by an employee moving between three or four screens and a phone, becomes one finished task delegated to an agent." } },
+        { type: "p", text: { ko: "그리고 이 경험은 물류업에만 머물지 않는다.", en: "And the experience does not stop at logistics." } },
+        { type: "list", items: [
+          { ko: "제조 현장에서는 생산관리 에이전트가 설비 상태와 PLC 데이터를 실시간으로 감시하고, 이상 징후가 포착되면 담당자에게 보고하거나 사전 승인된 제어 조치를 즉각 실행한다.", en: "On the factory floor, a production agent watches equipment status and PLC data in real time, and when it spots an anomaly it reports to the person in charge or runs a pre-approved control action at once." },
+          { ko: "콜센터에서는 상담 에이전트가 전화를 받고, 고객 정보를 조회하며, 내부 업무 시스템을 직접 조작해 요청을 처리한다. 사람의 공감이 필요한 순간에만 그동안의 맥락을 요약해 상담원에게 매끄럽게 인계한다.", en: "In a call centre, a service agent answers the phone, looks up the customer and operates internal systems to handle the request. Only when human empathy is needed does it summarise the context and hand over smoothly to a person." },
+          { ko: "일반 백오피스에서는 정산 에이전트가 이메일과 첨부 문서를 확인하고, 거래 내역을 대조한 뒤, ERP에 전표를 입력하고 담당자의 최종 승인을 받아 마감 업무를 끝낸다.", en: "In the back office, a settlement agent reads emails and attachments, reconciles transactions, enters vouchers in the ERP and closes the books after the person in charge gives final approval." },
+        ] },
+        { type: "p", text: { ko: "기존의 업무 방식을 파괴하거나 쓰던 소프트웨어를 통째로 갈아엎는 것이 아니다. 기업이 이미 사용하고 있는 인프라 위에서 AI가 곧바로 실무를 수행하게 만드는 것이다.", en: "It does not tear up the way a company works or throw out the software it uses. It lets AI do the actual work right away, on the infrastructure the company already has." } },
+        { type: "h2", text: { ko: "Foli는 무엇을 만드는가?", en: "What Foli is building" } },
+        { type: "p", text: { ko: "단절된 기업 환경에서 AI가 실제로 일하게 만들기 위해, Foli는 세 가지 핵심 계층을 만들고 있다.", en: "To make AI actually work in a disconnected company, Foli is building three core layers." } },
+        { type: "h3", text: { ko: "파편화된 업무 환경을 하나로 묶는 실행 인프라 (Foli Edge Gateway)", en: "Execution infrastructure that ties fragmented work together (Foli Edge Gateway)" } },
+        { type: "p", text: { ko: "기업의 업무는 단일 소프트웨어 안에서 끝나지 않는다. Foli는 표준 API와 MCP(Model Context Protocol)는 물론, 화면을 직접 보고 제어하는 컴퓨터 조작(Computer Use), 전화(VoIP) 시스템, 비즈니스 메신저, 산업용 하드웨어 장비까지 다양한 실행 수단을 에이전트와 직접 연결한다. 공식 연동 수단이 있는 서비스는 직접 연결하고, 레거시 시스템이나 폐쇄망 장비는 Foli Edge Gateway를 통해 물리적·소프트웨어적 경계를 넘어 연동한다. 기업은 기존 시스템을 단 하나도 교체하지 않고 AI가 일할 수 있는 실행 환경을 갖추게 된다.", en: "Company work never ends inside one piece of software. Foli connects agents directly to many ways of acting: standard APIs and MCP (Model Context Protocol), computer use that sees and controls screens, phone (VoIP) systems, business messengers, even industrial hardware. Services with official integrations are connected directly; legacy systems and closed-network equipment are reached across physical and software boundaries through the Foli Edge Gateway. The company gets an environment where AI can work without replacing a single existing system." } },
+        { type: "h3", text: { ko: "기업의 조직과 프로세스가 그대로 투영된 맞춤형 에이전트", en: "Agents shaped to the company's own organisation and processes" } },
+        { type: "p", text: { ko: "기업마다 핵심 KPI도, 업무 절차도, 사용하는 시스템도 모두 다르다. Foli는 기업의 기존 업무 프로세스와 역할, 권한 구조를 그대로 에이전트 시스템에 매핑한다. 배차 에이전트, 정산 에이전트, 고객 응대 에이전트가 각자의 직무 범위 안에서 독립적으로 업무를 수행하고, 필요할 때는 서로 데이터를 주고받으며 협력한다. 현업 직원은 복잡한 자동화 워크플로를 직접 설계하거나 프롬프트를 공부할 필요가 없다. 자연어로 업무를 지시하고 결과만 확인하면 된다. AI를 잘 아는 사람이 아니라, 자신의 본업을 가장 잘 아는 사람이 가장 강력한 무기로 쓸 수 있는 제품이 바로 Foli다.", en: "Every company has its own KPIs, procedures and systems. Foli maps the company's existing processes, roles and permissions straight onto its agents. A dispatch agent, a settlement agent and a customer agent each work within their own remit and exchange data when they need to. Staff do not have to design automation workflows or study prompts: they give instructions in plain language and check the results. Foli is meant to be the strongest tool not for the person who knows AI best, but for the person who knows their own job best." } },
+        { type: "h3", text: { ko: "기업이 안심하고 권한을 위임할 수 있는 신뢰 환경 (Enterprise Governance)", en: "An environment of trust where a company can delegate (Enterprise Governance)" } },
+        { type: "p", text: { ko: "아무리 편리한 AI라도 보안과 통제가 담보되지 않으면 기업은 핵심 데이터와 실행 권한을 내어줄 수 없다. Foli는 조직 및 직급별 접근 권한 제어(RBAC), 중요 작업에 대한 사전 승인 절차(Human-in-the-Loop), 모든 행동의 감사 기록(Audit Log), 그리고 격리된 안전 실행 환경을 기본으로 갖춘다. 기업의 보안 정책에 따라 클라우드 모델과 온프레미스 모델을 선택해 연결할 수 있으며, 여러 에이전트가 협력하더라도 각자의 권한과 책임 경계는 엄격하게 통제된다. 기업이 진짜 원하는 것은 통제 불능의 완전 자동화가 아니라, 언제든 믿고 맡길 수 있는 업무 자동화이기 때문이다.", en: "However convenient, no company will hand over core data and the power to act without security and control. Foli is built with role-based access control by team and rank (RBAC), approval before important actions (human in the loop), an audit log of every action and an isolated, safe execution environment. Cloud or on-premise models can be chosen to fit the company's security policy, and even when agents work together each one's permissions and responsibilities stay strictly bounded. What companies really want is not automation out of control, but automation they can trust with the work at any time." } },
+        { type: "h2", text: { ko: "우리가 파는 것은 소프트웨어가 아니라 '끝난 일'이다", en: "What we sell is not software but finished work" } },
+        { type: "p", text: { ko: "우리가 기업에 판매하는 것은 최신 AI 모델도, 대화형 챗봇도, 복잡한 워크플로 빌더도 아니다. 기업 입장에서 중요한 질문은 훨씬 본질적이고 단순하다.", en: "We do not sell companies the latest model, a chatbot or a complicated workflow builder. The questions that matter to a company are far simpler and more fundamental." } },
+        { type: "list", items: [
+          { ko: "직원이 여러 시스템을 오가며 소모하던 시간이 실제로 사라지는가?", en: "Does the time staff lose moving between systems actually disappear?" },
+          { ko: "반복적인 실무를 사람보다 더 빠르고 정확하게 완수하는가?", en: "Is repetitive work finished faster and more accurately than by people?" },
+          { ko: "핵심 인력이 단순 작업에서 벗어나 더 부가가치가 높은 일에 집중할 수 있는가?", en: "Can key people leave routine tasks and focus on higher-value work?" },
+          { ko: "궁극적으로 이 변화가 즉각적인 비용 절감과 매출 증대라는 측정 가능한 ROI로 증명되는가?", en: "In the end, is the change proven by a measurable ROI in immediate savings and growth?" },
+        ] },
+        { type: "p", text: { ko: "AI의 도입 자체는 기업의 목적이 될 수 없다. 물류회사는 여전히 화물을 정확하게 옮겨야 돈을 벌고, 제조업체는 불량 없이 좋은 제품을 만들어야 생존한다. AI가 등장했다고 해서 기업이 가치를 창출하는 본질까지 바뀐 것은 아니다.", en: "Adopting AI cannot be a company's goal in itself. A logistics company still earns its money by moving freight accurately; a manufacturer survives by making good products without defects. AI arriving has not changed how a company creates value." } },
+        { type: "p", text: { ko: "우리에게 AX(AI 전환)란 회사에 그럴듯한 AI 툴 하나를 새로 구독하는 일이 아니다. 기업이 원래 해오던 본업을, AI와 함께 더 적은 자원으로 압도적으로 잘 해내게 만드는 것이다.", en: "To us, AX is not subscribing to one more impressive AI tool. It is making a company do its own work overwhelmingly well, with fewer resources, together with AI." } },
+        { type: "h2", text: { ko: "세상에는 그런 현장이 수없이 많다", en: "There are countless places like this" } },
+        { type: "p", text: { ko: "이미 잘 정비된 클라우드 인프라 위에서 일하며, 기존의 SaaS형 AI 제품만으로도 충분한 효용을 누리는 테크 기업들이 있다. 하지만 세상의 대다수 기업은 그렇지 않다.", en: "Some tech companies work on well-kept cloud infrastructure and get plenty from existing SaaS AI products. Most companies in the world do not." } },
+        { type: "p", text: { ko: "아직 디지털 전환(DX)조차 완전히 끝나지 않은 기업들, 수십 년간 누적된 레거시 시스템과 엑셀·전화·메신저 위에서 돌아가는 기업들, 그리고 매일 수백 번씩 시스템과 사람 사이를 메우며 일하는 수많은 현업 직원들이 있다.", en: "There are companies that have not even finished digital transformation, companies running on decades of legacy systems, spreadsheets, phones and messengers, and countless staff who fill the gaps between systems and people hundreds of times a day." } },
+        { type: "p", text: { ko: "그들이 지금까지 AI를 도입하지 못한 이유는 기술의 가치를 몰라서가 아니다. 그들의 거칠고 복잡한 현장 속에서 실제로 일을 끝내줄 수 있는 AI를 아직 만나지 못했기 때문이다.", en: "They have not adopted AI not because they miss its value, but because they have not yet met an AI that can actually finish the work in their rough, complicated reality." } },
+        { type: "p", text: { ko: "우리는 이 시장이 소외된 변방이나 단순한 롱테일(Long-tail)이라고 생각하지 않는다. 오히려 실물 경제의 가장 거대한 몸통이자, 앞으로 AI가 가장 폭발적인 재무적 가치를 만들어낼 본류(Mainstream)라고 확신한다.", en: "We do not see this market as a neglected fringe or a long tail. We are convinced it is the largest body of the real economy, and the mainstream where AI will create the most explosive financial value." } },
+        { type: "p", text: { ko: "AI의 두뇌는 이미 충분히 똑똑해졌다. 이제 승부는 그 지능이 현실 세계의 거친 업무 환경에 얼마나 깊이, 그리고 안전하게 연결될 수 있느냐에서 갈린다.", en: "AI's brain is already smart enough. The contest now is how deeply, and how safely, that intelligence can be connected to the rough working environments of the real world." } },
+        { type: "quote", text: { ko: "Foli는 그 연결의 표준을 만든다. 우리는 AI를 더 똑똑하게 만드는 경쟁을 하지 않는다. 이미 똑똑해진 AI가 모든 기업의 현장에서 실제로 일할 수 있는 세상을 만든다.", en: "Foli sets the standard for that connection. We are not competing to make AI smarter. We are making a world where AI, already smart, can actually work on the floor of every company." } },
+      ],
+    },
+    {
+      id: "ax-reality",
+      cover: {
+        src: "/archive/savings-book-entries-1912.jpg",
+        alt: { ko: "손으로 적고 도장을 찍은 오래된 저금 통장의 거래 기록면", en: "Handwritten, stamped entries in an old savings book" },
+        caption: { ko: "손으로 적던 통장 기록, 1912–1916년", en: "Savings book entries kept by hand, 1912–1916" },
+      },
+      title: {
+        ko: "AX는 AI 도입이 아니라 운영 체제 전환이다",
+        en: "AX is an operating system transition, not AI adoption",
+      },
+      summary: {
+        ko: "AI 모델보다 먼저, 데이터 흐름과 책임 구조를 설계해야 합니다. 실무 도입 실패의 원인은 대부분 운영 체계의 부재에 있습니다.",
+        en: "Design data flow and responsibility before models. Most failures in practice come from having no operating system for the work.",
+      },
+      date: "2026.01.06",
+      body: [
+        {
+          type: "p",
+          text: {
+            ko: "물류, 금융, 가구 컨설팅 현장을 오가며 확인한 한 가지 사실이 있습니다. 업종은 달라도 운영은 놀랍도록 비슷하게 굴러갑니다.",
+            en: "After visiting logistics, finance, and consulting fields, I confirmed one thing. Different industries, but operations run surprisingly similarly.",
+          },
+        },
+        {
+          type: "p",
+          text: {
+            ko: "핵심 업무가 시스템이 아니라 사람의 손과 기억, 그리고 엑셀·메일함·메신저에 기대어 돌아가고 있었습니다.",
+            en: "Core tasks rely on human hands, memory, Excel, emails, and messengers, not systems.",
+          },
+        },
+        { type: "h2", text: { ko: "AI 도입 전의 현실", en: "The reality before AI" } },
+        {
+          type: "pairs",
+          items: [
+            { title: { ko: "물류", en: "Logistics" }, text: { ko: "모니터 3개, 엑셀, 전화로 오더 확인. 누락 시 개인 책임.", en: "3 monitors, Excel, phone calls. Errors are personal liability." } },
+            { title: { ko: "금융 HR", en: "Finance HR" }, text: { ko: "대상자 수기 식별, 메일 발송, 회신 추적, 누락 재확인.", en: "Manual identification, emailing, tracking, and re-checking." } },
+            { title: { ko: "컨설팅", en: "Consulting" }, text: { ko: "흩어진 조건들을 머릿속에서 매칭. 담당자 바뀌면 맥락 단절.", en: "Mental matching of scattered conditions. Context lost when staff changes." } },
+          ],
+        },
+        {
+          type: "quote",
+          text: {
+            ko: "AI를 붙이기 전에, 이미 조직 내부에는 비효율과 책임 공백이 프로세스로 고착되어 있습니다.",
+            en: "Before applying AI, inefficiency and responsibility gaps are already cemented into the process.",
+          },
+        },
+        { type: "h2", text: { ko: "AI 시장의 3가지 층위와 실패하는 지점", en: "Three layers of the AI market, and where it fails" } },
+        {
+          type: "p",
+          text: {
+            ko: "AI 도입을 이야기하기 전에 시장을 세 층위로 나눠봅시다. 인프라, 모델, 그리고 운영입니다.",
+            en: "Let's divide the AI market into three layers: Infrastructure, Model, and Operations.",
+          },
+        },
+        {
+          type: "pairs",
+          items: [
+            { title: { ko: "인프라", en: "Infrastructure" }, text: { ko: "컴퓨팅, 전력, 데이터센터. 투자가 몰리는 층입니다.", en: "Computing, power, data centres. Where the investment goes." } },
+            { title: { ko: "파운데이션 모델", en: "Foundation model" }, text: { ko: "LLM, sLLM, 멀티모달. 경쟁이 가장 치열한 층입니다.", en: "LLM, sLLM, multimodal. Where the competition is fiercest." } },
+            { title: { ko: "운영과 실무", en: "Operations" }, text: { ko: "기업이 실제 성과를 만들어내는 영역. 문제가 생기는 지점입니다.", en: "Where companies create actual value, and where it fails." } },
+          ],
+        },
+        {
+          type: "p",
+          text: {
+            ko: "대부분의 실패는 모델 성능이 아니라, 전사 운영관리 체계의 부재에서 옵니다. KPI, 데이터 정의, 책임 소재, 로그 체계가 없으면 AI는 혼란을 가중시키는 '짐'이 될 뿐입니다.",
+            en: "Most failures come not from model performance, but from the lack of operational systems. Without KPIs, data definitions, and clear responsibilities, AI becomes just another burden.",
+          },
+        },
+        { type: "h2", text: { ko: "현장에서 목격한 3가지 실패 패턴", en: "Three failure patterns from the field" } },
+        {
+          type: "pairs",
+          items: [
+            {
+              title: { ko: "데이터가 흐르지 않는 조직", en: "Organizations where data doesn't flow" },
+              text: {
+                ko: "부서마다 데이터 기준이 다르고 엑셀로 관리됩니다. 이 상황에서 AI를 도입하면 '입력할 것만 늘어난 시스템' 취급을 받습니다. 모델보다 먼저 파이프라인과 단일 기준(Single Source of Truth)을 만들어야 합니다.",
+                en: "Data standards vary by department and are managed in Excel. AI becomes 'just more data entry'. Build pipelines and a Single Source of Truth before models.",
+              },
+            },
+            {
+              title: { ko: "워크플로우와 통제 체계의 부재", en: "Lack of workflow and control systems" },
+              text: {
+                ko: "현장은 예외가 기본입니다. 100% 자동화는 불가능합니다. 사람이 개입해야 하는 승인/반려 경계와 감사(Audit) 로그를 먼저 설계해야 조직이 AI를 신뢰하고 받아들입니다.",
+                en: "Exceptions are the norm. 100% automation is impossible. Design approval boundaries and audit logs first so the organization can trust and accept AI.",
+              },
+            },
+            {
+              title: { ko: "핵심 로직의 외주화", en: "Outsourcing core logic" },
+              text: {
+                ko: "외부 솔루션에 의존하면 운영 노하우가 내재화되지 않습니다. AI 시대의 경쟁력은 자사 도메인 데이터와 의사결정 로직의 축적에서 나옵니다. 핵심은 내부에서 통제 가능해야 합니다.",
+                en: "Relying on external solutions prevents internalizing know-how. Competitiveness comes from accumulating domain data and decision logic. Core logic must be controllable internally.",
+              },
+            },
+          ],
+        },
+        { type: "h2", text: { ko: "AX는 운영 체제 전환 프로젝트다", en: "AX is an operating system transition" } },
+        {
+          type: "p",
+          text: {
+            ko: "AX(AI Transformation)는 단순한 AI 도입 프로젝트가 아닙니다. 기업의 운영 체제(OS)를 업그레이드하는 프로젝트라고 부르는 게 더 적절합니다.",
+            en: "AX (AI Transformation) is not just an AI adoption project. It's more appropriate to call it a corporate Operating System (OS) upgrade.",
+          },
+        },
+        { type: "p", text: { ko: "모델을 고르기 전에 다음 질문들에 먼저 답해야 합니다:", en: "Before choosing a model, answer these questions first:" } },
+        {
+          type: "list",
+          items: [
+            { ko: "데이터가 어떤 기준으로 생성·변경·소멸되는가?", en: "How is data created, modified, and deleted?" },
+            { ko: "업무 승인 권한과 예외 처리는 어디서 일어나는가?", en: "Where do approvals and exception handling occur?" },
+            { ko: "실패 시 복구 루틴(Fallback)은 무엇인가?", en: "What is the fallback routine for failures?" },
+          ],
+        },
+        {
+          type: "quote",
+          text: {
+            ko: "이 순서를 지키면, 모델 성능이 완벽하지 않아도 운영은 굴러가고 성과는 누적됩니다.",
+            en: "Follow this order, and operations will run and value will accumulate, even if the model isn't perfect.",
+          },
+        },
+        {
+          type: "p",
+          text: {
+            ko: "앞으로 이 블로그에서는 모델 성능보다, 실제 기업 현장에서 AI가 굴러가게 만드는 '조건'들을 다루려 합니다. 데이터 기준, 승인과 책임, 로그와 품질 관측 같은 진짜 운영 이야기들입니다.",
+            en: "In this blog, I will focus on the 'conditions' that make AI work in the field, rather than model performance. Real operational stories about data standards, approvals, responsibility, and logging.",
+          },
+        },
+      ],
+    },
+    {
+      id: "software-sovereignty",
+      cover: {
+        src: "/archive/typewriter-keys-1921.jpg",
+        alt: { ko: "오래된 타자기 자판을 가까이서 찍은 흑백 사진", en: "Close-up of old typewriter keys in black and white" },
+        caption: { ko: "타자기 자판, 1921년", en: "Typewriter keys, 1921" },
+      },
+      title: { ko: "소프트웨어 주권과 운영의 현실", en: "Software sovereignty and operational reality" },
+      summary: {
+        ko: "가장 좋은 소프트웨어는 사용자가 주도권을 쥐는 소프트웨어입니다. 블랙박스가 되어서는 안 됩니다.",
+        en: "The best software lets the user hold the reins. It must never be a black box.",
+      },
+      date: "2025.11.19",
+      body: [
+        {
+          type: "p",
+          text: {
+            ko: "편리함에는 대가가 따릅니다. 많은 기업들이 운영의 효율을 위해 거대 SaaS 플랫폼에 자신의 비즈니스 프로세스를 맞춥니다. \"업계 표준이니까\", \"다들 쓰니까\"라는 이유로 말이죠.",
+            en: "Convenience comes at a cost. Many companies align their business processes with massive SaaS platforms for operational efficiency. \"It's the industry standard,\" \"Everyone uses it.\"",
+          },
+        },
+        { type: "h3", text: { ko: "차별화의 역설", en: "The paradox of differentiation" } },
+        {
+          type: "p",
+          text: {
+            ko: "남들과 똑같은 ERP, 똑같은 CRM을 쓰면서 어떻게 차별화된 가치를 만들 수 있을까요? 기업의 핵심 경쟁력은 남들과 '다른' 프로세스에서 나옵니다.",
+            en: "How can you create differentiated value while using the same ERP and CRM as everyone else? Core competitiveness comes from processes that are 'different'.",
+          },
+        },
+        { type: "h2", text: { ko: "블랙박스에 갇힌 비즈니스", en: "Business trapped in a black box" } },
+        { type: "h3", text: { ko: "데이터 주권의 상실", en: "Loss of data sovereignty" } },
+        {
+          type: "list",
+          items: [
+            { ko: "내 고객 데이터가 플랫폼 안에 갇힘", en: "Customer data trapped in the platform" },
+            { ko: "알고리즘의 결과를 설명할 수 없음", en: "Cannot explain algorithm results" },
+            { ko: "'기능 지원 불가'라는 답변만 돌아옴", en: "Feature requests rejected" },
+          ],
+        },
+        { type: "h2", text: { ko: "소프트웨어를 위한 운영인가, 운영을 위한 소프트웨어인가?", en: "Software for operations, or operations for software?" } },
+        {
+          type: "p",
+          text: {
+            ko: "소프트웨어가 운영을 지원해야지, 운영이 소프트웨어에 맞춰져서는 안 됩니다. 제가 'Forward Deployed Engineer'로서 현장을 중시하는 이유가 여기에 있습니다.",
+            en: "Software should support operations; operations should not be tailored to software. This is why I, as a 'Forward Deployed Engineer', prioritize the field.",
+          },
+        },
+        { type: "h3", text: { ko: "소프트웨어 주권", en: "Software sovereignty" } },
+        {
+          type: "p",
+          text: {
+            ko: "현장의 독특한 맥락, 그 기업만의 고유한 노하우를 소프트웨어에 녹여내야 합니다. 비록 투박하더라도, 우리만의 로직과 우리만의 데이터가 흐르는 '자주적인 소프트웨어'를 가져야 합니다.",
+            en: "We must embed the unique context of the field and the company's proprietary know-how into the software. We must possess 'sovereign software' where our own logic and data flow.",
+          },
+        },
+        {
+          type: "list",
+          items: [
+            { ko: "투명한 로직", en: "Transparent logic" },
+            { ko: "데이터 소유권", en: "Data ownership" },
+            { ko: "맞춤 워크플로우", en: "Custom workflow" },
+          ],
+        },
+        { type: "h2", text: { ko: "진정한 디지털 전환", en: "True digital transformation" } },
+        {
+          type: "p",
+          text: {
+            ko: "가장 좋은 소프트웨어는 사용자가 주도권을 쥐는 소프트웨어입니다. 블랙박스가 되어서는 안 됩니다. 당신의 비즈니스 로직을 소프트웨어에 직접 구현하세요.",
+            en: "The best software lets the user hold the reins. It must never be a black box. Implement your business logic directly into the software.",
+          },
+        },
+      ],
+    },
+  ] satisfies Insight[],
 };

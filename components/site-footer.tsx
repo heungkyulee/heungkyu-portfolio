@@ -1,100 +1,74 @@
 "use client";
 
-import { useState } from "react";
-import { PORTFOLIO_DATA } from "@/app/data/portfolio";
-import { useI18n } from "@/components/i18n-provider";
-import { Button } from "@/components/ui/button";
-import { Copy, Check, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { useI18n } from "@/components/i18n-provider";
+import { NAV } from "@/components/site-header";
+import { CREDITS, PORTFOLIO_DATA } from "@/app/data/portfolio";
 
 export function SiteFooter() {
-    const { t, language } = useI18n();
-    const [copied, setCopied] = useState(false);
+  const { t } = useI18n();
+  const { contact } = PORTFOLIO_DATA.profile;
 
-    const handleCopyEmail = () => {
-        navigator.clipboard.writeText(PORTFOLIO_DATA.profile.contact.email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
+  const column = "t-body flex flex-col gap-2 text-muted";
+  const first = "text-ink";
 
-    return (
-        <footer className="py-24 px-6 md:px-12 bg-zinc-950 border-t border-zinc-900">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
-                    <div className="space-y-6">
-                        <h2 className="text-4xl md:text-6xl font-bold text-zinc-100 tracking-tight">
-                            {language === 'ko' ? (
-                                <>
-                                    함께 만드는 <br />
-                                    <span className="text-zinc-600 text-[80px]">변화.</span>
-                                </>
-                            ) : (
-                                <>
-                                    Let's work <br />
-                                    <span className="text-zinc-600 text-[80px]">together.</span>
-                                </>
-                            )}
-                        </h2>
-                        <p className="text-xl text-zinc-400 max-w-md whitespace-pre-line">
-                            {t({
-                                ko: "새로운 프로젝트, 기술적인 고민,\n혹은 가벼운 커피챗도 환영합니다.",
-                                en: "Open for new projects, technical discussions,\nor just a casual coffee chat."
-                            })}
-                        </p>
+  return (
+    <footer className="wrap bg-surface pb-6 pt-14 footer-reveal">
+      <div className="grid grid-cols-2 gap-x-[var(--gutter)] gap-y-10 md:grid-cols-12">
+        <div className={`${column} md:col-span-3`}>
+          <p className={first}>{t({ ko: "연락", en: "Contact" })}</p>
+          <a className="link" href={`mailto:${contact.email}`}>{contact.email}</a>
+          <a className="link" href={contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a className="link" href={contact.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div className={`${column} md:col-span-2`}>
+          <p className={first}>{t({ ko: "둘러보기", en: "Pages" })}</p>
+          {NAV.map((item) => (
+            <Link key={item.href} className="link" href={item.href}>
+              {t(item.label)}
+            </Link>
+          ))}
+          <Link className="link" href="/services">
+            {t({ ko: "서비스", en: "Services" })}
+          </Link>
+        </div>
+        <div className={`${column} md:col-span-2`}>
+          <p className={first}>{t({ ko: "회사", en: "Company" })}</p>
+          <a className="link" href={contact.company} target="_blank" rel="noopener noreferrer">
+            {t({ ko: "주식회사 라이폴리", en: "LiFoli Corp." })}
+          </a>
+          <span>{t(PORTFOLIO_DATA.profile.title)}</span>
+        </div>
+        <div className={`${column} col-span-2 md:col-span-5`}>
+          <p className={first}>{t({ ko: "사진과 영상", en: "Photographs and film" })}</p>
+          {CREDITS.map((c) => (
+            <a key={c.href} className="link" href={c.href} target="_blank" rel="noopener noreferrer">
+              {t(c.title)}, {c.by}, {t(c.license)}
+            </a>
+          ))}
+        </div>
+      </div>
 
-                        <div className="flex items-center gap-4 pt-4">
-                            <Button
-                                size="lg"
-                                className="rounded-full h-14 px-8 text-lg bg-zinc-100 text-zinc-950 hover:bg-zinc-200"
-                                onClick={handleCopyEmail}
-                            >
-                                {copied ? <Check className="mr-2 h-5 w-5" /> : <Copy className="mr-2 h-5 w-5" />}
-                                {copied ? "Copied!" : "Copy Email"}
-                            </Button>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col justify-end items-start md:items-end gap-6">
-                        <div className="flex flex-wrap gap-4 text-sm font-mono text-zinc-500">
-                            <Link href="/" className="hover:text-zinc-100 transition-colors">
-                                {language === "ko" ? "홈" : "Home"}
-                            </Link>
-                            <Link href="/about" className="hover:text-zinc-100 transition-colors">
-                                {language === "ko" ? "소개" : "About"}
-                            </Link>
-                            <Link href="/services" className="hover:text-zinc-100 transition-colors">
-                                {language === "ko" ? "서비스" : "Services"}
-                            </Link>
-                            <Link href="/insights" className="hover:text-zinc-100 transition-colors">
-                                {language === "ko" ? "인사이트" : "Insights"}
-                            </Link>
-                            <Link href="/projects" className="hover:text-zinc-100 transition-colors">
-                                {language === "ko" ? "프로젝트" : "Projects"}
-                            </Link>
-                        </div>
-                        {Object.entries(PORTFOLIO_DATA.profile.contact).map(([key, value]) => {
-                            if (key === 'email') return null;
-                            return (
-                                <a
-                                    key={key}
-                                    href={value}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group flex items-center gap-2 text-2xl md:text-3xl font-medium text-zinc-400 hover:text-zinc-100 transition-colors"
-                                >
-                                    <span className="capitalize">{key}</span>
-                                    <ArrowUpRight className="h-6 w-6 opacity-0 -translate-y-2 translate-x-2 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-                                </a>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-zinc-900 text-zinc-500 text-sm">
-                    <p>© {new Date().getFullYear()} {t(PORTFOLIO_DATA.profile.name)}. All rights reserved.</p>
-                    <p>Designed & Built by HK.</p>
-                </div>
-            </div>
-        </footer>
-    );
+      <svg
+        className="mt-[12vh] w-full fill-ink"
+        viewBox="0 0 1000 104"
+        role="img"
+        aria-label="Heungkyu Lee"
+      >
+        <text
+          x="0"
+          y="94"
+          textLength="1000"
+          lengthAdjust="spacingAndGlyphs"
+          style={{ fontSize: 118, fontWeight: 800, fontStretch: "150%", fontFamily: "var(--font-latin)" }}
+        >
+          HEUNGKYU LEE
+        </text>
+      </svg>
+      <p className="t-small mt-4 flex justify-between text-muted">
+        <span>© 2026 {t(PORTFOLIO_DATA.profile.name)}</span>
+        <span>{t({ ko: "주식회사 라이폴리", en: "LiFoli Corp." })}</span>
+      </p>
+    </footer>
+  );
 }
