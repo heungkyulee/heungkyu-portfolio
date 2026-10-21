@@ -211,7 +211,7 @@ export function StageFooter() {
           </a>
           <span className="text-muted">{t({ ko: "공동창업자·대표", en: "Co-founder & CEO" })}</span>
         </div>
-        <p className="col-span-2 self-end text-[13px] leading-relaxed text-faint md:col-span-6 md:text-right">
+        <p className="col-span-2 self-end text-[13px] leading-relaxed text-muted md:col-span-6 md:text-right">
           {t({ ko: "기록 사진과 영상: ", en: "Archival photographs: " })}
           {CREDITS.map((c, i) => (
             <span key={c.href}>
@@ -229,7 +229,7 @@ export function StageFooter() {
           HEUNGKYU LEE
         </text>
       </svg>
-      <p className="mt-4 text-[13px] text-faint">© 2026 {t(PORTFOLIO_DATA.profile.name)}</p>
+      <p className="mt-4 text-[13px] text-muted">© 2026 {t(PORTFOLIO_DATA.profile.name)}</p>
     </footer>
   );
 }

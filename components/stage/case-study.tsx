@@ -132,7 +132,7 @@ export function CaseStudy({ id }: { id: string }) {
                   <li
                     key={s.en}
                     className={`flex h-[min(56svh,30rem)] w-[min(78vw,26rem)] shrink-0 flex-col justify-between rounded-[28px] p-[clamp(1.5rem,2.5vw,2.25rem)] transition-[background-color,color,transform] duration-700 ${
-                      on ? (human ? "bg-ink text-bg" : "bg-surface-2 text-ink") : "bg-surface text-faint"
+                      on ? (human ? "bg-ink text-bg" : "bg-surface-2 text-ink") : "bg-surface text-muted"
                     } ${i === stage ? "scale-100" : "scale-[0.96]"}`}
                   >
                     <span className="num text-[clamp(3.5rem,2rem+4vw,6.5rem)] font-extrabold leading-none tracking-[-0.06em]">{String(i + 1).padStart(2, "0")}</span>
@@ -155,7 +155,7 @@ export function CaseStudy({ id }: { id: string }) {
         </h2>
         {isFamo ? (
           <div data-in className="case-result mt-10">
-            <p className="font-extrabold leading-none tracking-[-0.06em] text-faint text-[clamp(4.5rem,2rem+11vw,15rem)]">
+            <p className="font-extrabold leading-none tracking-[-0.06em] text-muted text-[clamp(4.5rem,2rem+11vw,15rem)]">
               <span className="case-strike">{t(famoCase.before)}</span>
             </p>
             <p className="t-lead mt-3 text-muted">{t(famoCase.beforeNote)}</p>

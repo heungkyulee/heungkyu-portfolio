@@ -18,7 +18,7 @@ function Block({ block }: { block: ArticleBlock }) {
       return <h3 className="t-lead mt-4 font-bold">{t(block.text)}</h3>;
     case "list":
       return (
-        <ul className="t-body m-0 flex list-disc flex-col gap-2 pl-6 text-ink-soft marker:text-faint">
+        <ul className="t-body m-0 flex list-disc flex-col gap-2 pl-6 text-ink-soft marker:text-muted">
           {block.items.map((item) => (
             <li key={item.ko}>{t(item)}</li>
           ))}

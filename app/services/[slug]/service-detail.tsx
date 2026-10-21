@@ -48,7 +48,7 @@ export function ServiceDetail({ slug }: { slug: string }) {
           <ol className="mt-8 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((step, i) => (
               <li key={step.title.en} data-in style={{ ["--d" as string]: `${i * 90}ms` }} className="flex min-h-[22rem] flex-col justify-between rounded-[28px] bg-surface p-[clamp(1.5rem,2.4vw,2.25rem)] transition-colors duration-500 hover:bg-surface-2">
-                <span className="num text-[clamp(3rem,2rem+3vw,5rem)] font-extrabold leading-none tracking-[-0.06em] text-faint">{String(i + 1).padStart(2, "0")}</span>
+                <span className="num text-[clamp(3rem,2rem+3vw,5rem)] font-extrabold leading-none tracking-[-0.06em] text-muted">{String(i + 1).padStart(2, "0")}</span>
                 <span>
                   <span className="block text-[clamp(1.4rem,1.1rem+1vw,2rem)] font-bold leading-[1.15] tracking-[-0.03em]">{t(step.title)}</span>
                   <span className="t-body mt-3 block text-ink-soft">{t(step.description)}</span>

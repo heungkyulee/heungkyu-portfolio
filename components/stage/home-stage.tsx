@@ -261,6 +261,14 @@ const smooth = (a: number, b: number, x: number) => {
   return k * k * (3 - 2 * k);
 };
 
+function Arrow({ back = false }: { back?: boolean }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`inline size-[1em] align-[-0.15em] ${back ? "rotate-180" : ""}`}>
+      <path d="M2 12h18M13 5l7 7-7 7" />
+    </svg>
+  );
+}
+
 // ---------- 화면 ----------
 
 export function HomeStage() {
@@ -742,7 +750,7 @@ export function HomeStage() {
         </div>
         <div className="pointer-events-auto mt-5 hidden items-baseline justify-between text-[14px] text-muted md:flex">
           <button type="button" className="link transition-opacity disabled:opacity-0" disabled={active <= 0} onClick={() => goTo(active - 1)}>
-            ← {active > 0 ? t(CHAPTERS[active - 1].title) : ""}
+            <Arrow back /> {active > 0 ? t(CHAPTERS[active - 1].title) : ""}
           </button>
           <span aria-hidden="true" className="flex gap-1.5">
             {CHAPTERS.map((c, i) => (
@@ -750,7 +758,7 @@ export function HomeStage() {
             ))}
           </span>
           <button type="button" className="link transition-opacity disabled:opacity-0" disabled={active < 0 || active >= N - 1} onClick={() => goTo(active + 1)}>
-            {active >= 0 && active < N - 1 ? t(CHAPTERS[active + 1].title) : ""} →
+            {active >= 0 && active < N - 1 ? t(CHAPTERS[active + 1].title) : ""} <Arrow />
           </button>
         </div>
       </div>
