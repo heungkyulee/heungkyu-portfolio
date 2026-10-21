@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       { source: "/insights/inefficiency-not-data", destination: "/insights", permanent: true },
       { source: "/insights/ai-agents-colleagues", destination: "/insights", permanent: true },
       { source: "/services/logistics-automation", destination: "/services", permanent: true },
+      { source: "/lab", destination: "/", permanent: false },
     ];
   },
 };

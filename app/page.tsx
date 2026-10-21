@@ -1,16 +1,5 @@
-import { Hero, Stage, Numbers, Work, Foli, Recognition, Teaching, Contact } from "@/components/home/home";
+import { HomeStage } from "@/components/stage/home-stage";
 
 export default function Home() {
-  return (
-    <>
-      <Hero />
-      <Stage />
-      <Numbers />
-      <Work />
-      <Foli />
-      <Recognition />
-      <Teaching />
-      <Contact />
-    </>
-  );
+  return <HomeStage />;
 }

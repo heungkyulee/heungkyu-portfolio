@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PORTFOLIO_DATA } from "@/app/data/portfolio";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/seo";
-import { ProjectDetail } from "./project-detail";
+import { CaseStudy } from "@/components/stage/case-study";
 
 export const dynamicParams = false;
 
@@ -66,7 +66,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <ProjectDetail id={id} />
+      <CaseStudy id={id} />
     </>
   );
 }

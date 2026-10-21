@@ -10,8 +10,8 @@ export function RecordTable() {
   return (
     <div className="t-lead">
       {PORTFOLIO_DATA.timeline.map((group, i) => (
-        <div key={group.year} data-item style={{ ["--i" as string]: i }} className="mt-16 first:mt-0">
-          <h3 className="t-lead mb-5 font-semibold text-accent num">
+        <div key={group.year} data-in style={{ ["--d" as string]: `${i * 60}ms` }} className="mt-16 first:mt-0">
+          <h3 className="t-lead mb-5 font-semibold text-muted num">
             {language === "en" && group.yearEn ? group.yearEn : group.year}
           </h3>
           <table className="w-full border-collapse">

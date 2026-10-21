@@ -1,25 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_KR, TikTok_Sans } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/components/i18n-provider";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { Reveal } from "@/components/reveal";
+import { StageChrome } from "@/components/stage/chrome";
+import { StageFooter } from "@/components/stage/parts";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/seo";
-
-const latin = TikTok_Sans({
-  variable: "--font-latin",
-  subsets: ["latin"],
-  axes: ["wdth"],
-  adjustFontFallback: false,
-  display: "swap",
-});
-
-const korean = Noto_Sans_KR({
-  variable: "--font-kr",
-  preload: false,
-  display: "swap",
-});
 
 const TITLE = "이흥규 | AI 에이전트와 업무 자동화를 만드는 창업자";
 const DESCRIPTION =
@@ -84,7 +68,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0c",
+  themeColor: "#040404",
 };
 
 const jsonLd = {
@@ -134,9 +118,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${latin.variable} ${korean.variable}`} suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
         <meta name="naver-site-verification" content="navercc9cf805a5a2a3da91ca9a2585f6f997" />
         <link rel="alternate" type="application/rss+xml" title="인사이트 RSS" href="/rss.xml" />
         <script
@@ -146,10 +135,9 @@ export default function RootLayout({
       </head>
       <body>
         <I18nProvider>
-          <SiteHeader />
-          <main className="relative z-10 bg-bg">{children}</main>
-          <SiteFooter />
-          <Reveal />
+          <StageChrome />
+          <main className="relative">{children}</main>
+          <StageFooter />
         </I18nProvider>
       </body>
     </html>
