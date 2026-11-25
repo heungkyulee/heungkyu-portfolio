@@ -5,9 +5,9 @@ import { StageChrome } from "@/components/stage/chrome";
 import { StageFooter } from "@/components/stage/parts";
 import { SITE_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
-const TITLE = "이흥규 | AI 에이전트와 업무 자동화를 만드는 창업자";
+const TITLE = "이흥규 | 라이폴리 대표이사 · 기업 AI 전환(AX)";
 const DESCRIPTION =
-  "주식회사 라이폴리 공동창업자·대표 이흥규입니다. AI 에이전트와 업무 자동화를 기획하고 직접 만듭니다. 지금은 진짜 일을 맡길 수 있는 AI 동료, Foli를 만들고 있습니다.";
+  "라이폴리 공동창업자·대표이사 이흥규. 전 한국물류데이터 공동창업자·CTO. 기업 AI 전환(AX), AI 에이전트, 업무 자동화 및 시스템 통합을 설계하고 구축합니다.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -93,13 +93,13 @@ const jsonLd = {
         alternateName: "LiFoli Corp.",
         url: "https://lifoli.co.kr/",
       },
-      alumniOf: {
+      affiliation: {
         "@type": "CollegeOrUniversity",
         name: "성균관대학교",
         alternateName: "Sungkyunkwan University",
       },
       description: DESCRIPTION,
-      knowsAbout: ["AI Agents", "Work Automation", "AI Transformation", "Full Stack Development"],
+      knowsAbout: ["Enterprise AI Transformation", "AI Agents", "Agentic Systems", "AI Infrastructure", "Business Process Automation", "System Integration", "Software Engineering"],
     },
     {
       "@type": "WebSite",
