@@ -7,8 +7,8 @@ import { BigList, PageIntro, ScrubText } from "@/components/stage/parts";
 import { PORTFOLIO_DATA } from "@/app/data/portfolio";
 
 const STATEMENT = {
-  ko: "2022년 창업팀을 시작해 주식회사 라이폴리를 세웠습니다. 회사의 일을 진단하고, 기획부터 디자인, 개발, 배포, 운영까지 직접 합니다. Claude Code와 Codex 같은 에이전틱 AI를 매일 쓰고, 꼭 필요한 부분은 기존 도구와 맞물리게 직접 만듭니다.",
-  en: "I started the founding team in 2022 and incorporated LiFoli Corp. I diagnose how a company works and do the planning, design, development, deployment and operation myself. I work with agentic AI such as Claude Code and Codex every day, and build what a company truly needs so it fits the tools it already uses.",
+  ko: "라이폴리 공동창업자·대표이사이자 AI 엔지니어입니다. 한국물류데이터 공동창업자·CTO를 역임했으며, 현재 기업의 AI 전환과 에이전트 인프라 구축에 집중합니다. 비즈니스 문제 정의부터 시스템 설계, 구현 및 운영까지 연결하고, 기업 대상 AI 강의와 컨설팅도 수행해 왔습니다.",
+  en: "I am the co-founder and CEO of LiFoli and an AI engineer. Previously co-founder and CTO of Korea Logistics Data, I now focus on enterprise AI transformation and agent infrastructure, connecting business problem definition with architecture, implementation and operations. My experience also includes corporate AI consulting and training.",
 };
 
 const STACK_LABELS = {
