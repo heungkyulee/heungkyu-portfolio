@@ -3,7 +3,7 @@ import { SITE_OG_IMAGE, SITE_URL } from "@/lib/seo";
 import { AboutContent } from "./about-content";
 
 const DESCRIPTION =
-  "주식회사 라이폴리 공동창업자·대표 이흥규의 약력, 경력과 기록입니다. AI 에이전트와 업무 자동화를 기획하고 직접 만듭니다.";
+  "라이폴리 공동창업자·대표이사 이흥규의 공식 약력. 전 한국물류데이터 공동창업자·CTO, 기업 AI 전환(AX), AI 에이전트 및 자동화 인프라 전문 분야.";
 
 export const metadata: Metadata = {
   title: "소개",
