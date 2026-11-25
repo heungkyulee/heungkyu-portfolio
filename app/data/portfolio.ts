@@ -122,12 +122,12 @@ export const PORTFOLIO_DATA = {
   profile: {
     name: { ko: "이흥규", en: "Heungkyu Lee" },
     title: {
-      ko: "주식회사 라이폴리 공동창업자·대표",
+      ko: "주식회사 라이폴리 공동창업자·대표이사",
       en: "Co-founder & CEO, LiFoli Corp.",
     },
     line: {
-      ko: "AI 에이전트와 업무 자동화를 기획하고 직접 만듭니다.",
-      en: "I plan AI agents and work automation, and build them myself.",
+      ko: "기업 AI 전환(AX), AI 에이전트 및 업무 자동화 인프라를 설계하고 구축합니다.",
+      en: "I design and build enterprise AI transformation, agentic systems and automation infrastructure.",
     },
     contact: {
       email: EMAIL,
@@ -498,7 +498,7 @@ export const PORTFOLIO_DATA = {
     {
       year: "2019",
       items: [
-        { what: { ko: "성균관대학교", en: "Sungkyunkwan University" }, kind: { ko: "입학", en: "Entered" }, where: { ko: "융합생명공학·인공지능융합 복수전공", en: "Double major, Biotechnology and AI" }, when: "2019 – 2027.08" },
+        { what: { ko: "성균관대학교", en: "Sungkyunkwan University" }, kind: { ko: "입학", en: "Entered" }, where: { ko: "융합생명공학·인공지능융합 복수전공", en: "Double major, Biotechnology and AI" }, when: "2019 –" },
       ],
     },
     {
@@ -526,12 +526,12 @@ export const PORTFOLIO_DATA = {
       role: { ko: "공동창업자·CTO", en: "Co-founder & CTO" },
       company: { ko: "한국물류데이터", en: "Korea Logistics Data" },
       description: {
-        ko: "공동창업자이자 CTO로 일했습니다.",
-        en: "Worked as co-founder and CTO.",
+        ko: "공동창업자 및 최고기술책임자(CTO)로 재직했으며 2026년 7월 31일 임기를 종료했습니다.",
+        en: "Served as co-founder and CTO until 31 July 2026.",
       },
     },
     {
-      period: "2019 – 2027.08",
+      period: "2019 –",
       role: { ko: "융합생명공학·인공지능융합 복수전공", en: "Double major, Biotechnology and AI" },
       company: { ko: "성균관대학교", en: "Sungkyunkwan University" },
       description: {
